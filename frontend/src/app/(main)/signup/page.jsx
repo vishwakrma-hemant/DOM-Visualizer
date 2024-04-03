@@ -15,8 +15,8 @@ import {
   Container,
 } from '@mantine/core';
 import Link from 'next/link';
-import { enqueueSnackbar } from 'notistack';
 import classes from './signup.module.css';
+import { enqueueSnackbar } from 'notistack';
 
 const Login = () => {
   const [type, toggle] = useToggle(['login', 'register']);

@@ -7,4 +7,4 @@ const mySchema = new Schema ({
     role: {type:String, default:'user'},
     creadeAt:Date,
 })
-module.exports = model('users', mySchema);
+module.exports = model('user', mySchema);
