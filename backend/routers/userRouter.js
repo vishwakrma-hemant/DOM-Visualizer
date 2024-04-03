@@ -6,10 +6,11 @@ const router = express.Router();
 const Model = require("../model/userModel")
 
 router.post("/add",(res, req) => {
+    console.log(req.body);
     new Model(req.body).save()
 
     .then((result ) => {
-       res.json(result)
+         res.status(200).json(result);
     }).catch((err) => {
         console.log(err);
         res.status(500).json(err)
