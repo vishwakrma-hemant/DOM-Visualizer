@@ -61,9 +61,9 @@ const Login = () => {
 
   return (
     <Container size={420} py={40}>
-      <Title ta="center" className={classes.title}>
+      {/* <Title ta="center" className={classes.title}>
         Welcome back!
-      </Title>
+      </Title> */}
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
         <form onSubmit={form.onSubmit(signupSubmit)}>
           <Stack>
@@ -143,9 +143,9 @@ const Login = () => {
             >
               Already have an account? Login
             </Anchor>
-            <Link href={"/login"} component="button" size="sm">
+            {/* <Link href={"/login"} component="button" size="sm">
               Log in?
-            </Link>
+            </Link> */}
             <Button type="submit" radius="xl">
               Signup
             </Button>

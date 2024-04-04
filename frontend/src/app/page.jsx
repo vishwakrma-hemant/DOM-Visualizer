@@ -7,6 +7,8 @@ import Features, { Feature } from "./Features";
 import FeaturesGrid from "./Features";
 import Link from "next/link";
 import Navbar from "./(main)/navbar";
+import footer from "./(main)/footer";
+import Footer from "./(main)/footer";
 
 const Home = () => {
   return (
@@ -52,6 +54,8 @@ const Home = () => {
       </Container>
 
       <FeaturesGrid />
+
+      <Footer/>
     </div>
   );
 };

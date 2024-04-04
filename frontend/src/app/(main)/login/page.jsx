@@ -19,11 +19,11 @@ import Link from "next/link";
 
 function Login() {
   return (
-    // <BackgroundImage h={'100vh'} src="https://images.unsplash.com/photo-1711284882601-57bf062fef7f?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+    <BackgroundImage
+      h={"100vh"}
+      src="https://images.unsplash.com/photo-1711284882601-57bf062fef7f?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    >
       <Container size={420} py={40}>
-        <Title ta="center" className={classes.title}>
-          Welcome back!
-        </Title>
         {/* <Text c="dimmed" size="sm" ta="center" mt={5}>
           Do not have an account yet?{" "}
           <Anchor size="sm" component="button">
@@ -51,12 +51,16 @@ function Login() {
 
           <Divider my="xs" label="OR" labelPosition="center" />
 
-          <Group grow mb="md" mt="md">
+          <Button mx={'auto'} display={'block'} component={Link} href="/signup" variant="outline">
+            Sign up
+          </Button>
+
+          {/* <Group grow mb="md" mt="md">
             <GoogleButton radius="xl">Sigin using Google</GoogleButton>
-          </Group>
+          </Group> */}
         </Paper>
       </Container>
-    // </BackgroundImage>
+    </BackgroundImage>
   );
 }
 
