@@ -6,6 +6,17 @@
     border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
     
   }
+  .tile{
+    text-decoration:none;
+
+  }
+  /* .header{
+    background:linear-gradient(to left,red,green,blue);
+  } */
+  .link{
+    background-color: yellow;
+   
+  }
   
   .inner {
     height: rem(56px);

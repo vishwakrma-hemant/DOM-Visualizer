@@ -72,7 +72,7 @@ const Navbar= ()=> {
     <header className={classes.header}>
       <Container size="md">
         <div className={classes.inner}>
-          <Title  order={3} component={Link} href='/'>DOM Visualizer</Title>
+          <Title order={2} component={Link} href='/'  className={classes.tile}>DOM Visualizer</Title>
           <Group gap={5} visibleFrom="sm">
             {items}
           </Group>

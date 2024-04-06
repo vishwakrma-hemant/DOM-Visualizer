@@ -4,3 +4,13 @@
       var(--mantine-font-family);
     font-weight: 900;
   }
+
+.clr{
+   background:url('https://www.deepiotics.com/blog/wp-content/uploads/2020/05/21.png');
+   background-blend-mode: darken;
+}
+.img{
+  width:100%;
+  object-fit: contain;
+  
+}

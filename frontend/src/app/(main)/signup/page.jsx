@@ -1,6 +1,8 @@
 "use client";
 import { useToggle, upperFirst } from "@mantine/hooks";
 import { useForm } from "@mantine/form";
+import { Grid } from '@mantine/core';
+import { Image } from '@mantine/core';
 import {
   TextInput,
   PasswordInput,
@@ -13,6 +15,7 @@ import {
   Title,
   Stack,
   Container,
+  BackgroundImage,
 } from "@mantine/core";
 import Link from "next/link";
 import classes from "./signup.module.css";
@@ -60,11 +63,12 @@ const Login = () => {
   };
 
   return (
-    <Container size={420} py={40}>
-      {/* <Title ta="center" className={classes.title}>
-        Welcome back!
-      </Title> */}
-      <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+     <Container fluid className={classes.clr} py={10}>
+
+    <Grid className={classes.bor}>
+      <Grid.Col span={6}>
+         <Container fluid size={420} py={40}>
+           <Paper withBorder shadow="md" p={30} mt={30} radius="md">
         <form onSubmit={form.onSubmit(signupSubmit)}>
           <Stack>
             <TextInput
@@ -151,8 +155,19 @@ const Login = () => {
             </Button>
           </Group>
         </form>
-      </Paper>
-    </Container>
+           </Paper>
+        </Container>
+     </Grid.Col>
+  
+    <Grid.Col span={6}>
+        <Image src='/login.png' w='100%'  radius='md' className={classes.img}/>
+    </Grid.Col>
+
+     
+      
+  </Grid>
+  </Container>
+  
   );
 };
 export default Login;
