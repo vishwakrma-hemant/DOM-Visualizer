@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Title, Text, Button, Container } from "@mantine/core";
+import { Title, Text, Button, Container, BackgroundImage } from "@mantine/core";
 import { Dots } from "./Dots";
 import classes from "./page.module.css";
 import Features, { Feature } from "./Features";
@@ -11,6 +11,7 @@ import Footer from "./(main)/footer";
 
 const Home = () => {
   return (
+    <BackgroundImage src ='https://i2.wp.com/files.123freevectors.com/wp-content/original/153645-blue-background.jpg?w=500&q=95'>
     <div className={classes.backImage}>
       <Navbar />
       <Container className={classes.wrapper} size={1400}>
@@ -56,6 +57,7 @@ const Home = () => {
 
       <Footer/>
     </div>
+    </BackgroundImage>
   );
 };
 

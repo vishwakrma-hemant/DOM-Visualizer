@@ -8,17 +8,17 @@ export function UserButton() {
     <UnstyledButton className={classes.user}>
       <Group>
         <Avatar
-          src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-8.png"
+          src="https://img.freepik.com/premium-vector/businessman-character-avatar-isolated_24877-5037.jpg?w=740"
           radius="xl"
         />
 
         <div style={{ flex: 1 }}>
           <Text size="sm" fw={500}>
-            Harriette Spoonlicker
+            Hemant Kumar
           </Text>
 
           <Text c="dimmed" size="xs">
-            hspoonlicker@outlook.com
+            hemantvishwakarma0987@gmai.com
           </Text>
         </div>
 

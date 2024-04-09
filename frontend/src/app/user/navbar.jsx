@@ -29,9 +29,9 @@ import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from './Navbar.module.css';
 
 const user = {
-  name: 'Jane Spoonfighter',
-  email: 'janspoon@fighter.dev',
-  image: 'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-5.png',
+  name: 'Hemant Kumar',
+  email: 'hemantvishwakarma0987@gmail.com',
+  image: 'https://img.freepik.com/premium-vector/businessman-character-avatar-isolated_24877-5037.jpg?w=740',
 };
 
 const tabs = [
