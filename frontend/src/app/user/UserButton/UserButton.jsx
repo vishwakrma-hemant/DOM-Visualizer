@@ -2,6 +2,7 @@
 import { UnstyledButton, Group, Avatar, Text, rem } from '@mantine/core';
 import { IconChevronRight } from '@tabler/icons-react';
 import classes from './UserButton.module.css';
+import Link from 'next/link';
 
 export function UserButton() {
   return (
@@ -18,11 +19,12 @@ export function UserButton() {
           </Text>
 
           <Text c="dimmed" size="xs">
-            hemantvishwakarma0987@gmai.com
+            hemantvishwakarma0987@gmail.com
           </Text>
         </div>
-
-        <IconChevronRight style={{ width: rem(14), height: rem(14) }} stroke={1.5} />
+         
+          <Link href='./profile'>
+          <IconChevronRight style={{ width: rem(14), height: rem(14) }} stroke={1.5}  /></Link>
       </Group>
     </UnstyledButton>
   );

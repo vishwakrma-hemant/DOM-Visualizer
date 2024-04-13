@@ -1,7 +1,7 @@
-.wrapper {
-    padding-top: calc(var(--mantine-spacing-xl) * 4);
+/* .wrapper {
+    padding-top: calc(var(--mantine-spacing-xl) * 1);
     padding-bottom: calc(var(--mantine-spacing-xl) * 4);
-  }
+  } */
   
   .title {
     font-family:

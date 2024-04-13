@@ -1,0 +1,17 @@
+.domNode{
+    border-radius: 50px;
+    border: 2px solid #4f0098;
+    background-color: #c382ff;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nodeTagName{
+    font-size: 15px;
+    font-weight: bold;
+    color: #4f0098;
+    margin: 0;
+}

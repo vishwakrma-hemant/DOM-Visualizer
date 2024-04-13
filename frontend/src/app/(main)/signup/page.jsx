@@ -3,6 +3,8 @@ import { useToggle, upperFirst } from "@mantine/hooks";
 import { useForm } from "@mantine/form";
 import { Grid } from '@mantine/core';
 import { Image } from '@mantine/core';
+// import{IconUser} from '@tabler/icons-react';
+
 import {
   TextInput,
   PasswordInput,
@@ -14,6 +16,7 @@ import {
   Checkbox,
   Title,
   Stack,
+  Box,
   Container,
   BackgroundImage,
 } from "@mantine/core";
@@ -63,14 +66,13 @@ const Login = () => {
   };
 
   return (
-     <Container fluid className={classes.clr} py={10}>
+ <Container fluid>
+    <Grid>
 
-    <Grid className={classes.bor}>
-      <Grid.Col span={6}>
-         <Container fluid size={420} py={40}>
-           <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+      <Grid.Col span={5}>
+           <Paper withBorder shadow="md" p={30} mt={30} className={classes.bor}>
         <form onSubmit={form.onSubmit(signupSubmit)}>
-          <Stack>
+          <Stack> 
             <TextInput
               required
               label="Name"
@@ -79,6 +81,7 @@ const Login = () => {
               value={form.values.name}
               onChange={(event) =>
                 form.setFieldValue("name", event.currentTarget.value)
+                // <IconUser />
               }
               error={form.errors.name && "Invalid name"}
               radius="md"
@@ -147,27 +150,23 @@ const Login = () => {
             >
               Already have an account? Login
             </Anchor>
-            {/* <Link href={"/login"} component="button" size="sm">
-              Log in?
-            </Link> */}
+
             <Button type="submit" radius="xl">
               Signup
             </Button>
           </Group>
         </form>
            </Paper>
-        </Container>
-     </Grid.Col>
-  
-    <Grid.Col span={6}>
-        <Image src='/login.png' w='100%'  radius='md' className={classes.img}/>
-    </Grid.Col>
 
-     
-      
+      </Grid.Col>
+
+      <Grid.Col span={7}>
+        <Image src='https://img.freepik.com/premium-photo/people-are-using-digital-tablets-log-applications-websites_51530-3693.jpg?w=826'
+         className={classes.img} mt='xl'/>
+      </Grid.Col>
+
   </Grid>
-  </Container>
-  
+</Container>
   );
 };
 export default Login;

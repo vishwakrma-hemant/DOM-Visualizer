@@ -6,7 +6,7 @@ import classes from './navbar.module.css';
 import Link from 'next/link';
 
 const links = [
-  { link: '/about', label: 'Home' },
+  { link: '/', label: 'Home' },
   {
     link: '#1',
     label: 'Category',
@@ -17,7 +17,7 @@ const links = [
       { link: '/blog', label: 'Content' },
     ],
   },
-  { link: '/about', label: 'Blog' },
+  { link: '/blog', label: 'Blog' },
   {
     link: '#2',
     label: 'Support',
@@ -27,6 +27,7 @@ const links = [
       { link: '/forums', label: 'Forums' },
     ],
   },
+  { link: '/contact', label: 'Contact Us' },
 ];
 
 const Navbar= ()=> {

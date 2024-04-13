@@ -21,7 +21,7 @@ function Login() {
   return (
     <BackgroundImage
       h={"100vh"}
-      src="https://images.unsplash.com/photo-1711284882601-57bf062fef7f?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      src="https://wallpaperaccess.com/full/2314950.jpg"
     >
       <Container size={420} py={40}>
         {/* <Text c="dimmed" size="sm" ta="center" mt={5}>
