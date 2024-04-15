@@ -14,54 +14,100 @@ import {
   BackgroundImage,
 } from "@mantine/core";
 import classes from "./login.module.css";
-import { GoogleButton } from "./GoogleButton";
+import {useForm} from '@mantine/form'
 import Link from "next/link";
+import { enqueueSnackbar } from "notistack";
+import { useRouter } from "next/navigation";
 
-function Login() {
+const Login = () => {
+  const router = useRouter();
+
+  const loginForm = useForm({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const loginSubmit = (values) => {
+    console.log(values);
+    fetch("http://localhost:5000/user/authenticate", {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        console.log(response.status);
+        if (response.status === 200) {
+          enqueueSnackbar("User Login successfully", {
+            variant: "success",
+          });
+          router.push("/");
+        } else {
+          enqueueSnackbar("Something went wrong", { variant: "error" });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        enqueueSnackbar("Something went wrong", { variant: "error" });
+      });
+  };
+
   return (
     <BackgroundImage
       h={"100vh"}
       src="https://wallpaperaccess.com/full/2314950.jpg"
     >
       <Container size={420} py={40}>
-        {/* <Text c="dimmed" size="sm" ta="center" mt={5}>
-          Do not have an account yet?{" "}
-          <Anchor size="sm" component="button">
-            Create account
-          </Anchor>
-        </Text> */}
+        <form onSubmit={loginForm.onSubmit(loginSubmit)}>
 
         <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-          <TextInput label="Email" placeholder="Enter your email" required />
+          <TextInput
+            label="Email"
+            placeholder="Enter your email"
+            {...loginForm.getInputProps('email')}
+            required
+          />
           <PasswordInput
             label="Password"
             placeholder="Enter your password"
-            required
+            {...loginForm.getInputProps('password')}
             mt="md"
           />
           <Group justify="space-between" mt="lg">
-            <Checkbox label="Remember me" />
+
+            {/* <Checkbox label="Remember me" /> */}
+
             <Link href={"/forgetpassword"} component="button" size="sm">
               Forgot Password?
             </Link>
           </Group>
-          <Button fullWidth mt="xl">
+          <Button
+          type="submit"
+            fullWidth
+            mt="xl"
+          >
             Log in
           </Button>
 
           <Divider my="xs" label="OR" labelPosition="center" />
 
-          <Button mx={'auto'} display={'block'} component={Link} href="/signup" variant="outline">
+          <Button
+            mx={"auto"}
+            display={"block"}
+            component={Link}
+            href="/signup"
+            variant="outline"
+          >
             Sign up
           </Button>
-
-          {/* <Group grow mb="md" mt="md">
-            <GoogleButton radius="xl">Sigin using Google</GoogleButton>
-          </Group> */}
         </Paper>
+        </form>
       </Container>
     </BackgroundImage>
   );
-}
+};
 
 export default Login;

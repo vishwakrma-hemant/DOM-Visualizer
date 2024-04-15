@@ -23,8 +23,13 @@ import {
 import Link from "next/link";
 import classes from "./signup.module.css";
 import { enqueueSnackbar } from "notistack";
+import { useRouter } from "next/navigation";
 
-const Login = () => {
+const Signup = () => {
+
+  const router = useRouter();
+  
+  
   const form = useForm({
     initialValues: {
       email: "",
@@ -52,6 +57,7 @@ const Login = () => {
       .then((response) => {
         console.log(response.status);
         if (response.status === 200) {
+          router.push('/login')
           enqueueSnackbar("User Registered Successfully", {
             variant: "success",
           });
@@ -130,14 +136,19 @@ const Login = () => {
               }
               radius="md"
             />
-
+          
             <Checkbox
               label="I accept terms and conditions"
               checked={form.values.terms}
               onChange={(event) =>
                 form.setFieldValue("terms", event.currentTarget.checked)
+                
               }
+              // {...signupSubmit.getInputProps('agreement', { type: 'checkbox' })}
+
             />
+               <div style={{ color: 'red' }}>{form.errors.agreement}</div>
+        
           </Stack>
 
           <Group justify="space-between" mt="xl">
@@ -169,4 +180,4 @@ const Login = () => {
 </Container>
   );
 };
-export default Login;
+export default Signup;
