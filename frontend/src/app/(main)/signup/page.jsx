@@ -3,6 +3,8 @@ import { useToggle, upperFirst } from "@mantine/hooks";
 import { useForm } from "@mantine/form";
 import { Grid } from '@mantine/core';
 import { Image } from '@mantine/core';
+import { yupResolver } from 'mantine-form-yup-resolver';
+import * as yup from 'yup';
 // import{IconUser} from '@tabler/icons-react';
 
 import {
@@ -25,7 +27,25 @@ import classes from "./signup.module.css";
 import { enqueueSnackbar } from "notistack";
 import { useRouter } from "next/navigation";
 
+const schema = yup.object().shape({
+  name: yup.string().min(4, 'Name should have at least 2 letters'),
+  email: yup
+    .string()
+    .required('Invalid email')
+    .email('Invalid email'),
+    password: yup.string()
+    .required('No password provided.') 
+    .min(8, 'Password is too short - should be 8 chars minimum.')
+    .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
+    confirmPassword: yup.string()
+    .oneOf([yup.ref('password'), null], 'Passwords must match'),
+    term: yup.boolean()
+    .oneOf([true], "You must accept the terms and conditions")
+   
+});
+
 const Signup = () => {
+
 
   const router = useRouter();
   
@@ -36,14 +56,14 @@ const Signup = () => {
       name: "",
       password: "",
       confirmPassword: "",
+      term:false,
     },
+    validate: yupResolver(schema),
 
-    validate: {
-      email: (val) => (/^\S+@\S+$/.test(val) ? null : "Invalid email"),
-      password: (val) =>
-        val.length < 6 ? "Password should include at least 6 characters" : null,
-    },
+    
+   
   });
+  
 
   const signupSubmit = (values) => {
     console.log(values);
@@ -69,6 +89,8 @@ const Signup = () => {
         console.log(err);
         enqueueSnackbar("Something went wrong", { variant: "error" });
       });
+      form.validate();
+form.errors; 
   };
 
   return (
@@ -83,13 +105,8 @@ const Signup = () => {
               required
               label="Name"
               placeholder="hemant Kumar"
-              id="name"
-              value={form.values.name}
-              onChange={(event) =>
-                form.setFieldValue("name", event.currentTarget.value)
-                // <IconUser />
-              }
-              error={form.errors.name && "Invalid name"}
+              {...form.getInputProps('name')}
+              error={form.errors.name}
               radius="md"
             />
 
@@ -97,58 +114,33 @@ const Signup = () => {
               required
               label="Email"
               placeholder="Hemant123@gmail.com"
-              id="email"
-              value={form.values.email}
-              onChange={(event) =>
-                form.setFieldValue("email", event.currentTarget.value)
-              }
-              error={form.errors.email && "Invalid email"}
+              {...form.getInputProps('email')}
+            error={form.errors.email}
               radius="md"
-            />
+              />
 
             <PasswordInput
               required
               label="Password"
-              placeholder="Your password"
-              id="password"
-              value={form.values.password}
-              onChange={(event) =>
-                form.setFieldValue("password", event.currentTarget.value)
-              }
-              error={
-                form.errors.password &&
-                "Password should include at least 6 characters"
-              }
+              placeholder="Enter your password"
+              {...form.getInputProps('password')}
+              error={form.errors.password}
               radius="md"
-            />
+              />
             <PasswordInput
               required
               label="Confirm Password"
-              placeholder="Confirm password"
-              id="confirmPassword"
-              value={form.values.confirmPassword}
-              onChange={(event) =>
-                form.setFieldValue("confirmPassword", event.currentTarget.value)
-              }
-              error={
-                form.errors.password &&
-                "Password should include at least 6 characters"
-              }
+              placeholder="Re-enter password"
+              {...form.getInputProps('confirmPassword')}
+            error={form.errors.confirmPassword}
+              
               radius="md"
             />
           
             <Checkbox
               label="I accept terms and conditions"
-              checked={form.values.terms}
-              onChange={(event) =>
-                form.setFieldValue("terms", event.currentTarget.checked)
-                
-              }
-              // {...signupSubmit.getInputProps('agreement', { type: 'checkbox' })}
-
+              {...form.getInputProps('term')}
             />
-               <div style={{ color: 'red' }}>{form.errors.agreement}</div>
-        
           </Stack>
 
           <Group justify="space-between" mt="xl">
