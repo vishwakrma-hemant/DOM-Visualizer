@@ -16,17 +16,17 @@ router.post("/add",(req, res) => {
     })
 });
 
-router.post('/fetch-dom', async (req, res) => {
-    console.log(req.body);
-    const { url } = req.body;
+// router.post('/fetch-dom', async (req, res) => {
+//     console.log(req.body);
+//     const { url } = req.body;
     
-    try {
-        const result = await crawlPage(url);
-        res.status.json(result);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json(error);
-    }
-});
+//     try {
+//         const result = await crawlPage(url);
+//         res.status.json(result);
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json(error);
+//     }
+// });
 
 module.exports = router;

@@ -1,9 +1,16 @@
-import { existsSync, mkdirSync as _mkdirSync, writeFile } from 'fs';
-import { promisify } from 'util';
-import { launch } from 'puppeteer';
-import sharp from 'sharp';
+const fs = require('fs');
+const { promisify } = require('util');
+const puppeteer = require('puppeteer');
+const sharp = require('sharp');
 
-// const URL = process.env.URL || 'https://getbootstrap.com/';
+const existsSync = fs.existsSync;
+const _mkdirSync = fs.mkdirSync;
+const writeFile = promisify(fs.writeFile);
+const launch = puppeteer.launch;
+
+// Rest of the code...
+
+const URL = process.env.URL || 'https://getbootstrap.com/';
 const SCREENSHOTS = process.argv.includes('--screenshots');
 const DEPTH = parseInt(process.env.DEPTH) || 2;
 const VIEWPORT = SCREENSHOTS ? { width: 1028, height: 800, deviceScaleFactor: 2 } : null;
@@ -141,4 +148,4 @@ const crawlPage = async (pageUrl) => {
     await browser.close();
 }
 
-module.exports = crawlPage;
+crawlPage('https://getbootstrap.com');

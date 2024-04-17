@@ -4,6 +4,7 @@ import ReactFlow, {
   Controls,
   Handle,
   MiniMap,
+  Position,
   useEdgesState,
   useNodesState,
 } from "reactflow";
@@ -25,13 +26,20 @@ const nodeTypes = {
     return (
       <div className={clsx(DomClasses.domNode)}>
         <p className={DomClasses.nodeTagName}>{data.label}</p>
-        {/* <Handle
-                    type="source"
-                    position={Position.Right}
-                    id={id}
-                    style={{ top: 10, background: '#555' }}
-                    isConnectable={isConnectable}
-                /> */}
+        <Handle
+          type="target"
+          position={Position.Top}
+          id={id+'handle1'}
+          style={{ top: 0, background: '#555' }}
+          isConnectable={isConnectable}
+        />
+        <Handle
+          type="source"
+          position={Position.Bottom}
+          id={id+'handle2'}
+          style={{ bottom: 0, background: '#555' }}
+          isConnectable={isConnectable}
+        />
       </div>
     );
   },
@@ -42,6 +50,7 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
   let nodeId = 0;
+  let edgeId = 0;
 
   const createReactFlowNodes = (node, parentPosition = { x: 0, y: 0 }) => {
     if (!node) {
@@ -50,19 +59,20 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
 
     const nodes = node.children
       ? node.children.flatMap((child, index) =>
-          createReactFlowNodes(child, {
-            x: parentPosition.x + 100,
-            y: parentPosition.y + index * 100,
-          })
-        )
+        createReactFlowNodes(child, {
+          x: parentPosition.x + 100,
+          y: parentPosition.y + index * 100,
+        })
+      )
       : [];
 
     nodes.push({
       id: `node-${nodeId++}`,
       type: "DomNode",
-      data: { label: node.nodeName, styles: node.styles },
+      data: { label: node.nodeName, styles: node.styles, isConnectable: true, id: `node-${nodeId}`},
       position: parentPosition,
     });
+    console.log(nodes);
 
     return nodes;
   };
@@ -74,11 +84,12 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
 
     const edges = node.children.flatMap((child) => {
       return {
-        id: `edge-${nodeId++}`,
-        source: `node-${nodeId - 1}`,
-        target: `node-${nodeId}`,
+        id: `edge-${edgeId++}`,
+        source: `node-${edgeId - 1}`,
+        target: `node-${edgeId}`,
       };
     });
+    console.log(edges);
 
     return edges;
   };
@@ -107,7 +118,7 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
   const parsedHtml = ReactHtmlParser(htmlMarkup);
   const domTree = extractNodeNameAndStyles(parsedHtml[0]);
   const reactFlowNodes = createReactFlowNodes(domTree);
-  console.log(reactFlowNodes);
+  // console.log(reactFlowNodes);
 
   useEffect(() => {
     setNodes(reactFlowNodes);
@@ -152,7 +163,7 @@ const Visualizer = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
-  const {code, setCode} = useDomContext();
+  const { code, setCode } = useDomContext();
 
   const extractNodeNameAndStyles = (element) => {
     if (!React.isValidElement(element)) {
@@ -194,14 +205,14 @@ const Visualizer = () => {
     ]);
 
     setEdges([
-        {
-            id: 'num1i-num1',
-            source: '1',
-            target: '2',
-            sourceHandle: 'num1i',
-            animated: true,
-            style: { stroke: '#fff' },
-        },
+      {
+        id: 'num1i-num1',
+        source: '1',
+        target: '2',
+        sourceHandle: 'num1i',
+        animated: true,
+        style: { stroke: '#fff' },
+      },
     ]);
   }, []);
 
