@@ -140,3 +140,5 @@ const crawlPage = async (pageUrl) => {
 
     await browser.close();
 }
+
+module.exports = crawlPage;

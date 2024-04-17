@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Model = require("../model/diagramModel")
+const crawlPage = require("../utils/crawler");
 
 router.post("/add",(req, res) => {
     console.log(req.body);
@@ -20,7 +21,7 @@ router.post('/fetch-dom', async (req, res) => {
     const { url } = req.body;
     
     try {
-        const result = await fetchDOM(url);
+        const result = await crawlPage(url);
         res.status.json(result);
     } catch (error) {
         console.error(error);
