@@ -44,14 +44,16 @@ const Login = () => {
           enqueueSnackbar("User Login successfully", {
             variant: "success",
           });
-          router.push("/");
-        } else {
-          enqueueSnackbar("Something went wrong", { variant: "error" });
+          router.push("/user/domvisualizer");
+        } else if(response.status === 401) {
+          enqueueSnackbar("invalide credentials", { variant: "error" });
+        }else{
+          enqueueSnackbar("somthing went worng ", {variant:"warning"})
         }
       })
       .catch((err) => {
         console.log(err);
-        enqueueSnackbar("Something went wrong", { variant: "error" });
+        enqueueSnackbar("Server side error", { variant: "error" });
       });
   };
 

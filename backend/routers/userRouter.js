@@ -18,8 +18,9 @@ router.post("/add",(req, res) => {
     .then((result) => {
      if(result){
          res.json(result);
+         console.log(result);
      }else{
-         res.status(401).json({message: "Invalide Credential"})
+         res.status(401).json({message: "Invalid Credential"})
      }
     }).catch((err) => {
      console.log(err);
