@@ -18,15 +18,15 @@ const links = [
     ],
   },
   { link: '/blog', label: 'Blog' },
-  {
-    link: '#2',
-    label: 'Support',
-    links: [
-      { link: '/faq', label: 'FAQ' },
-      { link: '/demo', label: 'Book a demo' },
-      { link: '/forums', label: 'Forums' },
-    ],
-  },
+  // {
+  //   link: '#2',
+  //   label: 'Support',
+  //   links: [
+  //     { link: '/faq', label: 'FAQ' },
+  //     { link: '/demo', label: 'Book a demo' },
+  //     { link: '/forums', label: 'Forums' },
+  //   ],
+  // },
   { link: '/contact', label: 'Contact Us' },
 ];
 
