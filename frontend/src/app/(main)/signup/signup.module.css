@@ -1,16 +1,19 @@
+
 .title {
     font-family:
       Greycliff CF,
       var(--mantine-font-family);
     font-weight: 900;
   }
-
-.clr{
-   background:url('https://www.deepiotics.com/blog/wp-content/uploads/2020/05/21.png');
-   background-blend-mode: darken;
+.bor{
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 .img{
-  width:100%;
-  object-fit: contain;
+width:97%;
+background-size:contain;
+background-size: contain;
+border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;
   
 }

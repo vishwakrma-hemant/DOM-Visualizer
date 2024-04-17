@@ -1,3 +1,4 @@
+'user client'
 import React from 'react'
 import { Handle, Position } from 'reactflow';
 
@@ -29,6 +30,7 @@ const DomNode = ({ data, isConnectable }) => {
         style={{ bottom: 10, top: 'auto', background: '#555' }}
         isConnectable={isConnectable}
       />
+      
     </>
   )
 }

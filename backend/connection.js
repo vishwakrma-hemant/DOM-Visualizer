@@ -6,7 +6,6 @@ const url = "mongodb+srv://hemantvishwakarma0987:123hemant@cluster0.gspua5o.mong
 mongoose.connect(url)
 .then(()=>{
     console.log("Connected to backend server successfully");
-
 })
 .catch((err)=>{
     console.log("Error connecting to backend server");

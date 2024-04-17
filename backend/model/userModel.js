@@ -6,5 +6,6 @@ const mySchema = new Schema ({
     password: String,
     role: {type:String, default:'user'},
     creadeAt:Date,
+    term : {type:Boolean, }
 })
 module.exports = model('user', mySchema);

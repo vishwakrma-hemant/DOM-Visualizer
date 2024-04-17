@@ -3,6 +3,10 @@ import { useToggle, upperFirst } from "@mantine/hooks";
 import { useForm } from "@mantine/form";
 import { Grid } from '@mantine/core';
 import { Image } from '@mantine/core';
+import { yupResolver } from 'mantine-form-yup-resolver';
+import * as yup from 'yup';
+// import{IconUser} from '@tabler/icons-react';
+
 import {
   TextInput,
   PasswordInput,
@@ -14,28 +18,52 @@ import {
   Checkbox,
   Title,
   Stack,
+  Box,
   Container,
   BackgroundImage,
 } from "@mantine/core";
 import Link from "next/link";
 import classes from "./signup.module.css";
 import { enqueueSnackbar } from "notistack";
+import { useRouter } from "next/navigation";
 
-const Login = () => {
+const schema = yup.object().shape({
+  name: yup.string().min(4, 'Name should have at least 2 letters'),
+  email: yup
+    .string()
+    .required('Invalid email')
+    .email('Invalid email'),
+    password: yup.string()
+    .required('No password provided.') 
+    .min(8, 'Password is too short - should be 8 chars minimum.')
+    .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
+    confirmPassword: yup.string()
+    .oneOf([yup.ref('password'), null], 'Passwords must match'),
+    term: yup.boolean()
+    .oneOf([true], "You must accept the terms and conditions")
+   
+});
+
+const Signup = () => {
+
+
+  const router = useRouter();
+  
+  
   const form = useForm({
     initialValues: {
       email: "",
       name: "",
       password: "",
       confirmPassword: "",
+      term:false,
     },
+    validate: yupResolver(schema),
 
-    validate: {
-      email: (val) => (/^\S+@\S+$/.test(val) ? null : "Invalid email"),
-      password: (val) =>
-        val.length < 6 ? "Password should include at least 6 characters" : null,
-    },
+    
+   
   });
+  
 
   const signupSubmit = (values) => {
     console.log(values);
@@ -49,6 +77,7 @@ const Login = () => {
       .then((response) => {
         console.log(response.status);
         if (response.status === 200) {
+          router.push('/login')
           enqueueSnackbar("User Registered Successfully", {
             variant: "success",
           });
@@ -60,27 +89,24 @@ const Login = () => {
         console.log(err);
         enqueueSnackbar("Something went wrong", { variant: "error" });
       });
+      form.validate();
+form.errors; 
   };
 
   return (
-     <Container fluid className={classes.clr} py={10}>
+ <Container fluid>
+    <Grid>
 
-    <Grid className={classes.bor}>
-      <Grid.Col span={6}>
-         <Container fluid size={420} py={40}>
-           <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+      <Grid.Col span={5}>
+           <Paper withBorder shadow="md" p={30} mt={30} className={classes.bor}>
         <form onSubmit={form.onSubmit(signupSubmit)}>
-          <Stack>
+          <Stack> 
             <TextInput
               required
               label="Name"
               placeholder="hemant Kumar"
-              id="name"
-              value={form.values.name}
-              onChange={(event) =>
-                form.setFieldValue("name", event.currentTarget.value)
-              }
-              error={form.errors.name && "Invalid name"}
+              {...form.getInputProps('name')}
+              error={form.errors.name}
               radius="md"
             />
 
@@ -88,52 +114,32 @@ const Login = () => {
               required
               label="Email"
               placeholder="Hemant123@gmail.com"
-              id="email"
-              value={form.values.email}
-              onChange={(event) =>
-                form.setFieldValue("email", event.currentTarget.value)
-              }
-              error={form.errors.email && "Invalid email"}
+              {...form.getInputProps('email')}
+            error={form.errors.email}
               radius="md"
-            />
+              />
 
             <PasswordInput
               required
               label="Password"
-              placeholder="Your password"
-              id="password"
-              value={form.values.password}
-              onChange={(event) =>
-                form.setFieldValue("password", event.currentTarget.value)
-              }
-              error={
-                form.errors.password &&
-                "Password should include at least 6 characters"
-              }
+              placeholder="Enter your password"
+              {...form.getInputProps('password')}
+              error={form.errors.password}
               radius="md"
-            />
+              />
             <PasswordInput
               required
               label="Confirm Password"
-              placeholder="Confirm password"
-              id="confirmPassword"
-              value={form.values.confirmPassword}
-              onChange={(event) =>
-                form.setFieldValue("confirmPassword", event.currentTarget.value)
-              }
-              error={
-                form.errors.password &&
-                "Password should include at least 6 characters"
-              }
+              placeholder="Re-enter password"
+              {...form.getInputProps('confirmPassword')}
+            error={form.errors.confirmPassword}
+              
               radius="md"
             />
-
+          
             <Checkbox
               label="I accept terms and conditions"
-              checked={form.values.terms}
-              onChange={(event) =>
-                form.setFieldValue("terms", event.currentTarget.checked)
-              }
+              {...form.getInputProps('term')}
             />
           </Stack>
 
@@ -147,27 +153,23 @@ const Login = () => {
             >
               Already have an account? Login
             </Anchor>
-            {/* <Link href={"/login"} component="button" size="sm">
-              Log in?
-            </Link> */}
+
             <Button type="submit" radius="xl">
               Signup
             </Button>
           </Group>
         </form>
            </Paper>
-        </Container>
-     </Grid.Col>
-  
-    <Grid.Col span={6}>
-        <Image src='/login.png' w='100%'  radius='md' className={classes.img}/>
-    </Grid.Col>
 
-     
-      
+      </Grid.Col>
+
+      <Grid.Col span={7}>
+        <Image src='https://img.freepik.com/premium-photo/people-are-using-digital-tablets-log-applications-websites_51530-3693.jpg?w=826'
+         className={classes.img} mt='xl'/>
+      </Grid.Col>
+
   </Grid>
-  </Container>
-  
+</Container>
   );
 };
-export default Login;
+export default Signup;

@@ -1,7 +1,6 @@
 'use client';
-import { Text, Container, ActionIcon, Group, rem,Link } from '@mantine/core';
+import { Text, Container, ActionIcon, Group,Title, rem,Link,} from '@mantine/core';
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
-import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from './footer.module.css';
 
 const data = [
@@ -59,8 +58,8 @@ const Footer = () => {
   return (
     <footer className={classes.footer}>
       <Container className={classes.inner}>
-        <div className={classes.logo}>
-          <MantineLogo size={30} />
+        <div>
+           <Title>DOM Visualizer</Title>
           <Text size="xs" c="dimmed" className={classes.description}>
             Build fully functional accessible web applications faster than ever
           </Text>
@@ -69,7 +68,7 @@ const Footer = () => {
       </Container>
       <Container className={classes.afterFooter}>
         <Text c="dimmed" size="sm">
-          © 2020 mantine.dev. All rights reserved.
+          © 2024 DOM Visualizer. All rights reserved.
         </Text>
 
         <Group gap={0} className={classes.social} justify="flex-end" wrap="nowrap">

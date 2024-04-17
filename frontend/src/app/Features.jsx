@@ -60,12 +60,12 @@ function FeaturesGrid() {
     <Container className={classes.wrapper}>
       <Title className={classes.title}>DOM Visualizer are used in the different placed</Title>
 
-      <Container size={560} p={0}>
+      {/* <Container size={560} p={0}>
         <Text size="sm" className={classes.description}>
           DOM Visualizer provides the DOM Structure of web page and it also
           provides some functionality like Drag and Drop and Live DOM Update.
         </Text>
-      </Container>
+      </Container> */}
 
       <SimpleGrid
         mt={60}

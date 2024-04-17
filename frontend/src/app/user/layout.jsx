@@ -1,11 +1,11 @@
-'use client';
-import { AppShell, Burger, Group, Skeleton } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { MantineLogo } from '@mantinex/mantine-logo';
-import Sidebar from './sidebar';
-import Navbar from './navbar';
+"use client";
+import { AppShell, Burger, Group, Skeleton } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import Sidebar from "./sidebar";
+import Navbar from "./navbar";
+import { DomProvider } from "@/context/DomContext";
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
 
@@ -14,20 +14,36 @@ const Layout = ({children}) => {
       header={{ height: 60 }}
       navbar={{
         width: 300,
-        breakpoint: 'sm',
+        breakpoint: "sm",
         collapsed: { mobile: !mobileOpened, desktop: !desktopOpened },
       }}
       padding="md"
-      layout='alt'
+      layout="alt"
     >
       <AppShell.Header>
-          <Navbar/>
+        <Group h="100%" px="md">
+          <Burger
+            opened={mobileOpened}
+            onClick={toggleMobile}
+            hiddenFrom="sm"
+            size="sm"
+          />
+          <Burger
+            opened={desktopOpened}
+            onClick={toggleDesktop}
+            visibleFrom="sm"
+            size="sm"
+          />
+        </Group>
+        {/* <Navbar /> */}
       </AppShell.Header>
       <AppShell.Navbar>
-       <Sidebar/>
+        <Sidebar />
       </AppShell.Navbar>
-      <AppShell.Main>{children}</AppShell.Main>
+      <AppShell.Main>
+        <DomProvider>{children}</DomProvider>
+      </AppShell.Main>
     </AppShell>
   );
-}
+};
 export default Layout;
