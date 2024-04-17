@@ -15,4 +15,17 @@ router.post("/add",(req, res) => {
     })
 });
 
-module.exports = router 
+router.post('/fetch-dom', async (req, res) => {
+    console.log(req.body);
+    const { url } = req.body;
+    
+    try {
+        const result = await fetchDOM(url);
+        res.status.json(result);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(error);
+    }
+});
+
+module.exports = router;
