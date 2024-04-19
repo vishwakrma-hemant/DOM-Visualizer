@@ -13,8 +13,51 @@ import {
 import ContactIconsList from "./contactIcon";
 import bg from "./bg.svg";
 import classes from "./contact.module.css";
+import { useForm } from "@mantine/form";
+import { enqueueSnackbar } from "notistack";
 
 const contact = () => {
+
+  const form = useForm({
+    initialValues: {
+      email: "",
+      name: "",
+      number: "",
+      message:"",
+      term:false,
+    },
+   
+    
+   
+  });
+  
+
+  const contactSubmit = (values) => {
+    console.log(values);
+    fetch("http://localhost:5000/contactUs/add", {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        console.log(response.status);
+        if (response.status === 200) {
+         
+          enqueueSnackbar("contact added Successfully", {
+            variant: "success",
+          });
+        } else {
+          enqueueSnackbar("Something went wrong", { variant: "error" });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        enqueueSnackbar("Something went wrong", { variant: "error" });
+      });
+    
+  };
   return (
     <BackgroundImage pt={'10vh'} h={'100vh'} src="https://th.bing.com/th/id/OIP.-WwCRYCLkhIrvAeeuguIJgHaEK?w=1200&h=675&rs=1&pid=ImgDetMain">
       <Container>
@@ -33,7 +76,7 @@ const contact = () => {
 
             <form
               className={classes.form}
-              onSubmit={(event) => event.preventDefault()}
+              onSubmit={form.onSubmit(contactSubmit)}
             >
               <Text fz="lg" fw={700} className={classes.title}>
                 Get in touch
@@ -51,8 +94,8 @@ const contact = () => {
 
                 <TextInput
                   mt="md"
-                  label="Subject"
-                  placeholder="Subject"
+                  label="Number"
+                  placeholder="Enter your number"
                   required
                 />
 

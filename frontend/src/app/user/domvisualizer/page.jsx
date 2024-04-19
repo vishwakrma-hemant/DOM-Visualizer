@@ -12,32 +12,71 @@ import ReactHtmlParser from "react-html-parser";
 import "reactflow/dist/style.css";
 import HTMLEditor from "./Editor";
 import useDomContext from "@/context/DomContext";
-import DomClasses from './domnode.module.css';
+import DomClasses from "./domnode.module.css";
 import clsx from "clsx";
+import { classNames } from "@mantine/core";
+import { Button, Popover } from "@mantine/core";
 
 const initBgColor = "#1A192B";
 
 const connectionLineStyle = { stroke: "#fff" };
 const snapGrid = [20, 20];
 const defaultViewport = { x: 0, y: 0, zoom: 1.5 };
+const classes = {
+  className1: true,
+  className2: false,
+  className3: true,
+  // Add more classes as needed
+};
 
 const nodeTypes = {
   DomNode: ({ data, isConnectable, id }) => {
+    console.log(data.styles);
     return (
       <div className={clsx(DomClasses.domNode)}>
+        <Popover width={200} position="bottom" withArrow shadow="md">
+          <Popover.Target>
+            <Button size="xs">Toggle popover</Button>
+          </Popover.Target>
+          <Popover.Dropdown>
+            <h6>styles</h6>
+            {Object.keys(data.styles).map((styleName) => (
+              <p>
+                {styleName} : {data.styles[styleName]}
+              </p>
+            ))}
+
+            {/* <h6>Classes</h6>
+            {
+              classes.length
+            }
+            {Object.keys(classes).map((className) => (
+              <p>
+                {className} : {data.classes[className]}
+              </p>
+            ))}
+
+            <h6>Id</h6>
+            {Object.keys(ids).map((idName) => (
+                <p>
+                {idName} : {data.ids[idName]}
+              </p>
+            ))} */}
+          </Popover.Dropdown>
+        </Popover>
         <p className={DomClasses.nodeTagName}>{data.label}</p>
         <Handle
           type="target"
           position={Position.Top}
-          id={id+'handle1'}
-          style={{ top: 0, background: '#555' }}
+          id={id + "handle1"}
+          style={{ top: 0, background: "#555" }}
           isConnectable={isConnectable}
         />
         <Handle
           type="source"
           position={Position.Bottom}
-          id={id+'handle2'}
-          style={{ bottom: 0, background: '#555' }}
+          id={id + "handle2"}
+          style={{ bottom: 0, background: "#555" }}
           isConnectable={isConnectable}
         />
       </div>
@@ -59,17 +98,22 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
 
     const nodes = node.children
       ? node.children.flatMap((child, index) =>
-        createReactFlowNodes(child, {
-          x: parentPosition.x + 100,
-          y: parentPosition.y + index * 100,
-        })
-      )
+          createReactFlowNodes(child, {
+            x: parentPosition.x + 100,
+            y: parentPosition.y + index * 100,
+          })
+        )
       : [];
 
     nodes.push({
       id: `node-${nodeId++}`,
       type: "DomNode",
-      data: { label: node.nodeName, styles: node.styles, isConnectable: true, id: `node-${nodeId}`},
+      data: {
+        label: node.nodeName,
+        styles: node.styles,
+        isConnectable: true,
+        id: `node-${nodeId}`,
+      },
       position: parentPosition,
     });
     console.log(nodes);
@@ -124,7 +168,7 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
     setNodes(reactFlowNodes);
     setEdges(createReactFlowEdges(domTree));
     console.log("reset");
-  }, []);
+  }, [htmlMarkup]);
 
   return (
     <div style={{ width: "1000px", height: "1000px" }}>
@@ -206,12 +250,12 @@ const Visualizer = () => {
 
     setEdges([
       {
-        id: 'num1i-num1',
-        source: '1',
-        target: '2',
-        sourceHandle: 'num1i',
+        id: "num1i-num1",
+        source: "1",
+        target: "2",
+        sourceHandle: "num1i",
         animated: true,
-        style: { stroke: '#fff' },
+        style: { stroke: "#fff" },
       },
     ]);
   }, []);
@@ -227,7 +271,7 @@ const Visualizer = () => {
   return (
     <div>
       <HTMLEditor />
-      <div >
+      <div>
         <HtmlToReactFlow htmlMarkup={code} />
         {/* <ReactFlow
                 nodes={nodes}
