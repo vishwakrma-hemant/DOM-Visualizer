@@ -16,7 +16,7 @@ const app = express();
 //middleware 
 app.use("/user", UserRouter);
 app.use("/diagram", DiagramRouter);
-app.use("/contactUs",ContactRouter);
+app.use("/contact",ContactRouter);
   
 app.listen(port,()=>{
 console.log("Server Started");

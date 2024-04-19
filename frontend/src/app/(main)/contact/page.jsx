@@ -24,7 +24,6 @@ const contact = () => {
       name: "",
       number: "",
       message:"",
-      term:false,
     },
    
     
@@ -34,7 +33,7 @@ const contact = () => {
 
   const contactSubmit = (values) => {
     console.log(values);
-    fetch("http://localhost:5000/contactUs/add", {
+    fetch("http://localhost:5000/contact/add", {
       method: "POST",
       body: JSON.stringify(values),
       headers: {
@@ -84,10 +83,11 @@ const contact = () => {
 
               <div className={classes.fields}>
                 <SimpleGrid cols={{ base: 1, sm: 2 }}>
-                  <TextInput label="Your name" placeholder="Your name" />
+                  <TextInput label="Your name" placeholder="Your name" {...form.getInputProps('name')} />
                   <TextInput
                     label="Your email"
                     placeholder="hello@mantine.dev"
+                    {...form.getInputProps('email')}
                     required
                   />
                 </SimpleGrid>
@@ -96,6 +96,7 @@ const contact = () => {
                   mt="md"
                   label="Number"
                   placeholder="Enter your number"
+                  {...form.getInputProps('number')}
                   required
                 />
 
@@ -103,6 +104,7 @@ const contact = () => {
                   mt="md"
                   label="Your message"
                   placeholder="Please include all relevant information"
+                  {...form.getInputProps('message')}
                   minRows={3}
                 />
 

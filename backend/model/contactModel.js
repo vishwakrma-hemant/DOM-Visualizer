@@ -2,9 +2,8 @@ const {Schema, model } = require('../connection')
 const mySchema = new Schema ({
     name : {type: String, required : true},
     email :{type:String, required:true, unique:true},
-    number: Number,
+    number: String,
     message: String,
-    creadeAt:Date,
-    term : {type:Boolean, }
+    creadeAt:{type : Date, default: Date.now}
 })
 module.exports = model('contactUs', mySchema);
