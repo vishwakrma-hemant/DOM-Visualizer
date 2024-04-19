@@ -4,10 +4,15 @@ import { useDisclosure } from "@mantine/hooks";
 import Sidebar from "./sidebar";
 import Navbar from "./navbar";
 import { DomProvider } from "@/context/DomContext";
+import useDiagramContext from "@/context/DiagramContext";
 
 const Layout = ({ children }) => {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
+
+  const {} = useDiagramContext();
+
+  
 
   return (
     <AppShell

@@ -22,16 +22,10 @@ const initBgColor = "#1A192B";
 const connectionLineStyle = { stroke: "#fff" };
 const snapGrid = [20, 20];
 const defaultViewport = { x: 0, y: 0, zoom: 1.5 };
-const classes = {
-  className1: true,
-  className2: false,
-  className3: true,
-  // Add more classes as needed
-};
 
 const nodeTypes = {
   DomNode: ({ data, isConnectable, id }) => {
-    console.log(data.styles);
+    console.log(data);
     return (
       <div className={clsx(DomClasses.domNode)}>
         <Popover width={200} position="bottom" withArrow shadow="md">
@@ -46,22 +40,21 @@ const nodeTypes = {
               </p>
             ))}
 
-            {/* <h6>Classes</h6>
-            {
-              classes.length
-            }
-            {Object.keys(classes).map((className) => (
+            <h6>Classes</h6>
+            {data.classes}
+            {/* {data.classes.split(' ').map((className) => (
               <p>
-                {className} : {data.classes[className]}
-              </p>
-            ))}
-
-            <h6>Id</h6>
-            {Object.keys(ids).map((idName) => (
-                <p>
-                {idName} : {data.ids[idName]}
+              {className}
               </p>
             ))} */}
+            <h6>Ids</h6>
+            {data.id}
+            {/* {data.id.split(' ').map((idName) => (
+              <p>
+                {idName}
+              </p>
+            ))} */}
+
           </Popover.Dropdown>
         </Popover>
         <p className={DomClasses.nodeTagName}>{data.label}</p>
@@ -149,6 +142,7 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
     const styles = props.style || {};
     const classes = props.className || "";
   const id = props.id || "";
+  // console.log(classes);
     
 
     let children = null;
