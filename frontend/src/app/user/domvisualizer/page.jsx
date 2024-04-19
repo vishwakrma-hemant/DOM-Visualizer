@@ -100,8 +100,12 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
     }
 
     const { type, props } = element;
+    console.log(props);
     const nodeName = typeof type === "string" ? type : type.name;
     const styles = props.style || {};
+    const classes = props.className || "";
+  const id = props.id || "";
+    
 
     let children = null;
     if (props.children) {
@@ -111,11 +115,14 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
     return {
       nodeName,
       styles,
+      classes,
+      id,
       children,
     };
   };
 
   const parsedHtml = ReactHtmlParser(htmlMarkup);
+  // console.log(parsedHtml);
   const domTree = extractNodeNameAndStyles(parsedHtml[0]);
   const reactFlowNodes = createReactFlowNodes(domTree);
   // console.log(reactFlowNodes);
