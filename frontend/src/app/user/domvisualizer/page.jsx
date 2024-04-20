@@ -13,6 +13,7 @@ import "reactflow/dist/style.css";
 import HTMLEditor from "./Editor";
 import useDomContext from "@/context/DomContext";
 import DomClasses from "./domnode.module.css";
+import classes from "./domnode.module.css";
 import clsx from "clsx";
 import { TextInput, classNames } from "@mantine/core";
 import { Button, Popover } from "@mantine/core";
@@ -172,8 +173,9 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
   }, [htmlMarkup]);
 
   return (
-    <div style={{ width: "1000px", height: "1000px" }}>
-      <ReactFlow
+    <div style={{ width: "30%", height: "200px" }} pt='100px' className={classes.parent_react_flow}>
+      <ReactFlow 
+      className={classes.react_flow}
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
@@ -186,8 +188,10 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
         defaultViewport={defaultViewport}
         fitView
         attributionPosition="bottom-left"
+
       >
-        <MiniMap
+      <Button className={classes.btn_zoom}>Zoom in</Button>
+        {/* <MiniMap
           nodeStrokeColor={(n) => {
             if (n.type === "input") return "#0041d0";
             if (n.type === "selectorNode") return bgColor;
@@ -197,7 +201,7 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
             if (n.type === "selectorNode") return bgColor;
             return "#fff";
           }}
-        />
+        /> */}
         <Controls />
       </ReactFlow>
     </div>
@@ -273,8 +277,10 @@ const Visualizer = () => {
 
   return (
     <div>
-      <TextInput ref={urlRef} />
-      <Button onClick={() => extractHTMLFromUrl(urlRef.current.value)}>Extract Page DOM</Button>
+       <div className={classes.parent_input}>
+       <input ref={urlRef}  className={classes.inputField}/>
+      <Button  className={classes.btn_dom} onClick={() => extractHTMLFromUrl(urlRef.current.value)}>Extract DOM</Button>
+       </div>
       <HTMLEditor />
       <div>
         <HtmlToReactFlow htmlMarkup={code} />

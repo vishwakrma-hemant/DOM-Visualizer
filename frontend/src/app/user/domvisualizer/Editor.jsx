@@ -11,7 +11,7 @@ const HTMLEditor = () => {
 
   return (
     <div>
-        <Editor height="20vh" defaultLanguage="html"  language='html'  value={code} onChange={v => setCode(v)}/>
+        <Editor height="50vh" defaultLanguage="html"  language='html'  value={code} onChange={v => setCode(v)}/>
     </div>
   )
 }

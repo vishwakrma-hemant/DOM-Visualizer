@@ -8,10 +8,6 @@ function WebpageExtract() {
   const [url, setUrl] = useState('');
   const [html, setHtml] = useState('');
   const [error, setError] = useState('');
-
-  
-
-
   return (
     <div>
       <h1>Web Page HTML Extractor</h1>
