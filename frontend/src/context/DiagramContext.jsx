@@ -1,5 +1,5 @@
 import { enqueueSnackbar } from "notistack";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const DiagramContext = createContext();
 
@@ -44,12 +44,19 @@ export const DiagramProvider = ({ children }) => {
       body: JSON.stringify({
         name: 'Untitled Diagram',
         user: currentUser._id,
-        dom: NEW_DIAGRAM_DOM
+        html: NEW_DIAGRAM_DOM
       })
     })
       .then((response) => {
         if (response.status === 200) {
           enqueueSnackbar('New diagram created', { variant: 'success' });
+
+          response.json()
+          .then((data) => {
+              console.log(data);
+              setSelDiagram(data);
+              loadDiagrams();
+          })
         }
       }).catch((err) => {
         console.log(err);
@@ -57,21 +64,23 @@ export const DiagramProvider = ({ children }) => {
       });
   }
 
-  const updateDiagram = (diagram) => {
+  const updateDiagram = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/diagram/update/${selDiagram._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(diagram)
+      body: JSON.stringify(selDiagram)
     })
       .then((response) => {
         if (response.status === 200) {
           enqueueSnackbar('Diagram updated', { variant: 'success' });
+          return response.json();
         }
       })
       .then((data) => {
         setSelDiagram(data);
+        loadDiagrams();
       }).catch((err) => {
         console.log(err);
         enqueueSnackbar('Failed to update diagram', { variant: 'error' });

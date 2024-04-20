@@ -15,8 +15,10 @@ import useDomContext from "@/context/DomContext";
 import DomClasses from "./domnode.module.css";
 import classes from "./domnode.module.css";
 import clsx from "clsx";
-import { TextInput, classNames } from "@mantine/core";
+import { TextInput, Title, classNames } from "@mantine/core";
 import { Button, Popover } from "@mantine/core";
+import { AnimatePresence, motion } from "framer-motion";
+import useDiagramContext from "@/context/DiagramContext";
 
 const initBgColor = "#1A192B";
 
@@ -26,14 +28,14 @@ const defaultViewport = { x: 0, y: 0, zoom: 1.5 };
 
 const nodeTypes = {
   DomNode: ({ data, isConnectable, id }) => {
-    console.log(data);
+    //console.log(data);
     return (
       <div className={clsx(DomClasses.domNode)}>
         <Popover width={200} position="bottom" withArrow shadow="md">
-          <Popover.Target>
+          <Popover.Target >
             <Button size="xs">Toggle popover</Button>
           </Popover.Target>
-          <Popover.Dropdown>
+          <Popover.Dropdown style={{ pointerEvents: 'none' }}>
             <h6>styles</h6>
             {Object.keys(data.styles).map((styleName) => (
               <p>
@@ -49,7 +51,7 @@ const nodeTypes = {
               </p>
             ))} */}
             <h6>Ids</h6>
-            {data.id}
+            {data.ids}
             {/* {data.id.split(' ').map((idName) => (
               <p>
                 {idName}
@@ -78,7 +80,7 @@ const nodeTypes = {
   },
 };
 
-const HtmlToReactFlow = ({ htmlMarkup }) => {
+const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
@@ -105,12 +107,14 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
       data: {
         label: node.nodeName,
         styles: node.styles,
+        classes: node.classes,
+        ids: node.id,
         isConnectable: true,
         id: `node-${nodeId}`,
       },
       position: parentPosition,
     });
-    console.log(nodes);
+    //console.log(nodes);
 
     return nodes;
   };
@@ -127,7 +131,7 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
         target: `node-${edgeId}`,
       };
     });
-    console.log(edges);
+    //console.log(edges);
 
     return edges;
   };
@@ -138,12 +142,12 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
     }
 
     const { type, props } = element;
-    console.log(props);
+    //console.log(props);
     const nodeName = typeof type === "string" ? type : type.name;
     const styles = props.style || {};
     const classes = props.className || "";
     const id = props.id || "";
-    // console.log(classes);
+    //console.log(classes);
 
 
     let children = null;
@@ -169,29 +173,40 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
   useEffect(() => {
     setNodes(reactFlowNodes);
     setEdges(createReactFlowEdges(domTree));
-    console.log("reset");
+    // console.log("reset");
   }, [htmlMarkup]);
 
   return (
-    <div style={{ width: "30%", height: "200px" }} pt='100px' className={classes.parent_react_flow}>
-      <ReactFlow 
-      className={classes.react_flow}
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        style={{ background: "#666" }}
-        nodeTypes={nodeTypes}
-        connectionLineStyle={connectionLineStyle}
-        snapToGrid={true}
-        snapGrid={snapGrid}
-        defaultViewport={defaultViewport}
-        fitView
-        attributionPosition="bottom-left"
+    <AnimatePresence>
+      <motion.div animate={{
+        marginTop: zoomedIn ? '-40vh' : '0',
+        width: zoomedIn ? "100%" : "30%",
+        height: zoomedIn ? "70vh" : '20vh'
+      }}
+        transition={{ duration: 0.5 }} pt='100px' className={classes.parent_react_flow}>
+        <ReactFlow
+          className={classes.react_flow}
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          style={{
+            background: "#666",
+            // transform: zoomedIn ? 'scale(1.5)' : 'scale(1)' // Add this line
+          }}
+          nodeTypes={nodeTypes}
+          connectionLineStyle={connectionLineStyle}
+          snapToGrid={true}
+          snapGrid={snapGrid}
+          defaultViewport={defaultViewport}
+          fitView
+          attributionPosition="bottom-left"
 
-      >
-      <Button className={classes.btn_zoom}>Zoom in</Button>
-        {/* <MiniMap
+        >
+          <Button m={10} className={classes.btn_zoom} onClick={e => setZoomedIn(!zoomedIn)}>
+            {zoomedIn ? "Zoom Out" : "Zoom In"}
+          </Button>
+          {/* <MiniMap
           nodeStrokeColor={(n) => {
             if (n.type === "input") return "#0041d0";
             if (n.type === "selectorNode") return bgColor;
@@ -202,9 +217,10 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
             return "#fff";
           }}
         /> */}
-        <Controls />
-      </ReactFlow>
-    </div>
+          <Controls />
+        </ReactFlow>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
@@ -213,6 +229,10 @@ const Visualizer = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
   const { code, setCode, extractHTMLFromUrl } = useDomContext();
+  const { selDiagram, setSelDiagram, updateDiagram } = useDiagramContext();
+
+  const [zoomedIn, setZoomedIn] = useState(false);
+
 
   const urlRef = useRef();
 
@@ -241,7 +261,7 @@ const Visualizer = () => {
     const ele = ReactHtmlParser(code);
 
     const node = extractNodeNameAndStyles(ele[0]);
-    console.log(node);
+    //console.log(node);
   }, []);
 
   useEffect(() => {
@@ -275,44 +295,35 @@ const Visualizer = () => {
     []
   );
 
+  const changeName = (e) => {
+    setSelDiagram({
+      ...selDiagram,
+      name: e.target.value,
+    })
+    console.log(selDiagram);
+  }
+
   return (
     <div>
-       <div className={classes.parent_input}>
-       <input ref={urlRef}  className={classes.inputField}/>
-      <Button  className={classes.btn_dom} onClick={() => extractHTMLFromUrl(urlRef.current.value)}>Extract DOM</Button>
-       </div>
-      <HTMLEditor />
-      <div>
-        <HtmlToReactFlow htmlMarkup={code} />
-        {/* <ReactFlow
-                nodes={nodes}
-                edges={edges}
-                onNodesChange={onNodesChange}
-                onEdgesChange={onEdgesChange}
-                onConnect={onConnect}
-                style={{ background: '#666' }}
-                nodeTypes={nodeTypes}
-                connectionLineStyle={connectionLineStyle}
-                snapToGrid={true}
-                snapGrid={snapGrid}
-                defaultViewport={defaultViewport}
-                fitView
-                attributionPosition="bottom-left"
-            >
-                <MiniMap
-                    nodeStrokeColor={(n) => {
-                        if (n.type === 'input') return '#0041d0';
-                        if (n.type === 'selectorNode') return bgColor;
-                        if (n.type === 'output') return '#ff0072';
-                    }}
-                    nodeColor={(n) => {
-                        if (n.type === 'selectorNode') return bgColor;
-                        return '#fff';
-                    }}
-                />
-                <Controls />
-            </ReactFlow> */}
-      </div>
+      {
+        selDiagram === null ?
+          <Title c="dimmed" align="center" order={1} mt={20}>Select or Create a New Diagram</Title>
+          :
+          (
+            <>
+              <TextInput value={selDiagram.name} onChange={changeName} label="Diagram Name" />
+              <Button my={4} onClick={updateDiagram}>Save Changes</Button>
+              <div className={classes.parent_input}>
+                <input ref={urlRef} className={classes.inputField} />
+                <Button className={classes.btn_dom} onClick={() => extractHTMLFromUrl(urlRef.current.value)}>Extract DOM</Button>
+              </div>
+              <HTMLEditor />
+              <div>
+                <HtmlToReactFlow htmlMarkup={code} zoomedIn={zoomedIn} setZoomedIn={setZoomedIn} />
+              </div>
+            </>
+          )
+      }
     </div>
   );
 };

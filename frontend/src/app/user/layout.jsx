@@ -5,13 +5,17 @@ import Sidebar from "./sidebar";
 import Navbar from "./navbar";
 import { DomProvider } from "@/context/DomContext";
 import useDiagramContext from "@/context/DiagramContext";
+import { useEffect } from "react";
 
 const Layout = ({ children }) => {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
 
-  const {} = useDiagramContext();
+  const { diagramList, setDiagramList, loadDiagrams } = useDiagramContext();
 
+  useEffect(() => {
+    loadDiagrams();
+  }, [])
   
 
   return (

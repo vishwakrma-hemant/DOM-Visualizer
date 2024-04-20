@@ -44,7 +44,12 @@ const Login = () => {
           enqueueSnackbar("User Login successfully", {
             variant: "success",
           });
-          router.push("/user/domvisualizer");
+          response.json().then((data) => {
+            console.log(data);
+            sessionStorage.setItem("user", JSON.stringify(data));
+            router.push("/user/domvisualizer");
+          });
+
         } else if(response.status === 401) {
           enqueueSnackbar("invalide credentials", { variant: "error" });
         }else{

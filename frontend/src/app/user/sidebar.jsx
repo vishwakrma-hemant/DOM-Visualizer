@@ -8,10 +8,12 @@ import {
   ActionIcon,
   Tooltip,
   rem,
+  Button,
 } from '@mantine/core';
 import { IconBulb, IconUser, IconCheckbox, IconSearch, IconPlus } from '@tabler/icons-react';
 import { UserButton } from './UserButton/UserButton';
 import classes from './sidebar.module.css';
+import useDiagramContext from '@/context/DiagramContext';
 
 const links = [
   { icon: IconBulb, label: 'Activity', notifications: 3 },
@@ -19,43 +21,17 @@ const links = [
   { icon: IconUser, label: 'Contacts' },
 ];
 
-const collections = [
-  { emoji: '👍', label: 'Sales' },
-  { emoji: '🚚', label: 'Deliveries' },
-  { emoji: '💸', label: 'Discounts' },
-  // { emoji: '💰', label: 'Profits' },
-  // { emoji: '✨', label: 'Reports' },
-  // { emoji: '🛒', label: 'Orders' },
-  // { emoji: '📅', label: 'Events' },
-  // { emoji: '🙈', label: 'Debts' },
-  // { emoji: '💁‍♀️', label: 'Customers' },
-];
-
 export default function Sidebar() {
-  const mainLinks = links.map((link) => (
-    <UnstyledButton key={link.label} className={classes.mainLink}>
-      <div className={classes.mainLinkInner}>
-        <link.icon size={20} className={classes.mainLinkIcon} stroke={1.5} />
-        <span>{link.label}</span>
-      </div>
-      {link.notifications && (
-        <Badge size="sm" variant="filled" className={classes.mainLinkBadge}>
-          {link.notifications}
-        </Badge>
-      )}
-    </UnstyledButton>
-  ));
 
-  const collectionLinks = collections.map((collection) => (
-    <a
-      href="#"
-      onClick={(event) => event.preventDefault()}
-      key={collection.label}
-      className={classes.collectionLink}
-    >
-      <span style={{ marginRight: rem(9), fontSize: rem(16) }}>{collection.emoji}</span>{' '}
-      {collection.label}
-    </a>
+  const { diagramList, createNewDiagram, setSelDiagram } = useDiagramContext();
+
+  const mainLinks = diagramList.map((diagram) => (
+    <UnstyledButton key={diagram._id} className={classes.mainLink} onClick={e => setSelDiagram(diagram)}>
+      <div className={classes.mainLinkInner}>
+        <IconBulb size={20} className={classes.mainLinkIcon} stroke={1.5} />
+        <span>{diagram.name}</span>
+      </div>
+    </UnstyledButton>
   ));
 
   return (
@@ -63,6 +39,8 @@ export default function Sidebar() {
       <div className={classes.section}>
         <UserButton />
       </div>
+
+      <Button onClick={createNewDiagram} my={10} leftSection={<IconPlus />} variant='filled' >New</Button>
 
       <TextInput
         placeholder="Search"
@@ -76,20 +54,6 @@ export default function Sidebar() {
 
       <div className={classes.section}>
         <div className={classes.mainLinks}>{mainLinks}</div>
-      </div>
-
-      <div className={classes.section}>
-        <Group className={classes.collectionsHeader} justify="space-between">
-          <Text size="xs" fw={500} c="dimmed">
-            Collections
-          </Text>
-          <Tooltip label="Create collection" withArrow position="right">
-            <ActionIcon variant="default" size={18}>
-              <IconPlus style={{ width: rem(12), height: rem(12) }} stroke={1.5} />
-            </ActionIcon>
-          </Tooltip>
-        </Group>
-        <div className={classes.collections}>{collectionLinks}</div>
       </div>
     </nav>
   );
