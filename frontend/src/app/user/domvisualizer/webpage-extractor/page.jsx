@@ -9,15 +9,7 @@ function WebpageExtract() {
   const [html, setHtml] = useState('');
   const [error, setError] = useState('');
 
-  const fetchHtml = async () => {
-    try {
-      const response = await axios.get(url);
-      setHtml(response.data);
-      setError('');
-    } catch (err) {
-      setError('Error fetching HTML. Make sure the URL is correct and accessible.');
-    }
-  };
+  
 
 
   return (

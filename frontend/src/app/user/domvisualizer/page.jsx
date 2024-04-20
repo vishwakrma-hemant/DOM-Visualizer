@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import ReactFlow, {
   Controls,
   Handle,
@@ -14,7 +14,7 @@ import HTMLEditor from "./Editor";
 import useDomContext from "@/context/DomContext";
 import DomClasses from "./domnode.module.css";
 import clsx from "clsx";
-import { classNames } from "@mantine/core";
+import { TextInput, classNames } from "@mantine/core";
 import { Button, Popover } from "@mantine/core";
 
 const initBgColor = "#1A192B";
@@ -91,11 +91,11 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
 
     const nodes = node.children
       ? node.children.flatMap((child, index) =>
-          createReactFlowNodes(child, {
-            x: parentPosition.x + 100,
-            y: parentPosition.y + index * 100,
-          })
-        )
+        createReactFlowNodes(child, {
+          x: parentPosition.x + 100,
+          y: parentPosition.y + index * 100,
+        })
+      )
       : [];
 
     nodes.push({
@@ -141,9 +141,9 @@ const HtmlToReactFlow = ({ htmlMarkup }) => {
     const nodeName = typeof type === "string" ? type : type.name;
     const styles = props.style || {};
     const classes = props.className || "";
-  const id = props.id || "";
-  // console.log(classes);
-    
+    const id = props.id || "";
+    // console.log(classes);
+
 
     let children = null;
     if (props.children) {
@@ -208,7 +208,9 @@ const Visualizer = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
-  const { code, setCode } = useDomContext();
+  const { code, setCode, extractHTMLFromUrl } = useDomContext();
+
+  const urlRef = useRef();
 
   const extractNodeNameAndStyles = (element) => {
     if (!React.isValidElement(element)) {
@@ -271,6 +273,8 @@ const Visualizer = () => {
 
   return (
     <div>
+      <TextInput ref={urlRef} />
+      <Button onClick={() => extractHTMLFromUrl(urlRef.current.value)}>Extract Page DOM</Button>
       <HTMLEditor />
       <div>
         <HtmlToReactFlow htmlMarkup={code} />
