@@ -27,10 +27,10 @@ function ContactIcon({ icon: Icon, title, description, ...others }) {
 }
 
 const MOCKDATA = [
-  { title: 'Email', description: 'hello@mantine.dev', icon: IconAt },
-  { title: 'Phone', description: '+49 (800) 335 35 35', icon: IconPhone },
-  { title: 'Address', description: '844 Morris Park avenue', icon: IconMapPin },
-  { title: 'Working hours', description: '8 a.m. – 11 p.m.', icon: IconSun },
+  { title: 'Email', description: 'hemantk3335@gmail.com', icon: IconAt },
+  { title: 'Phone', description: '+91 9565 08 1456', icon: IconPhone },
+  { title: 'Address', description: 'Lucknow', icon: IconMapPin },
+  { title: 'Working hours', description: ' 10 a.m. – 06 p.m.', icon: IconSun },
 ];
 
 const ContactIconsList = () =>{

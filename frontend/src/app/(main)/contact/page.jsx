@@ -8,6 +8,7 @@ import {
   Group,
   SimpleGrid,
   Container,
+  Title,
   BackgroundImage,
 } from "@mantine/core";
 import ContactIconsList from "./contactIcon";
@@ -15,8 +16,14 @@ import bg from "./bg.svg";
 import classes from "./contact.module.css";
 import { useForm } from "@mantine/form";
 import { enqueueSnackbar } from "notistack";
+import { useRouter } from "next/navigation";
+import {Link} from 'next/link';
+import CountryFlag from "react-country-flag";
+import CountryFlagComponent from "react-country-flag";
 
 const contact = () => {
+
+  const router = useRouter();
 
   const form = useForm({
     initialValues: {
@@ -25,8 +32,6 @@ const contact = () => {
       number: "",
       message:"",
     },
-   
-    
    
   });
   
@@ -43,7 +48,7 @@ const contact = () => {
       .then((response) => {
         console.log(response.status);
         if (response.status === 200) {
-         
+          router.push("/thankYou");
           enqueueSnackbar("contact added Successfully", {
             variant: "success",
           });
@@ -78,7 +83,7 @@ const contact = () => {
               onSubmit={form.onSubmit(contactSubmit)}
             >
               <Text fz="lg" fw={700} className={classes.title}>
-                Get in touch
+                   <Title>Contact with Us</Title>
               </Text>
 
               <div className={classes.fields}>
@@ -91,7 +96,8 @@ const contact = () => {
                     required
                   />
                 </SimpleGrid>
-
+            <Container>
+                <CountryFlagComponent countryCode={91} />
                 <TextInput
                   mt="md"
                   label="Number"
@@ -99,7 +105,7 @@ const contact = () => {
                   {...form.getInputProps('number')}
                   required
                 />
-
+          </Container>
                 <Textarea
                   mt="md"
                   label="Your message"
@@ -109,7 +115,7 @@ const contact = () => {
                 />
 
                 <Group justify="flex-end" mt="md">
-                  <Button type="submit" className={classes.control}>
+                  <Button type="submit" className={classes.control} component={Link} href='/thankYou'>
                     Send message
                   </Button>
                 </Group>

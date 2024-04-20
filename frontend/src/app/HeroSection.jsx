@@ -5,7 +5,7 @@ import classes from './hero.module.css';
 
 export function HeroSection() {
   return (
-    <Container size="md">
+    <Container  size="md"> 
       <div className={classes.inner}>
         <div className={classes.content}>
           <Title className={classes.title}>

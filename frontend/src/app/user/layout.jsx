@@ -25,6 +25,7 @@ const Layout = ({ children }) => {
       padding="md"
       layout="alt"
     >
+          {/* <Navbar /> */}
       <AppShell.Header>
         <Group h="100%" px="md">
           <Burger
@@ -40,7 +41,6 @@ const Layout = ({ children }) => {
             size="sm"
           />
         </Group>
-        {/* <Navbar /> */}
       </AppShell.Header>
       <AppShell.Navbar>
         <Sidebar />

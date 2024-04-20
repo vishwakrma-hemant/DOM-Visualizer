@@ -9,15 +9,15 @@ const links = [
   { link: '/', label: 'Home' },
   {
     link: '#1',
-    label: 'Category',
-    links: [
-      { link: '/docs', label: 'About' },
-      { link: '/resources', label: 'Information' },
-      { link: '/community', label: 'Help?' },
-      { link: '/blog', label: 'Content' },
-    ],
+    link: '/about', label:'About'
+    // links: [
+    //   { link: '/docs', label: 'About' },
+    //   { link: '/resources', label: 'Information' },
+    //   { link: '/community', label: 'Help?' },
+    //   { link: '/blog', label: 'Content' },
+    // ],
   },
-  { link: '/blog', label: 'Blog' },
+  // { link: '/blog', label: 'Blog' },
   // {
   //   link: '#2',
   //   label: 'Support',
@@ -27,6 +27,7 @@ const links = [
   //     { link: '/forums', label: 'Forums' },
   //   ],
   // },
+  { link: '/blog', label: 'Blog' },
   { link: '/contact', label: 'Contact Us' },
 ];
 

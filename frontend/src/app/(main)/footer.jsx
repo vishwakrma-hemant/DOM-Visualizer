@@ -7,10 +7,9 @@ const data = [
   {
     title: 'About',
     links: [
-      { label: 'Features', link: '#' },
-      { label: 'Pricing', link: '#' },
-      { label: 'Support', link: '#' },
-      { label: 'Forums', link: '#' },
+      { label: 'Live DOM Update', link: '#' },
+      { label: 'Drag & Drop', link: '#' },
+      { label: 'Interactive Learning', link: '#' }
     ],
   },
   {
@@ -25,10 +24,9 @@ const data = [
   {
     title: 'Community',
     links: [
-      { label: 'Join Discord', link: '#' },
-      { label: 'Follow on Twitter', link: '#' },
-      { label: 'Email newsletter', link: '#' },
-      { label: 'GitHub discussions', link: '#' },
+      { label: 'Follow on LinkedIn', link:'https://www.linkedin.com/in/hemant-kumar-7054b4267/'  },
+      { label: 'Email', link:'hemantk3335@gmail.com' },
+      { label: 'GitHub discussions', link:'https://github.com/vishwakrma-hemant' },
     ],
   },
 ];
