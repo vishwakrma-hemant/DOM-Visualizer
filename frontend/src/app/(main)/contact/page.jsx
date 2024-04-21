@@ -18,8 +18,8 @@ import { useForm } from "@mantine/form";
 import { enqueueSnackbar } from "notistack";
 import { useRouter } from "next/navigation";
 import {Link} from 'next/link';
-import CountryFlag from "react-country-flag";
-import CountryFlagComponent from "react-country-flag";
+// import CountryFlag from "react-country-flag";
+// import CountryFlagComponent from "react-country-flag";
 
 const contact = () => {
 
@@ -96,8 +96,7 @@ const contact = () => {
                     required
                   />
                 </SimpleGrid>
-            <Container>
-                <CountryFlagComponent countryCode={91} />
+        
                 <TextInput
                   mt="md"
                   label="Number"
@@ -105,7 +104,7 @@ const contact = () => {
                   {...form.getInputProps('number')}
                   required
                 />
-          </Container>
+          
                 <Textarea
                   mt="md"
                   label="Your message"

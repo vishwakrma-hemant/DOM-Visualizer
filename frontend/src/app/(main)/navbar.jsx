@@ -29,6 +29,8 @@ const links = [
   // },
   { link: '/blog', label: 'Blog' },
   { link: '/contact', label: 'Contact Us' },
+  { link: '/faq', label: 'FAQs?' },
+  { link: '/feedback', label: 'Feedback' },
 ];
 
 const Navbar= ()=> {
