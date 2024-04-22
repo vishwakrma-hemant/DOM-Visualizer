@@ -16,7 +16,7 @@ import DomClasses from "./domnode.module.css";
 import classes from "./domnode.module.css";
 import clsx from "clsx";
 import { TextInput, Title, classNames } from "@mantine/core";
-import { Button, Popover } from "@mantine/core";
+import { HoverCard, Button, Text, Group } from "@mantine/core";
 import { AnimatePresence, motion } from "framer-motion";
 import useDiagramContext from "@/context/DiagramContext";
 
@@ -31,18 +31,18 @@ const nodeTypes = {
     //console.log(data);
     return (
       <div className={clsx(DomClasses.domNode)}>
-        <Popover width={200} position="bottom" withArrow shadow="md">
-          <Popover.Target >
-            <Button size="xs">Toggle popover</Button>
-          </Popover.Target>
-          <Popover.Dropdown style={{ pointerEvents: 'none' }}>
-            <h6>styles</h6>
+
+      <HoverCard width={280} shadow="md">
+        <HoverCard.Target>
+          <Button variant="filled" size="xs" >Hover me</Button>
+        </HoverCard.Target>
+        <HoverCard.Dropdown  style={{ pointerEvents: 'none' }}>
+        <h6>styles</h6>
             {Object.keys(data.styles).map((styleName) => (
               <p>
                 {styleName} : {data.styles[styleName]}
               </p>
             ))}
-
             <h6>Classes</h6>
             {data.classes}
             {/* {data.classes.split(' ').map((className) => (
@@ -58,8 +58,9 @@ const nodeTypes = {
               </p>
             ))} */}
 
-          </Popover.Dropdown>
-        </Popover>
+</HoverCard.Dropdown>
+      </HoverCard>
+      
         <p className={DomClasses.nodeTagName}>{data.label}</p>
         <Handle
           type="target"
@@ -225,6 +226,7 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
 };
 
 const Visualizer = () => {
+
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 

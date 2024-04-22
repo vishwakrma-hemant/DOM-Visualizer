@@ -29,9 +29,9 @@ const Layout = ({ children }) => {
       padding="md"
       layout="alt"
     >
-          {/* <Navbar /> */}
       <AppShell.Header>
         <Group h="100%" px="md">
+          {/* <Navbar /> */}
           <Burger
             opened={mobileOpened}
             onClick={toggleMobile}
