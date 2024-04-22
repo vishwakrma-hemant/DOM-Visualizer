@@ -28,55 +28,53 @@ const defaultViewport = { x: 0, y: 0, zoom: 1.5 };
 
 const nodeTypes = {
   DomNode: ({ data, isConnectable, id }) => {
-    //console.log(data);
+    // console.log(data);
     return (
-      <div className={clsx(DomClasses.domNode)}>
-
       <HoverCard width={280} shadow="md">
         <HoverCard.Target>
-          <Button variant="filled" size="xs" >Hover me</Button>
-        </HoverCard.Target>
-        <HoverCard.Dropdown  style={{ pointerEvents: 'none' }}>
-        <h6>styles</h6>
-            {Object.keys(data.styles).map((styleName) => (
-              <p>
-                {styleName} : {data.styles[styleName]}
-              </p>
-            ))}
-            <h6>Classes</h6>
-            {data.classes}
-            {/* {data.classes.split(' ').map((className) => (
+          <div className={clsx(DomClasses.domNode)}>
+            <HoverCard.Dropdown style={{ pointerEvents: 'none' }}>
+              <h6>styles</h6>
+              {Object.keys(data.styles).map((styleName) => (
+                <p>
+                  {styleName} : {data.styles[styleName]}
+                </p>
+              ))}
+              <h6>Classes</h6>
+              {data.classes}
+              {/* {data.classes.split(' ').map((className) => (
               <p>
               {className}
               </p>
             ))} */}
-            <h6>Ids</h6>
-            {data.ids}
-            {/* {data.id.split(' ').map((idName) => (
+              <h6>Ids</h6>
+              {data.ids}
+              {/* {data.id.split(' ').map((idName) => (
               <p>
-                {idName}
+              {idName}
               </p>
             ))} */}
 
-</HoverCard.Dropdown>
+            </HoverCard.Dropdown>
+
+            <p className={DomClasses.nodeTagName}>{data.label}</p>
+            <Handle
+              type="target"
+              position={Position.Top}
+              id={id + "handle1"}
+              style={{ top: 0, background: "#555" }}
+              isConnectable={isConnectable}
+            />
+            <Handle
+              type="source"
+              position={Position.Bottom}
+              id={id + "handle2"}
+              style={{ bottom: 0, background: "#555" }}
+              isConnectable={isConnectable}
+            />
+          </div>
+        </HoverCard.Target>
       </HoverCard>
-      
-        <p className={DomClasses.nodeTagName}>{data.label}</p>
-        <Handle
-          type="target"
-          position={Position.Top}
-          id={id + "handle1"}
-          style={{ top: 0, background: "#555" }}
-          isConnectable={isConnectable}
-        />
-        <Handle
-          type="source"
-          position={Position.Bottom}
-          id={id + "handle2"}
-          style={{ bottom: 0, background: "#555" }}
-          isConnectable={isConnectable}
-        />
-      </div>
     );
   },
 };
@@ -148,7 +146,7 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
     const styles = props.style || {};
     const classes = props.className || "";
     const id = props.id || "";
-    //console.log(classes);
+    // console.log(classes);
 
 
     let children = null;
