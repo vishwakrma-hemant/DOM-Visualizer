@@ -32,10 +32,9 @@ const nodeTypes = {
     return (
       <HoverCard width={280} shadow="md">
         <HoverCard.Target>
-          <Button variant="filled" size="xs" >Hover me</Button>
-        </HoverCard.Target>
         <HoverCard.Dropdown  style={{ pointerEvents: 'none' }}>
         <h6>styles</h6>
+
             {Object.keys(data.styles).map((styleName) => (
               <p>
                 {styleName} : {data.styles[styleName]}
@@ -73,7 +72,6 @@ const nodeTypes = {
               style={{ bottom: 0, background: "#555" }}
               isConnectable={isConnectable}
             />
-          </div>
         </HoverCard.Target>
       </HoverCard>
     );
