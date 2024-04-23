@@ -1,82 +1,28 @@
 'use client';
-import { ThemeIcon, Text, Title, Container, SimpleGrid, rem } from '@mantine/core';
-import { IconGauge, IconCookie, IconUser, IconMessage2, IconLock } from '@tabler/icons-react';
-import classes from './features.module.css';
+import { Container, Grid, SimpleGrid, Skeleton, rem } from '@mantine/core';
 
-export const MOCKDATA = [
-  {
-    icon: IconUser,
-    title: 'Improve developer productivity',
-    description:
-    'DOM visualizer improve the developer productivity by providing DOM structure of  webpage.',
-  },
-  {
-    icon: IconGauge,
-    title: 'Understanding HTML web structure',
-    description:
-      'DOM visualizer provides the DOM structure of HTML webpages , so developer can easily understand the entire structure of webpage.',
-  },
-  {
-    icon: IconCookie,
-    title: 'Interactive',
-    description:
-      'The new developer can directly perform changes on a web page by the drag and drop property of DOM visualizer.',
-  },
-  {
-    icon: IconLock,
-    title: 'Reduce Learning Curve',
-    description:
-      'Reduce learning curve providing the DOM structure the developer can easily save time to learn new properties.',
-  },
-  {
-    icon: IconMessage2,
-    title: 'Cross-Browser-Compatibility',
-    description:
-      'DOM Visualizer run every platfrom and it is easy to use.',
-  },
-];
+const PRIMARY_COL_HEIGHT = rem(300);
 
-
-function Feature({ icon: Icon, title, description }) {
-  return (
-    <div>
-      <ThemeIcon variant="light" size={60} radius={40}>
-        <Icon style={{ width: rem(18), height: rem(18) }} stroke={2.5} />
-      </ThemeIcon>
-      <Text mt="sm" mb={7}>
-        {title}
-      </Text>
-      <Text size="sm" c="black" lh={1.6} fs={1}>
-        {description}
-      </Text>
-    </div>
-  );
-}
-
-function FeaturesGrid() {
-  const features = MOCKDATA.map((feature, index) => <Feature {...feature} key={index} />);
+const Feature = () =>{
+  const SECONDARY_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 2 - var(--mantine-spacing-md) / 2)`;
 
   return (
-    <Container className={classes.wrapper}>
-      <Title className={classes.title}>DOM Visualizer are used in the different placed</Title>
-
-      {/* <Container size={560} p={0}>
-        <Text size="sm" className={classes.description}>
-          DOM Visualizer provides the DOM Structure of web page and it also
-          provides some functionality like Drag and Drop and Live DOM Update.
-        </Text>
-      </Container> */}
-
-      <SimpleGrid
-        mt={60}
-        cols={{ base: 1, sm: 2, md: 3 }}
-        spacing={{ base: 'xl', md: 50 }}
-        verticalSpacing={{ base: 'xl', md: 50 }}
-      >
-        {features}
+    <Container my="md">
+      <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
+        <Skeleton height={PRIMARY_COL_HEIGHT} radius="md" animate={false} />
+        <Grid gutter="md">
+          <Grid.Col>
+            <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
+          </Grid.Col>
+        </Grid>
       </SimpleGrid>
     </Container>
   );
 }
-
-export default FeaturesGrid;
+export default Feature;

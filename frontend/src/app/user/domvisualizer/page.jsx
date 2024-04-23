@@ -34,9 +34,11 @@ const nodeTypes = {
 
       <HoverCard width={280} shadow="md">
         <HoverCard.Target>
-          <Button variant="filled" size="xs" >Hover me</Button>
+          <Button variant="filled" size="xs" >
+            H
+          </Button>
         </HoverCard.Target>
-        <HoverCard.Dropdown  style={{ pointerEvents: 'none' }}>
+        <HoverCard.Dropdown style={{ pointerEvents: 'none' }}>
         <h6>styles</h6>
             {Object.keys(data.styles).map((styleName) => (
               <p>
