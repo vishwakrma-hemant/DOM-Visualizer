@@ -1,5 +1,5 @@
 "use client";
-import { Menu, Group, Center, Burger, Container, Title,Divider,Button,Box,Drawer,ScrollArea
+import { Menu, Group, Center, Burger, Container,Paper, Title,Divider,Button,Box,Drawer,ScrollArea
 ,rem,UnstyledButton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconChevronDown } from "@tabler/icons-react";
@@ -79,8 +79,10 @@ const Navbar = () => {
   });
 
   return (
+  
     <Box>
     <header className={classes.header}>
+    <Paper padding="md" style={{ position: 'fixed', width: '100%', zIndex: 1000, top: 0 }}>
       <Container size="lg">
         <div className={classes.inner}>
           <Title order={3} component={Link} href="/" className={classes.title}>
@@ -97,6 +99,7 @@ const Navbar = () => {
           <ActionTog />
         </div>
       </Container>
+    </Paper>
     </header>
     <Drawer
         opened={drawerOpened}
@@ -127,7 +130,6 @@ const Navbar = () => {
             Feedback
           </a>
 
-
           <Divider my="sm" />
           <Group justify="center" grow pb="xl" px="md">
             <Button variant="default">Log in</Button>
@@ -137,6 +139,7 @@ const Navbar = () => {
         </ScrollArea>
       </Drawer>
       </Box>
+     
   );
 };
 
