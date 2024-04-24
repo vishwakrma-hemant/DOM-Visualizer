@@ -29,8 +29,7 @@ const links = [
   //     { link: '/demo', label: 'Book a demo' },
   //     { link: '/forums', label: 'Forums' },
   //   ],
-  
-  { link: "/feature", label: "Feature" },
+  { link: "/dragDrop", label: "Drop" },
   { link: "/about", label: "About" },
   { link: "/contact", label: "Contact Us" },
   { link: "/feedback", label: "Feedback" },

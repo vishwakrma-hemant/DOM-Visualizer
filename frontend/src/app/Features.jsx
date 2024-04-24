@@ -16,7 +16,7 @@ const mockdata = [
     title: 'Drag & Drop',
     image:
       'https://cdn.dribbble.com/users/945601/screenshots/15180885/media/3f9083d5b99ac819b0c008c1d302854b.png?resize=1200x900&vertical=center',
-      href:'https://www.google.com'
+      href:'../frontend/dragDrop/page.jsx'
       // date: 'August 27, 2022',
   },
   {
@@ -56,10 +56,10 @@ const Feature =() =>{
   ));
 
   return (
-    <Container fluid my='md'>
-      <SimpleGrid cols={{ base: 1, md: 2 }}>{cards}</SimpleGrid>
+
+      <SimpleGrid cols={{ base: 1, md: 2 }} my={'sm'}>{cards}</SimpleGrid>
     
-    </Container>
+    
   );
 }
 
