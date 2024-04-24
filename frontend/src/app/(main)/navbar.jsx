@@ -9,26 +9,6 @@ import ActionTog from "./action/page";
 
 const links = [
   { link: "/", label: "Home" },
-  // {
-  //   link: "#1",
-  //   link: "/about",
-  //   label: "About",
-  //   // links: [
-  //   //   { link: '/docs', label: 'About' },
-  //   //   { link: '/resources', label: 'Information' },
-  //   //   { link: '/community', label: 'Help?' },
-  //   //   { link: '/blog', label: 'Content' },
-  //   // ],
-  // },
-  // { link: '/blog', label: 'Blog' },
-  // {
-  //   link: '#2',
-  //   label: 'Support',
-  //   links: [
-  //     { link: '/faq', label: 'FAQ' },
-  //     { link: '/demo', label: 'Book a demo' },
-  //     { link: '/forums', label: 'Forums' },
-  //   ],
   { link: "/dragDrop", label: "Drop" },
   { link: "/about", label: "About" },
   { link: "/contact", label: "Contact Us" },

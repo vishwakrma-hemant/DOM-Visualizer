@@ -8,7 +8,7 @@ const mockdata = [
     title: 'Live DOM Update',
     image:
      'https://thumbs.dreamstime.com/b/update-system-upgrade-software-version-technology-concept-virtual-screen-217164383.jpg',
-     href:'https://www.google.com'
+     href:'../dragDrop'
      
       // date: 'August 18, 2022',
   },
@@ -16,23 +16,21 @@ const mockdata = [
     title: 'Drag & Drop',
     image:
       'https://cdn.dribbble.com/users/945601/screenshots/15180885/media/3f9083d5b99ac819b0c008c1d302854b.png?resize=1200x900&vertical=center',
-      href:'../frontend/dragDrop/page.jsx'
+      href:'../dragDrop'
       // date: 'August 27, 2022',
   },
   {
     title: 'Improve Developer Productivity',
     image:
     'https://imgs.search.brave.com/GtU02MgHA2WlGH_Qh2JGF8xlclRgCwzaMESW_8WGg4M/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA2LzI3LzI0LzYx/LzM2MF9GXzYyNzI0/NjE2Ml9lV3FnUGh6/emVzSDZaR2Y4MUYy/Sm9sVTIyWjRDeEY1/cS5qcGc',
-      // '../frontend-dev.jpg',
-      href :'https://www.google.com'
+      href :'../contact'
       // date: 'September 9, 2022',
   },
   {
     title: 'Provide DOM Structure',
     image:
       'https://imgs.search.brave.com/hfo5gXLGVESx6YG_kZdyKbJ6oykvQ7DFIPfdrNQ58bg/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/ZGlnaXRhbG9jZWFu/LmNvbS9fbmV4dC9z/dGF0aWMvbWVkaWEv/aW50cm8tdG8tY2xv/dWQuZDQ5YmM1Zjcu/anBlZw',
-    
-    href :'https://www.google.com'
+    href:'../feedback'
     // date: 'September 12, 2022',
   },
 ];
@@ -40,7 +38,8 @@ const mockdata = [
 const Feature =() =>{
 
   const cards = mockdata.map((article) => (
-    <Link component={Link} href={article.href} className={classes.card_item}>
+    <Link href={article.href} className={classes.card_item}>
+
     <Card key={article.title} p="md" radius="md"className={classes.card}>
       <AspectRatio ratio={1920 / 1080}>
         <Image src={article.image} />
