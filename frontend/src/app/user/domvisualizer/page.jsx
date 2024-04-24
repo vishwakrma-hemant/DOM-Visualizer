@@ -28,21 +28,21 @@ const defaultViewport = { x: 0, y: 0, zoom: 1.5 };
 
 const nodeTypes = {
   DomNode: ({ data, isConnectable, id }) => {
-    // console.log(data);
+    //console.log(data);
     return (
       <HoverCard width={280} shadow="md">
         <HoverCard.Target>
-        <HoverCard.Dropdown  style={{ pointerEvents: 'none' }}>
-        <h6>styles</h6>
-
-            {Object.keys(data.styles).map((styleName) => (
-              <p>
-                {styleName} : {data.styles[styleName]}
-              </p>
-            ))}
-            <h6>Classes</h6>
-            {data.classes}
-            {/* {data.classes.split(' ').map((className) => (
+          <div className={clsx(DomClasses.domNode)}>
+            <HoverCard.Dropdown style={{ pointerEvents: "none" }}>
+              <h6>styles</h6>
+              {Object.keys(data.styles).map((styleName) => (
+                <p>
+                  {styleName} : {data.styles[styleName]}
+                </p>
+              ))}
+              <h6>Classes</h6>
+              {data.classes}
+              {/* {data.classes.split(' ').map((className) => (
               <p>
               {className}
               </p>
@@ -54,7 +54,6 @@ const nodeTypes = {
               {idName}
               </p>
             ))} */}
-
             </HoverCard.Dropdown>
 
             <p className={DomClasses.nodeTagName}>{data.label}</p>
@@ -72,6 +71,7 @@ const nodeTypes = {
               style={{ bottom: 0, background: "#555" }}
               isConnectable={isConnectable}
             />
+          </div>
         </HoverCard.Target>
       </HoverCard>
     );
@@ -92,11 +92,11 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
 
     const nodes = node.children
       ? node.children.flatMap((child, index) =>
-        createReactFlowNodes(child, {
-          x: parentPosition.x + 100,
-          y: parentPosition.y + index * 100,
-        })
-      )
+          createReactFlowNodes(child, {
+            x: parentPosition.x + 100,
+            y: parentPosition.y + index * 100,
+          })
+        )
       : [];
 
     nodes.push({
@@ -145,8 +145,7 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
     const styles = props.style || {};
     const classes = props.className || "";
     const id = props.id || "";
-    // console.log(classes);
-
+    //console.log(classes);
 
     let children = null;
     if (props.children) {
@@ -176,12 +175,16 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
 
   return (
     <AnimatePresence>
-      <motion.div animate={{
-        marginTop: zoomedIn ? '-40vh' : '0',
-        width: zoomedIn ? "100%" : "30%",
-        height: zoomedIn ? "70vh" : '20vh'
-      }}
-        transition={{ duration: 0.5 }} pt='100px' className={classes.parent_react_flow}>
+      <motion.div
+        animate={{
+          marginTop: zoomedIn ? "-40vh" : "0",
+          width: zoomedIn ? "100%" : "30%",
+          height: zoomedIn ? "70vh" : "20vh",
+        }}
+        transition={{ duration: 0.5 }}
+        pt="100px"
+        className={classes.parent_react_flow}
+      >
         <ReactFlow
           className={classes.react_flow}
           nodes={nodes}
@@ -199,9 +202,12 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
           defaultViewport={defaultViewport}
           fitView
           attributionPosition="bottom-left"
-
         >
-          <Button m={10} className={classes.btn_zoom} onClick={e => setZoomedIn(!zoomedIn)}>
+          <Button
+            m={10}
+            className={classes.btn_zoom}
+            onClick={(e) => setZoomedIn(!zoomedIn)}
+          >
             {zoomedIn ? "Zoom Out" : "Zoom In"}
           </Button>
           {/* <MiniMap
@@ -223,7 +229,6 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
 };
 
 const Visualizer = () => {
-
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
@@ -231,7 +236,6 @@ const Visualizer = () => {
   const { selDiagram, setSelDiagram, updateDiagram } = useDiagramContext();
 
   const [zoomedIn, setZoomedIn] = useState(false);
-
 
   const urlRef = useRef();
 
@@ -298,31 +302,45 @@ const Visualizer = () => {
     setSelDiagram({
       ...selDiagram,
       name: e.target.value,
-    })
+    });
     console.log(selDiagram);
-  }
+  };
 
   return (
     <div>
-      {
-        selDiagram === null ?
-          <Title c="dimmed" align="center" order={1} mt={20}>Select or Create a New Diagram</Title>
-          :
-          (
-            <>
-              <TextInput value={selDiagram.name} onChange={changeName} label="Diagram Name" />
-              <Button my={4} onClick={updateDiagram}>Save Changes</Button>
-              <div className={classes.parent_input}>
-                <input ref={urlRef} className={classes.inputField} />
-                <Button className={classes.btn_dom} onClick={() => extractHTMLFromUrl(urlRef.current.value)}>Extract DOM</Button>
-              </div>
-              <HTMLEditor />
-              <div>
-                <HtmlToReactFlow htmlMarkup={code} zoomedIn={zoomedIn} setZoomedIn={setZoomedIn} />
-              </div>
-            </>
-          )
-      }
+      {selDiagram === null ? (
+        <Title c="dimmed" align="center" order={1} mt={20}>
+          Select or Create a New Diagram
+        </Title>
+      ) : (
+        <>
+          <TextInput
+            value={selDiagram.name}
+            onChange={changeName}
+            label="Diagram Name"
+          />
+          <Button my={4} onClick={updateDiagram}>
+            Save Changes
+          </Button>
+          <div className={classes.parent_input}>
+            <input ref={urlRef} className={classes.inputField} />
+            <Button
+              className={classes.btn_dom}
+              onClick={() => extractHTMLFromUrl(urlRef.current.value)}
+            >
+              Extract DOM
+            </Button>
+          </div>
+          <HTMLEditor />
+          <div>
+            <HtmlToReactFlow
+              htmlMarkup={code}
+              zoomedIn={zoomedIn}
+              setZoomedIn={setZoomedIn}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 };

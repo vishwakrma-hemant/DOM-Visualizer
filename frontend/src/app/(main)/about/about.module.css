@@ -1,26 +1,15 @@
-.price {
-    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
-  }
-  
-  .carousel {
-    mixin hover {
-      .carouselControls {
-        opacity: 1;
-      }
-    }
-  }
-  
-  .carouselControls {
-    transition: opacity 150ms ease;
-    opacity: 0;
-  }
-  
-  .carouselIndicator {
-    width: rem(4px);
-    height: rem(4px);
-    transition: width 250ms ease;
-  
-    &[data-active] {
-      width: rem(16px);
-    }
-  }
+.card {
+  background-color: var(--mantine-color-body);
+}
+
+.title {
+  font-weight: bold;
+  font-family:
+    Greycliff CF,
+    var(--mantine-font-family);
+  line-height: 1.2;
+}
+
+.body {
+  padding: var(--mantine-spacing-md);
+}
