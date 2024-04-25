@@ -16,7 +16,7 @@ import DomClasses from "./domnode.module.css";
 import classes from "./domnode.module.css";
 import clsx from "clsx";
 import { TextInput, Title, classNames } from "@mantine/core";
-import { HoverCard, Button, Text, Group } from "@mantine/core";
+import { HoverCard, Button, Text, Group,Box,Grid } from "@mantine/core";
 import { AnimatePresence, motion } from "framer-motion";
 import useDiagramContext from "@/context/DiagramContext";
 
@@ -314,15 +314,19 @@ const Visualizer = () => {
         </Title>
       ) : (
         <>
-          <TextInput
+         <Grid>
+      <Grid.Col span={5}>
+          <input
             value={selDiagram.name}
             onChange={changeName}
+            className={classes.inputField}
             label="Diagram Name"
           />
-          <Button my={4} onClick={updateDiagram}>
+          <Button onClick={updateDiagram}>
             Save Changes
           </Button>
-          <div className={classes.parent_input}>
+          </Grid.Col>
+      <Grid.Col span={7}>
             <input ref={urlRef} className={classes.inputField} />
             <Button
               className={classes.btn_dom}
@@ -330,7 +334,13 @@ const Visualizer = () => {
             >
               Extract DOM
             </Button>
-          </div>
+            
+        </Grid.Col>
+    
+    </Grid>
+       
+          
+          
           <HTMLEditor />
           <div>
             <HtmlToReactFlow

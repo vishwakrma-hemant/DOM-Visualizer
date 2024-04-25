@@ -49,3 +49,6 @@
 .react_flow{
     margin-top:5px;
 }
+.input_area{
+    display: flex;
+}
