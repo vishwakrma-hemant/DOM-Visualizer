@@ -9,7 +9,6 @@ import ActionTog from "./action/page";
 
 const links = [
   { link: "/", label: "Home" },
-  { link: "/dragDrop", label: "Drop" },
   { link: "/about", label: "About" },
   { link: "/contact", label: "Contact Us" },
   { link: "/feedback", label: "Feedback" },

@@ -63,7 +63,7 @@ const contact = () => {
     
   };
   return (
-    <BackgroundImage pt={'10vh'} h={'100vh'} src="https://th.bing.com/th/id/OIP.-WwCRYCLkhIrvAeeuguIJgHaEK?w=1200&h=675&rs=1&pid=ImgDetMain">
+    <BackgroundImage pt={'10vh'} h={'100vh'} src="https://imgs.search.brave.com/B4LgsyPI_7Q77yNvqWJWI8O_6ZrnannSKek-Sl4bepE/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9i/dXNpbmVzc3dvbWFu/LXJlYWRpbmctbWVz/c2FnZS1tb2JpbGUt/cGhvbmVfMTI2Mi0y/MjQxLmpwZz9zaXpl/PTYyNiZleHQ9anBn">
       <Container>
         <Paper shadow="md" radius="lg">
           <div className={classes.wrapper}>
@@ -91,7 +91,7 @@ const contact = () => {
                   <TextInput label="Your name" placeholder="Your name" {...form.getInputProps('name')} />
                   <TextInput
                     label="Your email"
-                    placeholder="hello@mantine.dev"
+                    placeholder="hemantk3335@gmail.com"
                     {...form.getInputProps('email')}
                     required
                   />

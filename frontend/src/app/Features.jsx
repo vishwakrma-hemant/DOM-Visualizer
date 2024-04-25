@@ -9,7 +9,6 @@ const mockdata = [
     image:
      'https://thumbs.dreamstime.com/b/update-system-upgrade-software-version-technology-concept-virtual-screen-217164383.jpg',
      href:'../dragDrop'
-     
       // date: 'August 18, 2022',
   },
   {
