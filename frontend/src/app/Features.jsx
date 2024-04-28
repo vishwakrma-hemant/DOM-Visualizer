@@ -8,7 +8,7 @@ const mockdata = [
     title: 'Live DOM Update',
     image:
      'https://thumbs.dreamstime.com/b/update-system-upgrade-software-version-technology-concept-virtual-screen-217164383.jpg',
-     href:'../dragDrop'
+     href:'../liveUpdate'
       // date: 'August 18, 2022',
   },
   {

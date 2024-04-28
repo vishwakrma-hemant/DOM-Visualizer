@@ -16,9 +16,10 @@ import DomClasses from "./domnode.module.css";
 import classes from "./domnode.module.css";
 import clsx from "clsx";
 import { TextInput, Title, classNames } from "@mantine/core";
-import { HoverCard, Button, Text, Group,Box,Grid } from "@mantine/core";
+import { HoverCard, Button, Text, Group, Box, Grid } from "@mantine/core";
 import { AnimatePresence, motion } from "framer-motion";
 import useDiagramContext from "@/context/DiagramContext";
+import { Container } from "postcss";
 
 const initBgColor = "#1A192B";
 
@@ -56,19 +57,19 @@ const nodeTypes = {
             ))} */}
             </HoverCard.Dropdown>
 
-            <p className={DomClasses.nodeTagName}>{data.label}</p>
+            <p className={DomClasses.nodeTagName} >{data.label}</p>
             <Handle
               type="target"
               position={Position.Top}
               id={id + "handle1"}
-              style={{ top: 0, background: "#555" }}
+              style={{ top: 0, background: "red" }}  //this is provide top point on the edges
               isConnectable={isConnectable}
             />
             <Handle
               type="source"
-              position={Position.Bottom}
+              position={Position.Bottom}  //thie is provide point on the edges
               id={id + "handle2"}
-              style={{ bottom: 0, background: "#555" }}
+              style={{ bottom: 0, background: "yellow" }}
               isConnectable={isConnectable}
             />
           </div>
@@ -140,7 +141,7 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
     }
 
     const { type, props } = element;
-    //console.log(props);
+    // console.log(props);
     const nodeName = typeof type === "string" ? type : type.name;
     const styles = props.style || {};
     const classes = props.className || "";
@@ -314,33 +315,31 @@ const Visualizer = () => {
         </Title>
       ) : (
         <>
-         <Grid>
-      <Grid.Col span={5}>
-          <input
-            value={selDiagram.name}
-            onChange={changeName}
-            className={classes.inputField}
-            label="Diagram Name"
-          />
-          <Button onClick={updateDiagram}>
-            Save Changes
-          </Button>
-          </Grid.Col>
-      <Grid.Col span={7}>
-            <input ref={urlRef} className={classes.inputField} />
-            <Button
-              className={classes.btn_dom}
-              onClick={() => extractHTMLFromUrl(urlRef.current.value)}
-            >
-              Extract DOM
-            </Button>
-            
-        </Grid.Col>
-    
-    </Grid>
-       
-          
-          
+          <Grid>
+            <Grid.Col span={6}>
+              <input
+                value={selDiagram.name}
+                onChange={changeName}
+                className={classes.inputField}
+                label="Diagram Name"
+              />
+              <Button onClick={updateDiagram} className={classes.btn_dom}>
+                Save Change
+              </Button>
+            </Grid.Col>
+
+            <Grid.Col span={6}>
+              <input ref={urlRef} className={classes.inputField} />
+
+              <Button
+                className={classes.btn_dom}
+                onClick={() => extractHTMLFromUrl(urlRef.current.value)}
+              >
+                Extract DOM
+              </Button>
+            </Grid.Col>
+          </Grid>
+
           <HTMLEditor />
           <div>
             <HtmlToReactFlow

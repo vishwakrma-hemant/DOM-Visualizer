@@ -91,27 +91,24 @@ const Navbar = () => {
         <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
           <Divider my="sm" />
 
-          <a href="/" className={classes.link}>
-            Home
-          </a>
           {/* <Collapse in={linksOpened}>{links}</Collapse> */}
-          <a href="/feature" className={classes.link}>
-            feature
-          </a>
-          <a href="contact" className={classes.link}>
+          <Link href="/" className={classes.link}>
+            Home
+          </Link>
+          <Link href="contact" className={classes.link}>
             ContactUs
-          </a>
-          <a href="/about" className={classes.link}>
+          </Link>
+          <Link href="/about" className={classes.link}>
             About
-          </a>
-          <a href="/feedback" className={classes.link}>
+          </Link>
+          <Link href="/feedback" className={classes.link}>
             Feedback
-          </a>
+          </Link>
 
           <Divider my="sm" />
           <Group justify="center" grow pb="xl" px="md">
-            <Button variant="default">Log in</Button>
-            <Button>Sign up</Button>
+            <Button variant="default" component={Link} href='/login'>Log in</Button>
+            <Button component={Link} href='/signup'>Sign up</Button>
           </Group>
           <ActionTog />
         </ScrollArea>

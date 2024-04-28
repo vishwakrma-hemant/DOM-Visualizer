@@ -8,7 +8,7 @@ const DomNode = ({ data, isConnectable }) => {
     <Handle
         type="target"
         position={Position.Left}
-        style={{ background: '#555' }}
+        style={{ background: '#555'}}
         onConnect={(params) => console.log('handle onConnect', params)}
         isConnectable={isConnectable}
       />
