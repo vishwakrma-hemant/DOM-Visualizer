@@ -84,9 +84,9 @@ const Signup = () => {
   };
 
   return (
-    <Container fluid>
+    <Container fluid mt={'md'}>
       <Grid>
-        <Grid.Col span={5}>
+        <Grid.Col span={5} mt={'md'}>
           <Paper withBorder shadow="md" p={30} mt={30} className={classes.bor}>
             <form onSubmit={form.onSubmit(signupSubmit)}>
               <Stack>

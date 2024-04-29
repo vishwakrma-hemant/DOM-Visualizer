@@ -1,5 +1,5 @@
 "use client";
-import { AppShell, Burger, Group, Skeleton } from "@mantine/core";
+import { AppShell, Burger, Button, Flex, Group, Skeleton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import Sidebar from "./sidebar";
 import Navbar from "./navbar";
@@ -30,6 +30,9 @@ const Layout = ({ children }) => {
       layout="alt"
     >
       <AppShell.Header>
+        <Flex>
+          
+        </Flex>
         <Group h="100%" px="md">
           {/* <Navbar /> */}
           <Burger
@@ -45,6 +48,9 @@ const Layout = ({ children }) => {
             size="sm"
           />
         </Group>
+        {/* <Group ml={'auto'}>
+          <Button>Home</Button>
+        </Group> */}
       </AppShell.Header>
       <AppShell.Navbar>
         <Sidebar />

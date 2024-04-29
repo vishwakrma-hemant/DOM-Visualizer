@@ -1,5 +1,6 @@
 "use client";
-import { Menu, Group, Center, Burger, Container, Title,Divider,Button } from "@mantine/core";
+import { Menu, Group, Center, Burger, Container,Paper, Title,Divider,Button,Box,Drawer,ScrollArea
+,rem,UnstyledButton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconChevronDown } from "@tabler/icons-react";
 import classes from "./navbar.module.css";
@@ -8,35 +9,15 @@ import ActionTog from "./action/page";
 
 const links = [
   { link: "/", label: "Home" },
-  // {
-  //   link: "#1",
-  //   link: "/about",
-  //   label: "About",
-  //   // links: [
-  //   //   { link: '/docs', label: 'About' },
-  //   //   { link: '/resources', label: 'Information' },
-  //   //   { link: '/community', label: 'Help?' },
-  //   //   { link: '/blog', label: 'Content' },
-  //   // ],
-  // },
-  // { link: '/blog', label: 'Blog' },
-  // {
-  //   link: '#2',
-  //   label: 'Support',
-  //   links: [
-  //     { link: '/faq', label: 'FAQ' },
-  //     { link: '/demo', label: 'Book a demo' },
-  //     { link: '/forums', label: 'Forums' },
-  //   ],
-  
-  { link: "/feature", label: "Feature" },
   { link: "/about", label: "About" },
   { link: "/contact", label: "Contact Us" },
   { link: "/feedback", label: "Feedback" },
 ];
 
 const Navbar = () => {
-  const [opened, { toggle }] = useDisclosure(false);
+  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
+  const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
+  
 
   const items = links.map((link) => {
     const menuItems = link.links?.map((item) => (
@@ -76,24 +57,64 @@ const Navbar = () => {
   });
 
   return (
+  
+    <Box>
     <header className={classes.header}>
+    <Paper padding="md" style={{ position: 'fixed', width: '100%', zIndex: 1000, top: 0 }}>
       <Container size="lg">
         <div className={classes.inner}>
-          <Title order={2} component={Link} href="/" className={classes.title}>
+          <Title order={3} component={Link} href="/" className={classes.title}>
             DOM Visualizer
           </Title>
-          <Group gap={5} visibleFrom="sm">
+          <Group gap={1} visibleFrom="sm" fs={'md'}>
             {items}
           </Group>
-          <Group my="lg">
-            <Button component={Link} href='/signup'>Sign up</Button>
-            <Button  component={Link} href='/login'>Log in</Button>
+          <Group my="lg" visibleFrom="sm"  mr={'sm'}>
+            <Button component={Link} href='/signup' >Sign up</Button>
+            <Button  component={Link} href='/login' >Log in</Button>
           </Group>
-          <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
+          <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
           <ActionTog />
         </div>
       </Container>
+    </Paper>
     </header>
+    <Drawer
+        opened={drawerOpened}
+        onClose={closeDrawer}
+        size="100%"
+        padding="md"
+        title="DOM Visualizer"
+        hiddenFrom="sm"
+        zIndex={1000000}
+      >
+        <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
+          <Divider my="sm" />
+
+          {/* <Collapse in={linksOpened}>{links}</Collapse> */}
+          <Link href="/" className={classes.link}>
+            Home
+          </Link>
+          <Link href="contact" className={classes.link}>
+            ContactUs
+          </Link>
+          <Link href="/about" className={classes.link}>
+            About
+          </Link>
+          <Link href="/feedback" className={classes.link}>
+            Feedback
+          </Link>
+
+          <Divider my="sm" />
+          <Group justify="center" grow pb="xl" px="md">
+            <Button variant="default" component={Link} href='/login'>Log in</Button>
+            <Button component={Link} href='/signup'>Sign up</Button>
+          </Group>
+          <ActionTog />
+        </ScrollArea>
+      </Drawer>
+      </Box>
+     
   );
 };
 

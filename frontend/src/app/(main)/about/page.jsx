@@ -1,71 +1,109 @@
-'use client';
-import { Image, Card, Text, Group, Button, rem, Container } from '@mantine/core';
-import { Carousel } from '@mantine/carousel';
-import { IconStar } from '@tabler/icons-react';
-import classes from './about.module.css';
+"use client";
+import { Card, Image, Avatar, Text, Group,Container,Grid } from "@mantine/core";
+import classes from "./about.module.css";
+// import { Container } from 'postcss';
 
-const images = [
-  "https://th.bing.com/th/id/OIP.ErAiMih0ltX9nxzgEbfN0gHaEp?rs=1&pid=ImgDetMain",
-  "https://medforest.net/wp-content/uploads/2020/09/montclima1-768x512.jpg",
-  "https://i.pinimg.com/736x/c4/1e/ce/c41ece3252845616bf8c5ed5a7de48bf--forest-photography-magical-forest.jpg"
-];
- function CarouselCard() {
-  const slides = images.map((image) => (
-    <Carousel.Slide key={image}>
-      <Image src={image} height={220}  />
-    </Carousel.Slide>
-  ));
-
+function About() {
   return (
-    <Container fluid mt={20}>
-      <Card radius="md" withBorder padding="xl">
-      <Card.Section>
-        <Carousel
-          withIndicators
-          loop
-          classNames={{
-            root: classes.carousel,
-            controls: classes.carouselControls,
-            indicator: classes.carouselIndicator,
-          }}
-        >
-          {slides}
-        </Carousel>
-      </Card.Section>
-
-      <Group justify="space-between" mt="lg">
-        <Text fw={500} fz="lg">
-          Forde, Norway
-        </Text>
-
-        <Group gap={5}>
-          <IconStar style={{ width: rem(16), height: rem(16) }} />
-          <Text fz="xs" fw={500}>
-            4.78
+  <Container fluid mt='lg'>
+    <Grid>
+      <Grid.Col span={12}>
+    <Card withBorder radius="md" p={0} className={classes.card}>
+      <Group wrap="nowrap" gap={0}>
+        <Image
+          src="https://images.unsplash.com/photo-1602080858428-57174f9431cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80"
+          height={400}
+        />
+        <div className={classes.body}>
+          <Text tt="uppercase" c="dimmed" fw={700} size="xs">
+            technology
           </Text>
-        </Group>
-      </Group>
-
-      <Text fz="sm" c="dimmed" mt="sm">
-        Relax, rejuvenate and unplug in this unique contemporary Birdbox. Feel close to nature in
-        ultimate comfort. Enjoy the view of the epic mountain range of Blegja and the Førdefjord.
-      </Text>
-
-      <Group justify="space-between" mt="md">
-        <div>
-          <Text fz="xl" span fw={500} className={classes.price}>
-            397$
+          <Text className={classes.title} mt="xs" mb="md">
+            The best laptop for Frontend engineers in 2022
           </Text>
-          <Text span fz="sm" c="dimmed">
-            {' '}
-            / night
-          </Text>
+          <Group wrap="nowrap" gap="xs">
+            <Group gap="xs" wrap="nowrap">
+              <Avatar
+                size={20}
+                src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-8.png"
+              />
+              <Text size="xs">Elsa Typechecker</Text>
+            </Group>
+            <Text size="xs" c="dimmed">
+              •
+            </Text>
+            <Text size="xs" c="dimmed">
+              Feb 6th
+            </Text>
+          </Group>
         </div>
-
-        <Button radius="md">Book now</Button>
       </Group>
     </Card>
-    </Container>
+      </Grid.Col>
+      <Grid.Col span={11}> <Card withBorder radius="md" p={0} className={classes.card}>
+      <Group wrap="nowrap" gap={0}>
+        <Image
+          src="https://images.unsplash.com/photo-1602080858428-57174f9431cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80"
+          height={160}
+        />
+        <div className={classes.body}>
+          <Text tt="uppercase" c="dimmed" fw={700} size="xs">
+            technology
+          </Text>
+          <Text className={classes.title} mt="xs" mb="md">
+            The best laptop for Frontend engineers in 2022
+          </Text>
+          <Group wrap="nowrap" gap="xs">
+            <Group gap="xs" wrap="nowrap">
+              <Avatar
+                size={20}
+                src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-8.png"
+              />
+              <Text size="xs">Elsa Typechecker</Text>
+            </Group>
+            <Text size="xs" c="dimmed">
+              •
+            </Text>
+            <Text size="xs" c="dimmed">
+              Feb 6th
+            </Text>
+          </Group>
+        </div>
+      </Group>
+    </Card></Grid.Col>
+      <Grid.Col span={11}><Card withBorder radius="md" p={0} className={classes.card}>
+      <Group wrap="nowrap" gap={0}>
+        <Image
+          src="https://images.unsplash.com/photo-1602080858428-57174f9431cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80"
+          height={160}
+        />
+        <div className={classes.body}>
+          <Text tt="uppercase" c="dimmed" fw={700} size="xs">
+            technology
+          </Text>
+          <Text className={classes.title} mt="xs" mb="md">
+            The best laptop for Frontend engineers in 2022
+          </Text>
+          <Group wrap="nowrap" gap="xs">
+            <Group gap="xs" wrap="nowrap">
+              <Avatar
+                size={20}
+                src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-8.png"
+              />
+              <Text size="xs">Elsa Typechecker</Text>
+            </Group>
+            <Text size="xs" c="dimmed">
+              •
+            </Text>
+            <Text size="xs" c="dimmed">
+              Feb 6th
+            </Text>
+          </Group>
+        </div>
+      </Group>
+    </Card></Grid.Col>
+    </Grid>
+  </Container>
   );
 }
-export default CarouselCard;
+export default About;
