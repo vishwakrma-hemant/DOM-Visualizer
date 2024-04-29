@@ -32,9 +32,8 @@ const nodeTypes = {
     return (
       <HoverCard width={280} shadow="md">
         <HoverCard.Target>
-        <HoverCard.Dropdown  style={{ pointerEvents: 'none' }}>
-        <h6>styles</h6>
-
+          <HoverCard.Dropdown style={{ pointerEvents: 'none' }}>
+            <h6>styles</h6>
             {Object.keys(data.styles).map((styleName) => (
               <p>
                 {styleName} : {data.styles[styleName]}
@@ -47,31 +46,31 @@ const nodeTypes = {
               {className}
               </p>
             ))} */}
-              <h6>Ids</h6>
-              {data.ids}
-              {/* {data.id.split(' ').map((idName) => (
+            <h6>Ids</h6>
+            {data.ids}
+            {/* {data.id.split(' ').map((idName) => (
               <p>
               {idName}
               </p>
             ))} */}
 
-            </HoverCard.Dropdown>
+          </HoverCard.Dropdown>
 
-            <p className={DomClasses.nodeTagName}>{data.label}</p>
-            <Handle
-              type="target"
-              position={Position.Top}
-              id={id + "handle1"}
-              style={{ top: 0, background: "#555" }}
-              isConnectable={isConnectable}
-            />
-            <Handle
-              type="source"
-              position={Position.Bottom}
-              id={id + "handle2"}
-              style={{ bottom: 0, background: "#555" }}
-              isConnectable={isConnectable}
-            />
+          <p className={DomClasses.nodeTagName}>{data.label}</p>
+          <Handle
+            type="target"
+            position={Position.Top}
+            id={id + "handle1"}
+            style={{ top: 0, background: "#555" }}
+            isConnectable={isConnectable}
+          />
+          <Handle
+            type="source"
+            position={Position.Bottom}
+            id={id + "handle2"}
+            style={{ bottom: 0, background: "#555" }}
+            isConnectable={isConnectable}
+          />
         </HoverCard.Target>
       </HoverCard>
     );
