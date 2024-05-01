@@ -1,7 +1,8 @@
 'use client';
-import { Text, Container, ActionIcon, Group,Title, rem,Link,} from '@mantine/core';
+import { Text, Container, ActionIcon, Group,Title, rem} from '@mantine/core';
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
 import classes from './footer.module.css';
+import Link from 'next/link';
 
 const data = [
   {
@@ -37,9 +38,8 @@ const Footer = () => {
       <Text
         key={index}
         className={classes.link}
-        component="a"
+        component={Link}
         href={link.link}
-        onClick={(event) => event.preventDefault()}
       >
         {link.label}
       </Text>

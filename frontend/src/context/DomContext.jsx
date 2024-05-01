@@ -12,7 +12,7 @@ export const DomProvider = ({ children }) => {
         <h1>Node 1</div>
         <h1>Node 2</div>
         <div class="container">
-          <button id="trigger">Click me</button>
+          <button id="trigger" class="click">Click me</button>
           <button class="btn btn-primary">Some button</button>
         </div>
     </div>

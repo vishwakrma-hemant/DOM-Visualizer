@@ -48,6 +48,7 @@ const Signup = () => {
     initialValues: {
       email: "",
       name: "",
+      mobile:"",
       password: "",
       confirmPassword: "",
       term: false,
@@ -105,6 +106,14 @@ const Signup = () => {
                   placeholder="Hemant123@gmail.com"
                   {...form.getInputProps("email")}
                   error={form.errors.email}
+                  radius="md"
+                />
+                <TextInput
+                  required
+                  label="Phone no."
+                  placeholder="Enter your phone number"
+                  {...form.getInputProps("mobile")}
+                  error={form.errors.name}
                   radius="md"
                 />
 

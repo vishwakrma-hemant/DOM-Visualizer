@@ -10,6 +10,8 @@ import ReactFlow, {
 } from "reactflow";
 import ReactHtmlParser from "react-html-parser";
 import "reactflow/dist/style.css";
+import { Tooltip } from "@mantine/core";
+
 import HTMLEditor from "./Editor";
 import useDomContext from "@/context/DomContext";
 import DomClasses from "./domnode.module.css";
@@ -43,31 +45,21 @@ const nodeTypes = {
               ))}
               <h6>Classes</h6>
               {data.classes}
-              {/* {data.classes.split(' ').map((className) => (
-              <p>
-              {className}
-              </p>
-            ))} */}
-              <h6>Ids</h6>
-              {data.ids}
-              {/* {data.id.split(' ').map((idName) => (
-              <p>
-              {idName}
-              </p>
-            ))} */}
+              <Title>Ids</Title>
+              <p className={classes.myid}>{data.ids}</p>
             </HoverCard.Dropdown>
 
-            <p className={DomClasses.nodeTagName} >{data.label}</p>
+            <p className={DomClasses.nodeTagName}>{data.label}</p>
             <Handle
               type="target"
               position={Position.Top}
               id={id + "handle1"}
-              style={{ top: 0, background: "red" }}  //this is provide top point on the edges
+              style={{ top: 0, background: "red" }} //this is provide top point on the edges
               isConnectable={isConnectable}
             />
             <Handle
               type="source"
-              position={Position.Bottom}  //thie is provide point on the edges
+              position={Position.Bottom} //thie is provide point on the edges
               id={id + "handle2"}
               style={{ bottom: 0, background: "yellow" }}
               isConnectable={isConnectable}
@@ -317,19 +309,23 @@ const Visualizer = () => {
         <>
           <Grid>
             <Grid.Col span={6}>
-              <input
-                value={selDiagram.name}
-                onChange={changeName}
-                className={classes.inputField}
-                label="Diagram Name"
-              />
+              <Tooltip label="Change the Directory" align="left">
+                <input
+                  value={selDiagram.name}
+                  onChange={changeName}
+                  className={classes.inputField}
+                  label="Diagram Name"
+                />
+              </Tooltip>
               <Button onClick={updateDiagram} className={classes.btn_dom}>
                 Save Change
               </Button>
             </Grid.Col>
 
             <Grid.Col span={6}>
-              <input ref={urlRef} className={classes.inputField} />
+              <Tooltip label="Enter the Link" align="left">
+                <input ref={urlRef} className={classes.inputField} />
+              </Tooltip>
 
               <Button
                 className={classes.btn_dom}

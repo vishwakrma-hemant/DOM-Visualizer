@@ -12,6 +12,7 @@ const links = [
   { link: "/about", label: "About" },
   { link: "/contact", label: "Contact Us" },
   { link: "/feedback", label: "Feedback" },
+
 ];
 
 const Navbar = () => {
@@ -69,7 +70,7 @@ const Navbar = () => {
           <Group gap={1} visibleFrom="sm" fs={'md'}>
             {items}
           </Group>
-          <Group my="lg" visibleFrom="sm"  mr={'sm'}>
+          <Group my="lg" visibleFrom='xs'  mr={'sm'}>
             <Button component={Link} href='/signup' >Sign up</Button>
             <Button  component={Link} href='/login' >Log in</Button>
           </Group>

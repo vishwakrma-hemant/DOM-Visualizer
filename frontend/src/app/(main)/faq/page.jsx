@@ -1,69 +1,50 @@
-"use client";
-import { Container, Title, Accordion, BackgroundImage} from "@mantine/core";
-import classes from "./faq.module.css";
-import { Grid } from "@mantine/core";
-import { IconSearch } from "@tabler/icons-react";
+'use client';
+import { Image, Accordion, Grid, Container, Title } from '@mantine/core';
+import classes from './faq.module.css';
 
-function FAQ() {
+const placeholder =
+  'It can’t help but hear a pin drop from over half a mile away, so it lives deep in the mountains where there aren’t many people or Pokémon.';
+
+ function Faq() {
   return (
-    <>
-      <BackgroundImage
-        className={classes.img}
-        src="https://img.freepik.com/premium-photo/q-discussion-faq-support-question-answer-help-service-business-concept_505353-278.jpg?w=826"
-      >
-        <Grid>
-          <Container size="lg" className={classes.wrapper}>
-            <Grid.Col span={12}>
-              <Title ta="center" className={classes.title}>
-                Frequently Asked Questions
-              </Title>
+    <div className={classes.wrapper}>
+      <Container size="lg">
+        <Grid id="faq-grid" gutter={50}>
+          <Grid.Col span={{ base: 12, md: 6 }}>
+            <Image src={'https://static.vecteezy.com/system/resources/previews/006/584/578/non_2x/illustration-graphic-cartoon-character-of-questions-and-answers-business-free-vector.jpg'} alt="Frequently Asked Questions" />
+          </Grid.Col>
+          <Grid.Col span={{ base: 12, md: 6 }}>
+            <Title order={2} ta="left" className={classes.title}>
+              Frequently Asked Questions
+            </Title>
 
-              <Accordion>
-                <Accordion.Item className={classes.item} value="reset-password">
-                  <Container className={classes.faq} py={'xs'} >
-                    How can I reset my password?
-                    <IconSearch />
-                  </Container>
-                </Accordion.Item>
+            <Accordion chevronPosition="right" defaultValue="reset-password" variant="separated">
+              <Accordion.Item className={classes.item} value="reset-password">
+                <Accordion.Control>How can I reset my password?</Accordion.Control>
+                <Accordion.Panel>{placeholder}</Accordion.Panel>
+              </Accordion.Item>
 
-                <Accordion.Item
-                  className={classes.item}
-                  value="another-account"
-                >
-                  <Container className={classes.faq} py={'xs'}>
-                    Can I create more that one account?
-                    <IconSearch />
-                  </Container>
-                </Accordion.Item>
+              <Accordion.Item className={classes.item} value="another-account">
+                <Accordion.Control>Can I create more that one account?</Accordion.Control>
+                <Accordion.Panel>{placeholder}</Accordion.Panel>
+              </Accordion.Item>
 
-                <Accordion.Item className={classes.item} value="newsletter">
-                  <Container className={classes.faq} py={'xs'}>
-                    How can I subscribe to monthly newsletter?
-                    <IconSearch />
-                  </Container>
-                </Accordion.Item>
+              <Accordion.Item className={classes.item} value="newsletter">
+                <Accordion.Control>How can I subscribe to monthly newsletter?</Accordion.Control>
+                <Accordion.Panel>{placeholder}</Accordion.Panel>
+              </Accordion.Item>
 
-                <Accordion.Item className={classes.item} value="credit-card">
-                  <Container className={classes.faq} py={'xs'}>
-                    Do you store credit card information securely?
-                    <IconSearch />
-                  </Container>
-                </Accordion.Item>
-
-                <Accordion.Item className={classes.item} value="payment">
-                  <Container className={classes.faq} py={'xs'}> 
-                    What payment systems to you work with?
-                    <IconSearch />
-                  </Container>
-                </Accordion.Item>
-              </Accordion>
-            </Grid.Col>
-          </Container>
-          <Grid.Col span={5}>2</Grid.Col>
+              <Accordion.Item className={classes.item} value="credit-card">
+                <Accordion.Control>
+                  Do you store credit card information securely?
+                </Accordion.Control>
+                <Accordion.Panel>{placeholder}</Accordion.Panel>
+              </Accordion.Item>
+            </Accordion>
+          </Grid.Col>
         </Grid>
-      </BackgroundImage>
-    </>
+      </Container>
+    </div>
   );
 }
-
-export default FAQ;
+export default Faq;
