@@ -59,6 +59,8 @@ const Navbar =() =>{
   return (
     <div className={classes.header}>
       <Container className={classes.mainSection} size="md">
+
+        
       
         <Group justify="end">
           <Menu

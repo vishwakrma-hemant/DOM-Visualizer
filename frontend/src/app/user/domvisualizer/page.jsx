@@ -94,8 +94,8 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
     const nodes = node.children
       ? node.children.flatMap((child, index) =>
           createReactFlowNodes(child, {
-            x: parentPosition.x + 100,
-            y: parentPosition.y + index * 100,
+            x: parentPosition.x + index * 100,
+            y: parentPosition.y +  100,
           })
         )
       : [];
