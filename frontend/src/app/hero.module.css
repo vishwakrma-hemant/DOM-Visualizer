@@ -65,6 +65,7 @@
 .control {
   height: rem(42px);
   font-size: var(--mantine-font-size-md);
+  margin-left:15px;
 
   &:not(:first-of-type) {
     margin-left: var(--mantine-spacing-md);

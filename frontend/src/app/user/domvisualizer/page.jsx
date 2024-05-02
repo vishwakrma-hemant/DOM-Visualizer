@@ -37,16 +37,24 @@ const nodeTypes = {
         <HoverCard.Target>
           <div className={clsx(DomClasses.domNode)}>
             <HoverCard.Dropdown style={{ pointerEvents: "none" }}>
-              <h6>styles</h6>
+
+             <Box className={classes.parent}>
+             <h5>styles</h5>
               {Object.keys(data.styles).map((styleName) => (
                 <p>
                   {styleName} : {data.styles[styleName]}
                 </p>
               ))}
-              <h6>Classes</h6>
-              {data.classes}
-              <Title>Ids</Title>
-              <p className={classes.myid}>{data.ids}</p>
+             </Box>
+             <hr />
+             <Box className={classes.parent}> <h5 style={{letterSpacing:'1px'}}>Classes</h5>
+              <p className={`${classes.myClass}`}>{data.classes}</p>
+              </Box>
+              
+              
+              <Box className={classes.parent}><h5 style={{letterSpacing:'1px'}}>Ids</h5>
+              <p className={`${classes.myid}`}>{data.ids}</p>
+              </Box>
             </HoverCard.Dropdown>
 
             <p className={DomClasses.nodeTagName}>{data.label}</p>
