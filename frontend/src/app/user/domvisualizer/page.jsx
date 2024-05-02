@@ -21,7 +21,6 @@ import { TextInput, Title, classNames } from "@mantine/core";
 import { HoverCard, Button, Text, Group, Box, Grid } from "@mantine/core";
 import { AnimatePresence, motion } from "framer-motion";
 import useDiagramContext from "@/context/DiagramContext";
-import { Container } from "postcss";
 
 const initBgColor = "#1A192B";
 
@@ -95,7 +94,7 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
       ? node.children.flatMap((child, index) =>
           createReactFlowNodes(child, {
             x: parentPosition.x + index * 100,
-            y: parentPosition.y +  100,
+            y: parentPosition.y + 100,
           })
         )
       : [];
@@ -113,7 +112,7 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
       },
       position: parentPosition,
     });
-    //console.log(nodes);
+    console.log(nodes);
 
     return nodes;
   };
@@ -122,16 +121,27 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
     if (!node || !node.children) {
       return [];
     }
-
-    const edges = node.children.flatMap((child) => {
-      return {
+    
+    let edges = [];
+    
+    const traverseChildren = (children, parentId) => {
+      children.forEach((child) => {
+      const childId = `node-${nodeId++}`;
+      edges.push({
         id: `edge-${edgeId++}`,
-        source: `node-${edgeId - 1}`,
-        target: `node-${edgeId}`,
-      };
-    });
-    //console.log(edges);
-
+        source: parentId,
+        target: childId,
+      });
+      
+      if (child.children) {
+        traverseChildren(child.children, childId);
+      }
+      });
+    };
+    
+    traverseChildren(node.children, `node-${nodeId}`);
+    
+    console.log(edges);
     return edges;
   };
 

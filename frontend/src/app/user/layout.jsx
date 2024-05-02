@@ -1,5 +1,5 @@
 "use client";
-import { AppShell, Burger, Button, Flex, Group, Skeleton } from "@mantine/core";
+import { AppShell, Box, Burger, Button, Flex, Group, Skeleton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import Sidebar from "./sidebar";
 import Navbar from "./navbar";
@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
   useEffect(() => {
     loadDiagrams();
   }, [])
-  
+
 
   return (
     <AppShell
@@ -31,10 +31,9 @@ const Layout = ({ children }) => {
     >
       <AppShell.Header>
         <Flex>
-          
+
         </Flex>
         <Group h="100%" px="md">
-          {/* <Navbar /> */}
           <Burger
             opened={mobileOpened}
             onClick={toggleMobile}
@@ -51,6 +50,9 @@ const Layout = ({ children }) => {
         {/* <Group ml={'auto'}>
           <Button>Home</Button>
         </Group> */}
+        <Box ml={'auto'}>
+          <Navbar />
+        </Box>
       </AppShell.Header>
       <AppShell.Navbar>
         <Sidebar />

@@ -27,6 +27,7 @@ import {
 } from '@tabler/icons-react';
 import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from './Navbar.module.css';
+import useAppContext from '@/context/AppContext';
 
 const user = {
   name: 'Hemant Kumar',
@@ -45,10 +46,12 @@ const tabs = [
   'Helpdesk',
 ];
 
-const Navbar =() =>{
+const Navbar = () => {
   const theme = useMantineTheme();
   const [opened, { toggle }] = useDisclosure(false);
   const [userMenuOpened, setUserMenuOpened] = useState(false);
+
+  const { currentUser, logout } = useAppContext();
 
   const items = tabs.map((tab) => (
     <Tabs.Tab value={tab} key={tab}>
@@ -58,10 +61,7 @@ const Navbar =() =>{
 
   return (
     <div className={classes.header}>
-      <Container className={classes.mainSection} size="md">
-
-        
-      
+      <Container className={classes.mainSection} size="md"> 
         <Group justify="end">
           <Menu
             width={260}
@@ -85,39 +85,6 @@ const Navbar =() =>{
               </UnstyledButton>
             </Menu.Target>
             <Menu.Dropdown>
-              <Menu.Item
-                leftSection={
-                  <IconHeart
-                    style={{ width: rem(16), height: rem(16) }}
-                    color={theme.colors.red[6]}
-                    stroke={1.5}
-                  />
-                }
-              >
-                Liked posts
-              </Menu.Item>
-              <Menu.Item
-                leftSection={
-                  <IconStar
-                    style={{ width: rem(16), height: rem(16) }}
-                    color={theme.colors.yellow[6]}
-                    stroke={1.5}
-                  />
-                }
-              >
-                Saved posts
-              </Menu.Item>
-              <Menu.Item
-                leftSection={
-                  <IconMessage
-                    style={{ width: rem(16), height: rem(16) }}
-                    color={theme.colors.blue[6]}
-                    stroke={1.5}
-                  />
-                }
-              >
-                Your comments
-              </Menu.Item>
 
               <Menu.Label>Settings</Menu.Label>
               <Menu.Item
@@ -125,7 +92,7 @@ const Navbar =() =>{
                   <IconSettings style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
                 }
               >
-                Account settings
+                Profile
               </Menu.Item>
               <Menu.Item
                 leftSection={
@@ -135,6 +102,8 @@ const Navbar =() =>{
                 Change account
               </Menu.Item>
               <Menu.Item
+              onClick={logout}
+                color='red'
                 leftSection={
                   <IconLogout style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
                 }
@@ -142,22 +111,6 @@ const Navbar =() =>{
                 Logout
               </Menu.Item>
 
-              <Menu.Divider />
-
-              <Menu.Label>Danger zone</Menu.Label>
-              <Menu.Item
-                leftSection={
-                  <IconPlayerPause style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
-                }
-              >
-                Pause subscription
-              </Menu.Item>
-              <Menu.Item
-                color="red"
-                leftSection={<IconTrash style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}
-              >
-                Delete account
-              </Menu.Item>
             </Menu.Dropdown>
           </Menu>
         </Group>
