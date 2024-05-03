@@ -14,6 +14,7 @@ import {
   ScrollArea,
   rem,
   UnstyledButton,
+  Anchor,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconChevronDown } from "@tabler/icons-react";
@@ -68,7 +69,7 @@ const Navbar = () => {
     }
 
     return (
-      <Link key={link.label} href={link.link} className={clsx(classes.link, (link.link === pathname && classes.linkActive ))}>
+      <Link key={link.label} href={link.link} className={clsx(classes.link, (link.link == pathname && classes.linkActive ))}>
         {link.label}
       </Link>
     );
@@ -125,25 +126,25 @@ const Navbar = () => {
           <Divider my="sm" />
 
           {/* <Collapse in={linksOpened}>{links}</Collapse> */}
-          <Link href="/" className={classes.link}>
+          <a href="/" className={classes.link}>
             Home
-          </Link>
-          <Link href="contact" className={classes.link}>
+          </a>
+          <a href="contact" className={classes.link}>
             ContactUs
-          </Link>
-          <Link href="/about" className={classes.link}>
+          </a>
+          <a href="/about" className={classes.link}>
             About
-          </Link>
-          <Link href="/feedback" className={classes.link}>
+          </a>
+          <a href="/feedback" className={classes.link}>
             Feedback
-          </Link>
+          </a>
 
           <Divider my="sm" />
           <Group justify="center" grow pb="xl" px="md">
-            <Button variant="default" component={Link} href="/login">
+            <Button variant="default" component={Anchor} href="/login">
               Log in
             </Button>
-            <Button component={Link} href="/signup">
+            <Button component={Anchor} href="/signup">
               Sign up
             </Button>
           </Group>

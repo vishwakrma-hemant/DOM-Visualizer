@@ -1,13 +1,13 @@
 'use client';
 import { IconHeart } from '@tabler/icons-react';
 import { Card, Image, Text, Group, Badge, Button, ActionIcon, Container, BackgroundImage } from '@mantine/core';
-import classes from './dev.module.css';
+import classes from './dom.module.css';
 import Link from 'next/link';
 import { Component } from 'react';
 
 const mockdata = {
   image:
-  'https://www.itechguides.com/wp-content/uploads/2022/05/PowerShell-Get-Childitem-Explained-Syntax-Parameters-And-Examples-2048x1366.jpg',
+  'https://imgs.search.brave.com/9Z6y28soVzCiI-tGUqaM8C-zGDBhjpfkPgjtsoOBjw8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/ZnJlZWNvZGVjYW1w/Lm9yZy9uZXdzL2Nv/bnRlbnQvaW1hZ2Vz/LzIwMjMvMDEvRE9N/LXRyZWUtNS5wbmc',
     title: 'Improve Devloper Productivity',
     country: 'DOM Visualizer',
   description:

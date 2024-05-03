@@ -29,7 +29,7 @@ const mockdata = [
     title: 'Provide DOM Structure',
     image:
       'https://imgs.search.brave.com/hfo5gXLGVESx6YG_kZdyKbJ6oykvQ7DFIPfdrNQ58bg/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/ZGlnaXRhbG9jZWFu/LmNvbS9fbmV4dC9z/dGF0aWMvbWVkaWEv/aW50cm8tdG8tY2xv/dWQuZDQ5YmM1Zjcu/anBlZw',
-    href:'../feedback'
+    href:'../domStructure'
     // date: 'September 12, 2022',
   },
 ];

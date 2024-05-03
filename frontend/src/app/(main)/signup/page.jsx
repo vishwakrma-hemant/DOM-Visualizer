@@ -48,7 +48,6 @@ const Signup = () => {
     initialValues: {
       email: "",
       name: "",
-      mobile:"",
       password: "",
       confirmPassword: "",
       term: false,
@@ -108,14 +107,14 @@ const Signup = () => {
                   error={form.errors.email}
                   radius="md"
                 />
-                <TextInput
+                {/* <TextInput
                   required
                   label="Phone no."
                   placeholder="Enter your phone number"
                   {...form.getInputProps("mobile")}
                   error={form.errors.name}
                   radius="md"
-                />
+                /> */}
 
                 <PasswordInput
                   required

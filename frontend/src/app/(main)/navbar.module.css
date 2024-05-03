@@ -21,8 +21,8 @@
 .link {
   display: block;
   line-height:1;
-  padding: rem(8px) rem(12px);
-  border-radius: var(--mantine-radius-sm);
+  padding: rem(6px) rem(12px);
+  /* border-radius: var(--mantine-radius-sm); */
   text-decoration: none;
   color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
   font-size: var(--mantine-font-size-sm);
@@ -71,10 +71,9 @@
 
 .link:hover::after {
   margin-left:10px;
-  width: 78%;
+  width: 75%;
 }
 
 .linkActive{
- 
-  border-bottom: 4px solid #007bff;
+  border-bottom: 3px solid #007bff;
 }
