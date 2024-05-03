@@ -1,23 +1,23 @@
 'use client';
 import { IconHeart } from '@tabler/icons-react';
 import { Card, Image, Text, Group, Badge, Button, ActionIcon, Container, BackgroundImage } from '@mantine/core';
-import classes from './live.module.css';
+import classes from './dev.module.css';
 import Link from 'next/link';
 import { Component } from 'react';
 
 const mockdata = {
   image:
     'https://img.etimg.com/thumb/msid-84146083,width-1015,height-761,imgsize-638053,resizemode-8/prime/technology-and-startups/booting-up-developer-economy-how-tech-startups-are-helping-coders-build-and-test-software-faster.jpg',
-    title: 'Live DOM Update',
+    title: 'Improve Devloper Productivity',
     country: 'DOM Visualizer',
   description:
-    'In a DOM Visualizer, Live DOM Update provide structure of the Web page of html node and how it changes in real-time as you interact with the page. This is a great way to learn how the DOM works and how to manipulate it using JavaScript.It saves lot of time of developers and make them more productive.',
+    'Through the DOM Visualizer, you can improve your productivity as a developer by quickly creating web page layouts without having to write any code. This is a great tool for web developers who want to quickly create web page layouts.',
   badges: [
-    { emoji: '💻', label: 'Computer' }, // Changed emoji
-    { emoji: '⌨️', label: 'Keybord' }, // Changed emoji
-    { emoji: '🖥️', label: 'Monitor' }, // Changed emoji
-    { emoji: '🖱️', label: 'Mouse' }, // Changed emoji
     { emoji: '👨‍💻', label: 'Developer' }, // Changed emoji
+    { emoji: '📜', label: 'Web Page' }, // Changed emoji
+    { emoji: '⌨️', label: 'Keybord' }, // Changed emoji
+    { emoji: '💻', label: 'Computer' }, // Changed emoji
+    { emoji: '🖱️', label: 'Mouse' }, // Changed emoji
   ],
 };
 

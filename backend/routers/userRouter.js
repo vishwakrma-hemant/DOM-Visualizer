@@ -62,6 +62,13 @@ router.get("/getbymail/:email", (req,res) => {
     });
 })
 
-
+router.get('/getUser', (req,res) => {
+    Model.findById(req.user._id)
+    .then((result) => {
+        res.status(200).json(result);
+    }).catch((err) => {
+        res.status(500).json(err);
+    });
+})
 
 module.exports = router 

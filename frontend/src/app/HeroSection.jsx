@@ -11,8 +11,9 @@ export function HeroSection() {
     <Overlay color="#000" opacity={0.65} zIndex={1} />
 
     <div className={classes.inner}>
-      <Title className={classes.title}>
-        DOM Visualizer{' '}
+      <Title className={classes.title} style={{letterSpacing:'.7px'}}>
+        DOM Visualizer   
+        {/* {' '} */}
         {/* <Text component="span" inherit className={classes.highlight}>
          
         </Text> */}

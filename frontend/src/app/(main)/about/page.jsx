@@ -1,109 +1,80 @@
 "use client";
-import { Card, Image, Avatar, Text, Group,Container,Grid } from "@mantine/core";
+import {
+  Badge,
+  Group,
+  Title,
+  Text,
+  Card,
+  SimpleGrid,
+  Container,
+  rem,
+  useMantineTheme,
+} from "@mantine/core";
+import { IconGauge, IconUser, IconCookie, IconHelp,IconBook, IconClock } from "@tabler/icons-react";
 import classes from "./about.module.css";
-// import { Container } from 'postcss';
+import Banner from "./aaa/page";
 
-function About() {
-  return (
-  <Container fluid mt='lg'>
-    <Grid>
-      <Grid.Col span={12}>
-    <Card withBorder radius="md" p={0} className={classes.card}>
-      <Group wrap="nowrap" gap={0}>
-        <Image
-          src="https://images.unsplash.com/photo-1602080858428-57174f9431cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80"
-          height={400}
-        />
-        <div className={classes.body}>
-          <Text tt="uppercase" c="dimmed" fw={700} size="xs">
-            technology
-          </Text>
-          <Text className={classes.title} mt="xs" mb="md">
-            The best laptop for Frontend engineers in 2022
-          </Text>
-          <Group wrap="nowrap" gap="xs">
-            <Group gap="xs" wrap="nowrap">
-              <Avatar
-                size={20}
-                src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-8.png"
-              />
-              <Text size="xs">Elsa Typechecker</Text>
-            </Group>
-            <Text size="xs" c="dimmed">
-              •
-            </Text>
-            <Text size="xs" c="dimmed">
-              Feb 6th
-            </Text>
-          </Group>
-        </div>
-      </Group>
+const mockdata = [
+  {
+    title: "Interactive Learning",
+    description:
+      "In DOM Visualizer developer can learn how to manipulate the DOM using JavaScript, It is a great way to learn how the DOM works and how to manipulate it using JavaScript.",
+    icon: IconBook,
+  },
+  {
+    title: "Help to Developer",
+    description:
+      "DOM Visualizer helps to developer to understand the structure of the Web page of html node and how it changes in real-time as you interact with the page. This is a great way to learn how the DOM works and how to manipulate it using JavaScript.",
+    icon: IconHelp,
+  },
+  {
+    title: "Time Saving",
+    description:
+      "DOM Visualizer saves lot of time of developers and make them more productive, It is a great tool for web developers who want to quickly create a web page layout",
+    icon: IconClock,
+  },
+  {
+    title: "Frontend Developer",
+    description:
+      "DOM Structure help to Frontend developer to design the web page layout without having to write any code, It is a great tool for web developers who want to quickly create a web page layout",
+    icon: IconUser,
+  },
+];
+
+const About = () => {
+  const theme = useMantineTheme();
+  const features = mockdata.map((feature) => (
+    <Card
+      key={feature.title}
+      shadow="md"
+      radius="md"
+      className={classes.card}
+      padding="xl"
+    >
+      <feature.icon
+        style={{ width: rem(50), height: rem(50) }}
+        stroke={2}
+        color={theme.colors.blue[6]}
+      />
+      <Text fz="lg" fw={500} className={classes.cardTitle} mt="md">
+        {feature.title}
+      </Text>
+      <Text fz="sm" c="dimmed" mt="sm">
+        {feature.description}
+      </Text>
     </Card>
-      </Grid.Col>
-      <Grid.Col span={11}> <Card withBorder radius="md" p={0} className={classes.card}>
-      <Group wrap="nowrap" gap={0}>
-        <Image
-          src="https://images.unsplash.com/photo-1602080858428-57174f9431cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80"
-          height={160}
-        />
-        <div className={classes.body}>
-          <Text tt="uppercase" c="dimmed" fw={700} size="xs">
-            technology
-          </Text>
-          <Text className={classes.title} mt="xs" mb="md">
-            The best laptop for Frontend engineers in 2022
-          </Text>
-          <Group wrap="nowrap" gap="xs">
-            <Group gap="xs" wrap="nowrap">
-              <Avatar
-                size={20}
-                src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-8.png"
-              />
-              <Text size="xs">Elsa Typechecker</Text>
-            </Group>
-            <Text size="xs" c="dimmed">
-              •
-            </Text>
-            <Text size="xs" c="dimmed">
-              Feb 6th
-            </Text>
-          </Group>
-        </div>
+  ));
+
+  return (
+    <Container fluid size="lg" py="xl">
+      <Group justify="center">
+        <Banner />
       </Group>
-    </Card></Grid.Col>
-      <Grid.Col span={11}><Card withBorder radius="md" p={0} className={classes.card}>
-      <Group wrap="nowrap" gap={0}>
-        <Image
-          src="https://images.unsplash.com/photo-1602080858428-57174f9431cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80"
-          height={160}
-        />
-        <div className={classes.body}>
-          <Text tt="uppercase" c="dimmed" fw={700} size="xs">
-            technology
-          </Text>
-          <Text className={classes.title} mt="xs" mb="md">
-            The best laptop for Frontend engineers in 2022
-          </Text>
-          <Group wrap="nowrap" gap="xs">
-            <Group gap="xs" wrap="nowrap">
-              <Avatar
-                size={20}
-                src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-8.png"
-              />
-              <Text size="xs">Elsa Typechecker</Text>
-            </Group>
-            <Text size="xs" c="dimmed">
-              •
-            </Text>
-            <Text size="xs" c="dimmed">
-              Feb 6th
-            </Text>
-          </Group>
-        </div>
-      </Group>
-    </Card></Grid.Col>
-    </Grid>
-  </Container>
+
+      <SimpleGrid cols={{ base: 1, md: 2 }} spacing="xl" mt={50}>
+        {features}
+      </SimpleGrid>
+    </Container>
   );
-}
+};
 export default About;

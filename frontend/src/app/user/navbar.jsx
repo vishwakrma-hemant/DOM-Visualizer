@@ -25,7 +25,7 @@ import {
   IconSwitchHorizontal,
   IconChevronDown,
 } from '@tabler/icons-react';
-import { MantineLogo } from '@mantinex/mantine-logo';
+
 import classes from './Navbar.module.css';
 import useAppContext from '@/context/AppContext';
 
@@ -35,16 +35,16 @@ const user = {
   image: 'https://img.freepik.com/premium-vector/businessman-character-avatar-isolated_24877-5037.jpg?w=740',
 };
 
-const tabs = [
-  'Home',
-  'Orders',
-  'Education',
-  'Community',
-  'Forums',
-  'Support',
-  'Account',
-  'Helpdesk',
-];
+// const tabs = [
+//   'Home',
+//   'Orders',
+//   'Education',
+//   'Community',
+//   'Forums',
+//   'Support',
+//   'Account',
+//   'Helpdesk',
+// ];
 
 const Navbar = () => {
   const theme = useMantineTheme();
@@ -53,11 +53,11 @@ const Navbar = () => {
 
   const { currentUser, logout } = useAppContext();
 
-  const items = tabs.map((tab) => (
-    <Tabs.Tab value={tab} key={tab}>
-      {tab}
-    </Tabs.Tab>
-  ));
+  // const items = tabs.map((tab) => (
+  //   <Tabs.Tab value={tab} key={tab}>
+  //     {tab}
+  //   </Tabs.Tab>
+  // ));
 
   return (
     <div className={classes.header}>
