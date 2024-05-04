@@ -20,33 +20,49 @@ export const DomProvider = ({ children }) => {
     });
   };
 
+  // const extractHTMLFromUrl = (url) => {
+  //   const regex = /<body[^>]*>(.*?)<\/body>/s; // Case-insensitive with singleline mode
+  //   console.log(url);
+  //   try {
+  //     axios
+  //       .get(url)
+  //       .then((result) => {
+  //         const match = result.data.match(regex);
+  //         let bodyContent = "";
+  //         if (match) {
+  //           bodyContent = match[1]; // Capture group 1 containing body content
+  //           setCode(bodyContent);
+  //         } else {
+  //           console.error("Body tag not found");
+  //         }
+  //         enqueueSnackbar("HTML fetched successfully.", { variant: "success" });
+  //       })
+  //       .catch((err) => {
+  //         enqueueSnackbar(
+  //           "Error fetching HTML. Make sure the URL is correct and accessible.",
+  //           { variant: "error" }
+  //         );
+  //         console.log(err);
+  //       });
+  //     setError("");
+  //   } catch (err) {}
+  // };
+
   const extractHTMLFromUrl = (url) => {
-    const regex = /<body[^>]*>(.*?)<\/body>/s; // Case-insensitive with singleline mode
-    console.log(url);
-    try {
-      axios
-        .get(url)
-        .then((result) => {
-          const match = result.data.match(regex);
-          let bodyContent = "";
-          if (match) {
-            bodyContent = match[1]; // Capture group 1 containing body content
-            setCode(bodyContent);
-          } else {
-            console.error("Body tag not found");
-          }
-          enqueueSnackbar("HTML fetched successfully.", { variant: "success" });
-        })
-        .catch((err) => {
-          enqueueSnackbar(
-            "Error fetching HTML. Make sure the URL is correct and accessible.",
-            { variant: "error" }
-          );
-          console.log(err);
-        });
-      setError("");
-    } catch (err) {}
-  };
+    axios
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/diagram/fetch-dom`, { url })
+      .then((res) => {
+        setCode(res.data);
+        enqueueSnackbar("HTML fetched successfully.", { variant: "success" });
+      })
+      .catch((err) => {
+        enqueueSnackbar(
+          "Error fetching HTML. Make sure the URL is correct and accessible.",
+          { variant: "error" }
+        );
+        console.log(err);
+      });
+  }
 
   return (
     <DomContext.Provider value={{ code, setCode, extractHTMLFromUrl }}>

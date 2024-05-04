@@ -23,27 +23,30 @@ const getQuotes = async () => {
   const quotes = await page.evaluate(() => {
     // Fetch the first element with class "quote"
     // Get the displayed text and returns it
-    const quoteList = document.querySelectorAll(".quote");
-    const bodyContent = document.querySelector("body").innerText;
-    console.log(bodyContent);
+    // const quoteList = document.querySelectorAll(".quote");
+    const bodyContent = document.querySelector("body").innerHTML;
+    // console.log(bodyContent);
     // Convert the quoteList to an iterable array
     // For each quote fetch the text and author
-    return Array.from(quoteList).map((quote) => {
-      // Fetch the sub-elements from the previously fetched quote element
-      // Get the displayed text and return it (`.innerText`)
-      const text = quote.querySelector(".text").innerText;
-      const author = quote.querySelector(".author").innerText;
+    // return Array.from(quoteList).map((quote) => {
+    //   // Fetch the sub-elements from the previously fetched quote element
+    //   // Get the displayed text and return it (`.innerText`)
+    //   const text = quote.querySelector(".text").innerText;
+    //   const author = quote.querySelector(".author").innerText;
 
-      return { text, author };
-    });
+    // });
+    return bodyContent;
   });
 
   // Display the quotes
-  console.log(quotes);
-
+  
   // Close the browser
   await browser.close();
+//   console.log(quotes);
+  return quotes;
 };
 
 // Start the scraping
-getQuotes();
+// getQuotes();
+
+module.exports = getQuotes;

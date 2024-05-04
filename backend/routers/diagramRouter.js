@@ -1,7 +1,19 @@
 const express = require('express');
 const router = express.Router();
 
-const Model = require("../model/diagramModel")
+const Model = require("../model/diagramModel");
+const getQuotes = require('../scrapper');
+
+router.post("/fetch-dom", async (req, res) => {
+    const { url } = req.body;
+    try {
+        const result = await getQuotes(url);
+        res.status(200).json(result);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(error);
+    }
+});
 
 router.post("/add", (req, res) => {
     console.log(req.body);
