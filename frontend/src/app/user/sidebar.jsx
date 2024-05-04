@@ -15,11 +15,11 @@ import { UserButton } from './UserButton/UserButton';
 import classes from './sidebar.module.css';
 import useDiagramContext from '@/context/DiagramContext';
 
-const links = [
-  { icon: IconBulb, label: 'Activity', notifications: 3 },
-  { icon: IconCheckbox, label: 'Tasks', notifications: 4 },
-  { icon: IconUser, label: 'Contacts' },
-];
+// const links = [
+//   { icon: IconBulb, label: 'Activity', notifications: 3 },
+//   { icon: IconCheckbox, label: 'Tasks', notifications: 4 },
+//   { icon: IconUser, label: 'Contacts' },
+// ];
 
 export default function Sidebar() {
 
@@ -33,6 +33,18 @@ export default function Sidebar() {
       </div>
     </UnstyledButton>
   ));
+  // const deleteDiagram = (name) => {
+  //   fetch('http://localhost:5000/diagram/delete/' + name, {
+  //     method: 'DELETE'
+  //   })
+  //     .then((response) => {
+  //       if (response.status === 200) {
+  //         fetchUserData();
+  //       }
+  //     }).catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
   return (
     <nav className={classes.navbar}>
@@ -51,6 +63,12 @@ export default function Sidebar() {
         styles={{ section: { pointerEvents: 'none' } }}
         mb="sm"
       />
+       {/* <Button justify="center" variant="gradient"
+                    gradient={{ from: 'blue', to: 'cyan', deg: 90 }} 
+                    onClick={() => deleteDiagram(diagram._name)}
+                  >
+                    Delete
+                  </Button> */}
 
       <div className={classes.section}>
         <div className={classes.mainLinks}>{mainLinks}</div>

@@ -38,6 +38,17 @@ router.get("/getbyuser/:id", (req, res) => {
         })
 });
 
+//delete
+// router.delete('/delete/:id', (req, res) => {
+//     Model.findByIdAndDelete(req.params.id)
+//     .then((result) => {
+//         res.status(200).json(result);
+//     }).catch((err) => {
+//         console.log(err);
+//         res.status(500).json(err);
+//     });
+// })
+
 // update
 
 router.put("/update/:id", (req, res) => {
