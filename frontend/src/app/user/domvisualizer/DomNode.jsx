@@ -30,7 +30,6 @@ const DomNode = ({ data, isConnectable }) => {
         style={{ bottom: 10, top: 'auto', background: '#555' }}
         isConnectable={isConnectable}
       />
-      
     </>
   )
 }

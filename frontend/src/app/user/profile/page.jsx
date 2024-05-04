@@ -1,6 +1,8 @@
 'use client';
 import { Card, Avatar, Text, Group, Button } from '@mantine/core';
 import classes from './userProfile.module.css';
+import { useEffect, useState } from 'react';
+import { useFormik } from 'formik';
 
 const stats = [
   { value: '34K', label: 'Followers' },
@@ -9,6 +11,30 @@ const stats = [
 ];
 
 const UserProfile =()=> {
+
+const [ currentUser,setCurrentUser] = useState(
+  JSON.parse(sessionStorage.getItem('user'))
+) 
+
+const fetchUserData  = () => {
+  fetch(`http://localhost:5000/user/getUser`,)
+.then(res => {
+  console.log(res.status);
+  return res.json();
+})
+.then(data => {
+  console.log(data);
+  setCurrentUser(data)
+})
+.catch(err => {
+  console.log(err);
+});
+}
+
+useEffect(() => {
+  fetchUserData();
+},[])
+
   const items = stats.map((stat) => (
     <div key={stat.label}>
       <Text ta="center" fz="lg" fw={500}>
@@ -38,10 +64,10 @@ const UserProfile =()=> {
         className={classes.avatar}
       />
       <Text ta="center" fz="lg" fw={500} mt="sm">
-        Hemant Kumar
+        {currentUser.name}
       </Text>
       <Text ta="center" fz="sm" c="dimmed">
-        MERN Developer
+       {currentUser.email}
       </Text>
       <Group mt="md" justify="center" gap={30}>
         {items}

@@ -22,14 +22,14 @@ const mockdata = [
     title: 'Improve Developer Productivity',
     image:
     'https://imgs.search.brave.com/GtU02MgHA2WlGH_Qh2JGF8xlclRgCwzaMESW_8WGg4M/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA2LzI3LzI0LzYx/LzM2MF9GXzYyNzI0/NjE2Ml9lV3FnUGh6/emVzSDZaR2Y4MUYy/Sm9sVTIyWjRDeEY1/cS5qcGc',
-      href :'../contact'
+      href :'../devProductivity'
       // date: 'September 9, 2022',
   },
   {
     title: 'Provide DOM Structure',
     image:
       'https://imgs.search.brave.com/hfo5gXLGVESx6YG_kZdyKbJ6oykvQ7DFIPfdrNQ58bg/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/ZGlnaXRhbG9jZWFu/LmNvbS9fbmV4dC9z/dGF0aWMvbWVkaWEv/aW50cm8tdG8tY2xv/dWQuZDQ5YmM1Zjcu/anBlZw',
-    href:'../feedback'
+    href:'../domStructure'
     // date: 'September 12, 2022',
   },
 ];

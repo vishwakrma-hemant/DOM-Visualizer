@@ -21,8 +21,8 @@
 .link {
   display: block;
   line-height:1;
-  padding: rem(8px) rem(12px);
-  border-radius: var(--mantine-radius-sm);
+  padding: rem(6px) rem(12px);
+  /* border-radius: var(--mantine-radius-sm); */
   text-decoration: none;
   color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
   font-size: var(--mantine-font-size-sm);
@@ -43,4 +43,37 @@
 
 .link {
   font-size: 17px;
+  
+}
+/* navbar.module.css */
+
+.link {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease-in-out;
+}
+
+.link:hover {
+  color: #007bff;  
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #007bff;  
+  transition: width 0.2s ease-in-out;
+}
+
+.link:hover::after {
+  margin-left:10px;
+  width: 75%;
+}
+
+.linkActive{
+  border-bottom: 3px solid #007bff;
 }

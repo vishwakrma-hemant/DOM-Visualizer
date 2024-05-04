@@ -55,16 +55,16 @@ const Footer = () => {
 
   return (
     <footer className={classes.footer}>
-      <Container className={classes.inner}>
+      <Container fluid className={classes.inner} mx={{ xs: 'sm', md: 'xl' }}>
         <div>
-           <Title>DOM Visualizer</Title>
+          <Title>DOM Visualizer</Title>
           <Text size="xs" c="dimmed" className={classes.description}>
             Build fully functional accessible web applications faster than ever
           </Text>
         </div>
         <div className={classes.groups}>{groups}</div>
       </Container>
-      <Container className={classes.afterFooter}>
+      <Container fluid className={classes.afterFooter} mx={{ xs: 'sm', md: 'xl' }}>
         <Text c="dimmed" size="sm">
           © 2024 DOM Visualizer. All rights reserved.
         </Text>

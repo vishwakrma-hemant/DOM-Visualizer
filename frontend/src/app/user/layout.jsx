@@ -1,5 +1,13 @@
 "use client";
-import { AppShell, Box, Burger, Button, Flex, Group, Skeleton } from "@mantine/core";
+import {
+  AppShell,
+  Box,
+  Burger,
+  Button,
+  Flex,
+  Group,
+  Skeleton,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import Sidebar from "./sidebar";
 import Navbar from "./navbar";
@@ -15,8 +23,7 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     loadDiagrams();
-  }, [])
-
+  }, []);
 
   return (
     <AppShell
@@ -30,29 +37,24 @@ const Layout = ({ children }) => {
       layout="alt"
     >
       <AppShell.Header>
-        <Flex>
+        <Flex justify="space-between" align="top">
+          <Group h="100%" px="md">
+            <Burger
+              opened={mobileOpened}
+              onClick={toggleMobile}
+              hiddenFrom="sm"
+              size="sm"
+            />
+            <Burger
+              opened={desktopOpened}
+              onClick={toggleDesktop}
+              visibleFrom="sm"
+              size="sm"
+            />
+          </Group>
 
-        </Flex>
-        <Group h="100%" px="md">
-          <Burger
-            opened={mobileOpened}
-            onClick={toggleMobile}
-            hiddenFrom="sm"
-            size="sm"
-          />
-          <Burger
-            opened={desktopOpened}
-            onClick={toggleDesktop}
-            visibleFrom="sm"
-            size="sm"
-          />
-        </Group>
-        {/* <Group ml={'auto'}>
-          <Button>Home</Button>
-        </Group> */}
-        <Box ml={'auto'}>
           <Navbar />
-        </Box>
+        </Flex>
       </AppShell.Header>
       <AppShell.Navbar>
         <Sidebar />
