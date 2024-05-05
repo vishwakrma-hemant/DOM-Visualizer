@@ -38,7 +38,7 @@ const Layout = ({ children }) => {
     >
       <AppShell.Header>
         <Flex justify="space-between" align="top">
-          <Group h="100%" px="md">
+          <Group h="100%" px="md" mt='md'>
             <Burger
               opened={mobileOpened}
               onClick={toggleMobile}
