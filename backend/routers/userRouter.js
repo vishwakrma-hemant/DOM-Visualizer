@@ -71,4 +71,8 @@ router.get('/getUser', (req,res) => {
     });
 })
 
+router.get("/authorise", verifyToken, (req, res) => {
+    res.status(200).json({ allowed: true });
+});
+
 module.exports = router 
