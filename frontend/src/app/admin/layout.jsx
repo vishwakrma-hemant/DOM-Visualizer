@@ -1,16 +1,14 @@
 import React from 'react'
+import Sidebar from './sidebar'
 import Navbar from './navbar'
 
-const MainLayout = ({children}) => {
-
-  
-
+const layout = ({children}) => {
   return (
     <>
-    <Navbar />
+   <Navbar />
     {children}
     </>
   )
 }
 
-export default MainLayout
+export default layout

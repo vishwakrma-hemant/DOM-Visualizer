@@ -160,9 +160,9 @@ const Signup = () => {
 
         <Grid.Col span={7}>
           <Image
-            src="https://img.freepik.com/premium-photo/people-are-using-digital-tablets-log-applications-websites_51530-3693.jpg?w=826"
+            src="https://th.bing.com/th/id/R.f6646a0b514e9407595197ea27e7369f?rik=jCeCj92rO9DI1w&riu=http%3a%2f%2fevents.studio%2fassets%2fimg%2fcards%2fevent-registration.png&ehk=rH6vqdsZqJHG6DEOe8Ms05s%2bYyNUvEK%2f%2bFgz03GzqDc%3d&risl=&pid=ImgRaw&r=0"
             className={classes.img}
-            mt="xl"
+           
           />
         </Grid.Col>
       </Grid>
