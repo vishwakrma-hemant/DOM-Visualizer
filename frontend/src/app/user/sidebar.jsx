@@ -2,11 +2,6 @@ import {
   TextInput,
   Code,
   UnstyledButton,
-  Badge,
-  Text,
-  Group,
-  ActionIcon,
-  Tooltip,
   rem,
   Button,
 } from '@mantine/core';
@@ -14,12 +9,6 @@ import { IconBulb, IconUser, IconCheckbox, IconSearch, IconPlus } from '@tabler/
 import { UserButton } from './UserButton/UserButton';
 import classes from './sidebar.module.css';
 import useDiagramContext from '@/context/DiagramContext';
-
-// const links = [
-//   { icon: IconBulb, label: 'Activity', notifications: 3 },
-//   { icon: IconCheckbox, label: 'Tasks', notifications: 4 },
-//   { icon: IconUser, label: 'Contacts' },
-// ];
 
 export default function Sidebar() {
 

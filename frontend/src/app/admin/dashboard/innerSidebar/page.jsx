@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Group, Box, Collapse, ThemeIcon, Text, UnstyledButton, rem ,Stack} from '@mantine/core';
 import { IconCalendarStats, IconChevronRight, IconLogout } from '@tabler/icons-react';
-import classes from './navminimal.module.css';
+import classes from './inner.module.css';
 
 export function LinksGroup({ icon: Icon, label, initiallyOpened, links }) {
   const hasLinks = Array.isArray(links);

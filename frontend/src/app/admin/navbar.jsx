@@ -4,27 +4,14 @@ import {
   Burger,
   Flex,
   Group,
-  Box,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-
-// import Navbar from "./navbar";
-import { DomProvider } from "@/context/DomContext";
-import useDiagramContext from "@/context/DiagramContext";
-import { useEffect } from "react";
-import { UserButton } from "../user/UserButton/UserButton";
 import AdminProfile from "./AdminPorfile/page";
-import Sidebar from "./sidebar";
+import Sidebar from './dashboard/page'
 
-const Navbar = ({ children }) => {
+const Navbar = () => {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
-
-  const { diagramList, setDiagramList, loadDiagrams } = useDiagramContext();
-
-  useEffect(() => {
-    loadDiagrams();
-  }, []);
 
   return (
     <AppShell
@@ -60,7 +47,6 @@ const Navbar = ({ children }) => {
     <Sidebar />
       </AppShell.Navbar>
       <AppShell.Main>
-        <DomProvider>{children}</DomProvider>
       </AppShell.Main>
     </AppShell>
   );
