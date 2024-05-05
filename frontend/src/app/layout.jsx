@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "DOM Visualizer",
-  description: "Generat a web page structure",
+  description: "Generate a web page structure",
 };
 
 const theme = createTheme({
