@@ -52,6 +52,7 @@ const Navbar = () => {
   const [userMenuOpened, setUserMenuOpened] = useState(false);
 
   const { currentUser, logout } = useAppContext();
+  
   const fetchUserData  = () => {
     fetch(`http://localhost:5000/user/getUser`,)
   .then(res => {
