@@ -1,68 +1,68 @@
-'use client';
-import { Menu, Group, Center, Burger, Container } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { IconChevronDown } from '@tabler/icons-react';
-// import { MantineLogo } from '@mantinex/mantine-logo';
-import classes from './navbar.module.css';
+"use client";
+import {
+  AppShell,
+  Burger,
+  Flex,
+  Group,
+  Box,
+} from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 
-const links = [
-  { link: '/about', label: 'Features' },
-  { link: '/about', label: 'About' },
-  { link: '/pricing', label: 'Pricing' },
-];
+// import Navbar from "./navbar";
+import { DomProvider } from "@/context/DomContext";
+import useDiagramContext from "@/context/DiagramContext";
+import { useEffect } from "react";
+import { UserButton } from "../user/UserButton/UserButton";
+import AdminProfile from "./AdminPorfile/page";
+import Sidebar from "./sidebar";
 
-const Navbar = ( )=> {
-  const [opened, { toggle }] = useDisclosure(false);
+const Navbar = ({ children }) => {
+  const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
+  const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
 
-  const items = links.map((link) => {
-    const menuItems = link.links?.map((item) => (
-      <Menu.Item key={item.link}>{item.label}</Menu.Item>
-    ));
+  const { diagramList, setDiagramList, loadDiagrams } = useDiagramContext();
 
-    if (menuItems) {
-      return (
-        <Menu key={link.label} trigger="hover" transitionProps={{ exitDuration: 0 }} withinPortal>
-          <Menu.Target>
-            <a
-              href={link.link}
-              className={classes.link}
-              onClick={(event) => event.preventDefault()}
-            >
-              <Center>
-                <span className={classes.linkLabel}>{link.label}</span>
-                <IconChevronDown size="0.9rem" stroke={1.5} />
-              </Center>
-            </a>
-          </Menu.Target>
-          <Menu.Dropdown>{menuItems}</Menu.Dropdown>
-        </Menu>
-      );
-    }
-
-    return (
-      <a
-        key={link.label}
-        href={link.link}
-        className={classes.link}
-        onClick={(event) => event.preventDefault()}
-      >
-        {link.label}
-      </a>
-    );
-  });
+  useEffect(() => {
+    loadDiagrams();
+  }, []);
 
   return (
-    <header className={classes.header}>
-      <Container size="md">
-        <div className={classes.inner}>
-          <MantineLogo size={28} />
-          <Group gap={5} visibleFrom="sm">
-            {items}
+    <AppShell
+      header={{ height: 60 }}
+      navbar={{
+        width: 300,
+        breakpoint: "sm",
+        collapsed: { mobile: !mobileOpened, desktop: !desktopOpened },
+      }}
+      padding="md"
+      layout="alt"
+    >
+      <AppShell.Header>
+        <Flex justify="space-between" align="top">
+          <Group h="100%" px="md" py='md'>
+            <Burger
+              opened={mobileOpened}
+              onClick={toggleMobile}
+              hiddenFrom="sm"
+              size="sm"
+            />
+            <Burger
+              opened={desktopOpened}
+              onClick={toggleDesktop}
+              visibleFrom="sm"
+              size="sm"
+            />
           </Group>
-          <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
-        </div>
-      </Container>
-    </header>
+           <AdminProfile /> 
+        </Flex>
+      </AppShell.Header>
+      <AppShell.Navbar>
+    <Sidebar />
+      </AppShell.Navbar>
+      <AppShell.Main>
+        <DomProvider>{children}</DomProvider>
+      </AppShell.Main>
+    </AppShell>
   );
-}
+};
 export default Navbar;

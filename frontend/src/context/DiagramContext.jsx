@@ -21,6 +21,7 @@ export const DiagramProvider = ({ children }) => {
 
   const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('user')));
 
+  
   const loadDiagrams = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/diagram/getbyuser/${currentUser._id}`)
       .then((response) => {
@@ -63,6 +64,7 @@ export const DiagramProvider = ({ children }) => {
         enqueueSnackbar('Failed to create new diagram', { variant: 'error' });
       });
   }
+  
 
   const updateDiagram = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/diagram/update/${selDiagram._id}`, {
