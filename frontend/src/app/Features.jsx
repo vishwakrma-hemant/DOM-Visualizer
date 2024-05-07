@@ -43,9 +43,9 @@ const Feature =() =>{
       <AspectRatio ratio={1920 / 1080}>
         <Image src={article.image} />
       </AspectRatio>
-      <Text c="dimmed" size="xs" tt="uppercase" fw={700} mt="md">
+      {/* <Text c="dimmed" size="xs" tt="uppercase" fw={700} mt="md">
         {article.date}
-      </Text>
+      </Text> */}
       <Title className={classes.title} mt={5} align={'center'} fw={500} order={2}>
         {article.title}
       </Title>

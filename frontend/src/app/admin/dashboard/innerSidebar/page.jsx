@@ -3,11 +3,13 @@ import { useState } from 'react';
 import { Group, Box, Collapse, ThemeIcon, Text, UnstyledButton, rem ,Stack} from '@mantine/core';
 import { IconCalendarStats, IconChevronRight, IconLogout } from '@tabler/icons-react';
 import classes from './inner.module.css';
+import Link from 'next/link';
 
-export function LinksGroup({ icon: Icon, label, initiallyOpened, links }) {
+export function LinksGroup({ icon: Icon, label, initiallyOpened, links}) {
   const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(initiallyOpened || false);
   const items = (hasLinks ? links : []).map((link) => (
+    
     <UnstyledButton key={link.label} className={classes.link}>
       <Text>{link.label}</Text>
     </UnstyledButton>
@@ -42,20 +44,20 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links }) {
   );
 }
 
-const mockdata = {
-  label: 'Releases',
-  icon: IconCalendarStats,
-  links: [
-    { label: 'Upcoming releases', link: '/' },
-    { label: 'Previous releases', link: '/' },
-    { label: 'Releases schedule', link: '/' },
-  ],
-};
+// const mockdata = {
+//   label: 'Releases',
+//   icon: IconCalendarStats,
+//   links: [
+//     { label: 'Upcoming releases', link: '/' },
+//     { label: 'Previous releases', link: '/' },
+//     { label: 'Releases schedule', link: '/' },
+//   ],
+// };
 
-export function NavbarLinksGroup() {
-  return (
-    <Box mih={220} p="md">
-      <LinksGroup {...mockdata} component={Link} />
-    </Box>
-  );
-}
+// export function NavbarLinksGroup() {
+//   return (
+//     <Box mih={220} p="md">
+//       <LinksGroup {...mockdata} component={Link} />
+//     </Box>
+//   );
+// }

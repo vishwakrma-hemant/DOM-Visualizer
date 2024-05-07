@@ -9,6 +9,7 @@ const app = express();
  const ContactRouter = require("./routers/contactRouter");
  const FeedbackRouter = require("./routers/feedbackRouter");
  const UtilRouter = require("./routers/utilRouter");
+ const AdminRouter = require("./routers/adminRouter");
 
 
  app.use(express.json());
@@ -21,6 +22,7 @@ app.use("/diagram", DiagramRouter);
 app.use("/contact",ContactRouter);
 app.use("/feedback",FeedbackRouter);
 app.use("/util",UtilRouter);
+app.use("/admin",UtilRouter);
 
   
 app.listen(port,()=>{
