@@ -3,8 +3,31 @@ import { UnstyledButton, Group, Avatar, Text, rem } from '@mantine/core';
 import { IconChevronDown} from '@tabler/icons-react';
 import classes from './adminPro.module.css';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 const AdminProfile = () =>{
+  // const [ currentUser,setCurrentUser] = useState(
+  //   JSON.parse(sessionStorage.getItem('admin'))
+  // ) 
+  // const fetchUserData  = () => {
+  //   fetch(`http://localhost:5000/admin/getAdmin`,)
+  // .then(res => {
+  //   console.log(res.status);
+  //   return res.json();
+  // })
+  // .then(data => {
+  //   console.log(data);
+  //   setCurrentUser(data)
+  // })
+  // .catch(err => {
+  //   console.log(err);
+  // });
+  // }
+  
+  // useEffect(() => {
+  //   fetchUserData();
+  // },[])
+
   return (
     <UnstyledButton className={classes.user}>
       <Group>
@@ -16,11 +39,11 @@ const AdminProfile = () =>{
        
         <div style={{ flex: 1 }}>
           <Text size="sm" fw={500}>
-            Hemant Kumar
+           Hemant Kumar
           </Text>
 
           {/* <Text c="dimmed" size="xs">
-            hemantvishwakarma0987@gmail.com
+            {currentUser.email}
           </Text> */}
         </div>
        

@@ -6,7 +6,7 @@ import {
   Group,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import AdminProfile from "./AdminPorfile/page";
+import AdminProfile from "./AdminProfile/page";
 import Sidebar from './dashboard/page'
 
 const Navbar = () => {

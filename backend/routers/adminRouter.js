@@ -14,6 +14,22 @@
 //         res.status(500).json(err);
 //     })
 // });
+// router.post('/authenticate', (req, res) => {
+//     Model.findOne(req.body)
+//         .then((result) => {
+//             if (result) {
+//                 res.json(result);
+//                 console.log(result);
+//             } else {
+//                 res.status(401).json({ message: "Invalid Credential" })
+//             }
+//         }).catch((err) => {
+//             console.log(err);
+
+//             res.status(500).json(err);
+//         });
+// });
+
 // router.get('/getAdmin', (req,res) => {
 //     Model.findById(req.user._id)
 //     .then((result) => {
