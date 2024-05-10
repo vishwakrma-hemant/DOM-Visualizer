@@ -5,12 +5,15 @@ import {
   Button,
   Group,
   Box,
+  Container,
   Textarea,
+  BackgroundImage,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
 import StarRatings from "react-star-ratings";
+import classes from "./rat.module.css";
 
 function Feedback() {
   const [rating, setRating] = useState(0);
@@ -52,8 +55,10 @@ function Feedback() {
   };
 
   return (
-    <Box maw={340} mx="auto" mt={50}>
-      <form onSubmit={form.onSubmit(FeedbackSubmit)}>
+    <BackgroundImage src ='https://www.usedbooksearch.net/wp-content/uploads/2023/07/used-bookseller-reviews-450x300.jpeg' className={classes.back_img}>
+    <Container fluid className={classes.main_feed}>
+    <Box maw={900} mx="auto">
+      <form onSubmit={form.onSubmit(FeedbackSubmit)} >
         <TextInput
           withAsterisk
           label="Name"
@@ -86,6 +91,8 @@ function Feedback() {
         </Group>
       </form>
     </Box>
+    </Container>
+    </BackgroundImage>
   );
 }
 export default Feedback;

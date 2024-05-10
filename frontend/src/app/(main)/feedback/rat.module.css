@@ -1,0 +1,10 @@
+.back_img{
+    height:100vh;
+
+}
+.main_feed{
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}

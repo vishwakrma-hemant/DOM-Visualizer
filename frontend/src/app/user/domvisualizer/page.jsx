@@ -10,8 +10,6 @@ import ReactFlow, {
 } from "reactflow";
 import ReactHtmlParser from "react-html-parser";
 import "reactflow/dist/style.css";
-import { Tooltip } from "@mantine/core";
-
 import HTMLEditor from "./Editor";
 import useDomContext from "@/context/DomContext";
 import DomClasses from "./domnode.module.css";
@@ -36,23 +34,24 @@ const nodeTypes = {
         <HoverCard.Target>
           <div className={clsx(DomClasses.domNode)}>
             <HoverCard.Dropdown style={{ pointerEvents: "none" }}>
-
-             <Box className={classes.parent}>
-             <h5>styles</h5>
-              {Object.keys(data.styles).map((styleName) => (
-                <p>
-                  {styleName} : {data.styles[styleName]}
-                </p>
-              ))}
-             </Box>
-             <hr />
-             <Box className={classes.parent}> <h5 style={{letterSpacing:'1px'}}>Classes</h5>
-              <p className={`${classes.myClass}`}>{data.classes}</p>
+              <Box className={classes.parent}>
+                <h5>styles</h5>
+                {Object.keys(data.styles).map((styleName) => (
+                  <p>
+                    {styleName} : {data.styles[styleName]}
+                  </p>
+                ))}
               </Box>
-              
-              
-              <Box className={classes.parent}><h5 style={{letterSpacing:'1px'}}>Ids</h5>
-              <p className={`${classes.myid}`}>{data.ids}</p>
+              <hr />
+              <Box className={classes.parent}>
+                {" "}
+                <h5 style={{ letterSpacing: "1px" }}>Classes</h5>
+                <p className={`${classes.myClass}`}>{data.classes}</p>
+              </Box>
+
+              <Box className={classes.parent}>
+                <h5 style={{ letterSpacing: "1px" }}>Ids</h5>
+                <p className={`${classes.myid}`}>{data.ids}</p>
               </Box>
             </HoverCard.Dropdown>
 
@@ -121,26 +120,26 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
     if (!node || !node.children) {
       return [];
     }
-    
+
     let edges = [];
-    
+
     const traverseChildren = (children, parentId) => {
       children.forEach((child) => {
-      const childId = `node-${nodeId++}`;
-      edges.push({
-        id: `edge-${edgeId++}`,
-        source: parentId,
-        target: childId,
-      });
-      
-      if (child.children) {
-        traverseChildren(child.children, childId);
-      }
+        const childId = `node-${nodeId++}`;
+        edges.push({
+          id: `edge-${edgeId++}`,
+          source: parentId,
+          target: childId,
+        });
+
+        if (child.children) {
+          traverseChildren(child.children, childId);
+        }
       });
     };
-    
+
     traverseChildren(node.children, `node-${nodeId}`);
-    
+
     console.log(edges);
     return edges;
   };
@@ -244,7 +243,8 @@ const Visualizer = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
   const { code, setCode, extractHTMLFromUrl } = useDomContext();
-  const { selDiagram, setSelDiagram, updateDiagram } = useDiagramContext();
+  const { selDiagram, setSelDiagram, updateDiagram, loadDiagrams } =
+    useDiagramContext();
 
   const [zoomedIn, setZoomedIn] = useState(false);
 
@@ -316,6 +316,25 @@ const Visualizer = () => {
     });
     console.log(selDiagram);
   };
+  const deleteDiagram = () => {
+    fetch(`http://localhost:5000/diagram/delete/${selDiagram._id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        // Refresh the diagrams list after a successful delete
+        loadDiagrams;
+        setSelDiagram(null);
+      })
+      .catch((error) => {
+        console.error(
+          "There has been a problem with your fetch operation:",
+          error
+        );
+      });
+  };
 
   return (
     <div>
@@ -327,30 +346,34 @@ const Visualizer = () => {
         <>
           <Grid>
             <Grid.Col span={6}>
-              <Tooltip label="Change the Directory" align="left">
-                <input
-                  value={selDiagram.name}
-                  onChange={changeName}
-                  className={classes.inputField}
-                  label="Diagram Name"
-                />
-              </Tooltip>
+              <input
+                value={selDiagram.name}
+                onChange={changeName}
+                className={classes.inputField}
+                label="Diagram Name"
+                placeholder="Enter Diagram Name"
+              />
               <Button onClick={updateDiagram} className={classes.btn_dom}>
                 Save Change
               </Button>
             </Grid.Col>
 
             <Grid.Col span={6}>
-              <Tooltip label="Enter the Link" align="left">
-                <input ref={urlRef} className={classes.inputField} />
-              </Tooltip>
-
+              <input
+                ref={urlRef}
+                className={classes.inputField}
+                placeholder="Enter the website link"
+              />
               <Button
                 className={classes.btn_dom}
                 onClick={() => extractHTMLFromUrl(urlRef.current.value)}
               >
                 Extract DOM
               </Button>
+              <Button variant="filled" ml={"md"} onClick={deleteDiagram}>
+                Delete
+              </Button>
+              {/* this is delete button */}
             </Grid.Col>
           </Grid>
 

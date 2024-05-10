@@ -61,6 +61,7 @@ export default function Sidebar() {
 
       <div className={classes.section}>
         <div className={classes.mainLinks}>{mainLinks}</div>
+        
       </div>
     </nav>
   );

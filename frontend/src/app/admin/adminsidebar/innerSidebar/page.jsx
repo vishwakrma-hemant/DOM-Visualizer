@@ -5,13 +5,12 @@ import { IconCalendarStats, IconChevronRight, IconLogout } from '@tabler/icons-r
 import classes from './inner.module.css';
 import Link from 'next/link';
 
-export function LinksGroup({ icon: Icon, label, initiallyOpened, links}) {
+export function LinksGroup({ icon: Icon, label, initiallyOpened, links }) {
   const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(initiallyOpened || false);
   const items = (hasLinks ? links : []).map((link) => (
     
     <UnstyledButton key={link.label} className={classes.link}>
-      <Text>{link.label}</Text>
     </UnstyledButton>
 
   ));

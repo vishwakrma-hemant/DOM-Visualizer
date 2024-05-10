@@ -1,71 +1,68 @@
-'use client';
-import { Group, Code, ScrollArea,Stack,Title,Box} from '@mantine/core';
+"use client";
 import {
-  IconCalendarStats,
-  IconGauge,
-  IconPresentationAnalytics,
-  IconFileAnalytics,
-  IconAdjustments,
-  IconLock,
-  IconUsers,
-  IconLogout,
-} from '@tabler/icons-react';
-import classes from './sidebar.module.css';
-import Link from 'next/link';
-import { LinksGroup, NavbarLinksGroup } from './innerSidebar/page';
-// import { UserButton } from '@/app/user/UserButton/UserButton';
+  AppShell,
+  Box,
+  Burger,
+  Button,
+  Flex,
+  Group,
+  Skeleton,
+} from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import Sidebar from "../adminsidebar/page";
+import { DomProvider } from "@/context/DomContext";
+import useDiagramContext from "@/context/DiagramContext";
+import { useEffect } from "react";
+import AdminProfile from "../AdminProfile/page";
 
-const mockdata = [
-  { label: 'Dashboard', icon: IconGauge },
-  {
-    label: 'Users',
-    icon: IconUsers,
-    href:'https://www.google.com/'
-  },
-  {
-    label: 'Releases',
-    icon: IconCalendarStats,
-  },
-  { label: 'Analytics', icon: IconPresentationAnalytics },
-  { label: 'Contracts', icon: IconFileAnalytics },
-  { label: 'Settings', icon: IconAdjustments },
-  {
-    label: 'Security',
-    icon: IconLock,
-  },
-  // {
-  //   label: 'Logout',
-  //   icon: IconLogout,
-  //   className:'claases.logout'
-  // },
+const Layout = ({ children }) => {
+  const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
+  const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
 
-];
+  const { diagramList, setDiagramList, loadDiagrams } = useDiagramContext();
 
-const Sidebar = () =>{
-  const link = mockdata.map((item) => (
-    <LinksGroup {...item} key={item.label} />
-  
-  ));
+  useEffect(() => {
+    loadDiagrams();
+  }, []);
 
   return (
-    <nav className={classes.navbar}>
-      <div className={classes.header}>
-        <Group justify="space-around" >
-          <Title order={2}>DOM</Title>
-          <Code fw={600}>Visualizer</Code>
-        </Group>
-      </div>
+    <AppShell
+      header={{ height: 60 }}
+      navbar={{
+        width: 300,
+        breakpoint: "sm",
+        collapsed: { mobile: !mobileOpened, desktop: !desktopOpened },
+      }}
+      padding="md"
+      layout="alt"
+    >
+      <AppShell.Header>
+        <Flex justify="space-between" align="top">
+          <Group h="100%" px="md" mt='md'>
+            <Burger
+              opened={mobileOpened}
+              onClick={toggleMobile}
+              hiddenFrom="sm"
+              size="sm"
+            />
+            <Burger
+              opened={desktopOpened}
+              onClick={toggleDesktop}
+              visibleFrom="sm"
+              size="sm"
+            />
+          </Group>
 
-      <ScrollArea className={classes.links}>
-        <div className={classes.linksInner}>{link}
-        </div>
-      </ScrollArea>
-
-      <div className={classes.footer} justify='center'>
-        {/* <UserButton /> */}
-  
-      </div>
-    </nav>
+           <AdminProfile /> 
+        </Flex>
+      </AppShell.Header>
+      <AppShell.Navbar>
+        <Sidebar />
+      </AppShell.Navbar>
+      <AppShell.Main>
+        <DomProvider>{children}</DomProvider>
+      </AppShell.Main>
+    </AppShell>
   );
-}
-export default Sidebar;
+};
+export default Layout;

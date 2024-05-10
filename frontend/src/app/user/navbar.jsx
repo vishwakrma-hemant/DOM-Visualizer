@@ -25,7 +25,6 @@ import {
   IconChevronDown,
 } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
-
 import classes from './Navbar.module.css';
 import useAppContext from '@/context/AppContext';
 
@@ -40,7 +39,7 @@ const Navbar = () => {
   const [opened, { toggle }] = useDisclosure(false);
   const [userMenuOpened, setUserMenuOpened] = useState(false);
 
-  const { currentUser, logout } = useAppContext();
+  const { currentUser,logout} = useAppContext();
   
   const fetchUserData  = () => {
     fetch(`http://localhost:5000/user/getUser`,)

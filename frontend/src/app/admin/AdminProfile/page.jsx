@@ -6,27 +6,27 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const AdminProfile = () =>{
-  // const [ currentUser,setCurrentUser] = useState(
-  //   JSON.parse(sessionStorage.getItem('admin'))
-  // ) 
-  // const fetchUserData  = () => {
-  //   fetch(`http://localhost:5000/admin/getAdmin`,)
-  // .then(res => {
-  //   console.log(res.status);
-  //   return res.json();
-  // })
-  // .then(data => {
-  //   console.log(data);
-  //   setCurrentUser(data)
-  // })
-  // .catch(err => {
-  //   console.log(err);
-  // });
-  // }
+  const [ currentUser,setCurrentUser] = useState(
+    JSON.parse(sessionStorage.getItem('admin'))
+  ) 
+  const fetchUserData  = () => {
+    fetch(`http://localhost:5000/admin/getAdmin`,)
+  .then(res => {
+    console.log(res.status);
+    return res.json();
+  })
+  .then(data => {
+    console.log(data);
+    setCurrentUser(data)
+  })
+  .catch(err => {
+    console.log(err);
+  });
+  }
   
-  // useEffect(() => {
-  //   fetchUserData();
-  // },[])
+  useEffect(() => {
+    fetchUserData();
+  },[])
 
   return (
     <UnstyledButton className={classes.user}>
@@ -39,7 +39,7 @@ const AdminProfile = () =>{
        
         <div style={{ flex: 1 }}>
           <Text size="sm" fw={500}>
-           Hemant Kumar
+          {currentUser.name}
           </Text>
 
           {/* <Text c="dimmed" size="xs">

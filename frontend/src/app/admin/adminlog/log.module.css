@@ -1,4 +1,4 @@
-/* .title {
+.title {
     font-family:
       Greycliff CF,
       var(--mantine-font-family);
@@ -8,4 +8,7 @@
   .btn1{
          text-decoration: none;
          text-align: center;
-  } */
+  }
+  .background{
+    object-fit: fill;
+  }

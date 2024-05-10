@@ -57,7 +57,7 @@ const Signup = () => {
 
   const signupSubmit = (values) => {
     console.log(values);
-    fetch("http://localhost:5000/user/add", {
+    fetch("http://localhost:5000/admin/add", {
       method: "POST",
       body: JSON.stringify(values),
       headers: {
@@ -67,7 +67,7 @@ const Signup = () => {
       .then((response) => {
         console.log(response.status);
         if (response.status === 200) {
-          router.push("/login");
+          router.push("/admin/adminlog");
           enqueueSnackbar("User Registered Successfully", {
             variant: "success",
           });
@@ -86,7 +86,7 @@ const Signup = () => {
   return (
     <Container fluid mt={'md'}>
       <Grid>
-        <Grid.Col span={6} mt={'md'}>
+        <Grid.Col span={5} mt={'md'}>
           <Paper withBorder shadow="md" p={30} mt={30} className={classes.bor}>
             <form onSubmit={form.onSubmit(signupSubmit)}>
               <Stack>
@@ -145,7 +145,7 @@ const Signup = () => {
                   type="button"
                   c="dimmed"
                   size="xs"
-                  href={"/login"}
+                  href={"/admin/adminlog"}
                 >
                   Already have an account? Login
                 </Anchor>
@@ -158,9 +158,9 @@ const Signup = () => {
           </Paper>
         </Grid.Col>
 
-        <Grid.Col span={6}>
+        <Grid.Col span={7}>
           <Image
-            src="https://static.vecteezy.com/system/resources/thumbnails/004/815/703/small_2x/data-protection-internet-security-privacy-access-with-password-3d-isometric-computer-pc-with-key-open-lock-folder-cloud-documents-laptop-money-design-for-banner-vector.jpg"
+            src="https://th.bing.com/th/id/OIP.zPqSDXpFCBacvNwygnJSMAHaFv?w=960&h=744&rs=1&pid=ImgDetMain"
             className={classes.img}
            
           />
