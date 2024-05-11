@@ -20,7 +20,7 @@ import Link from 'next/link';
 const data = [
   { link: '/admin/ControlPanel/userControl', label: 'Users', icon: IconUser},
   { link: '/admin/ControlPanel/feedback', label: 'Feedback', icon: IconDatabase },
-  { link: '/admin/ControlPanel/userControl', label: 'Dashboard', icon: IconDashboard },
+  { link: '/admin/ControlPanel/dashboard', label: 'Dashboard', icon: IconDashboard },
   { link: 'admin/ControlPanel/userControl', label: 'SSH Keys', icon: IconKey },
   { link: 'admin/ControlPanel/userControl', label: 'Databases', icon: IconDatabaseImport },
   { link: 'admin/ControlPanel/userControl', label: 'Authentication', icon: Icon2fa },
