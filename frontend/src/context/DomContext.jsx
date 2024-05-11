@@ -7,10 +7,15 @@ const DomContext = createContext();
 
 export const DomProvider = ({ children }) => {
   const [code, setCode] = useState(`
-        <h1 class='karma' id='node'>Node 1</div>
         <div class="container">
           <button id="trigger" class="click">Click me</button>
           <button class="btn btn-primary">Some button</button>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
         </div>
   `);
 
