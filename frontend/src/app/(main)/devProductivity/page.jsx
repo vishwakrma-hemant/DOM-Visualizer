@@ -7,7 +7,8 @@ import { Component } from 'react';
 
 const mockdata = {
   image:
-  'https://www.itechguides.com/wp-content/uploads/2022/05/PowerShell-Get-Childitem-Explained-Syntax-Parameters-And-Examples-2048x1366.jpg',
+  'https://images.squarespace-cdn.com/content/v1/5efb7a015dc2ac0077a81ea5/1f60b0ae-8b2a-4ee6-9f74-4140b4630e36/18a4949fc9c8067172d3b96e302e7097.gif',
+  // 'https://www.itechguides.com/wp-content/uploads/2022/05/PowerShell-Get-Childitem-Explained-Syntax-Parameters-And-Examples-2048x1366.jpg',
     title: 'Improve Devloper Productivity',
     country: 'DOM Visualizer',
   description:
