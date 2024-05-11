@@ -59,7 +59,7 @@ export default function Sidebar() {
                     Delete
                   </Button> */}
 
-      <div className={classes.section}>
+      <div className={classes.section} style={{overflow: 'auto'}}>
         <div className={classes.mainLinks}>{mainLinks}</div>
         
       </div>

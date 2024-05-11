@@ -18,9 +18,11 @@ import {useForm} from '@mantine/form'
 import Link from "next/link";
 import { enqueueSnackbar } from "notistack";
 import { useRouter } from "next/navigation";
+import useAppContext from "@/context/AppContext";
 
 const Login = () => {
   const router = useRouter();
+  const { setCurrentUser } = useAppContext();
 
   const loginForm = useForm({
     initialValues: {
@@ -47,6 +49,7 @@ const Login = () => {
           response.json().then((data) => {
             console.log(data);
             sessionStorage.setItem("user", JSON.stringify(data));
+            setCurrentUser(data);
             router.push("/user/domvisualizer");
           });
 
