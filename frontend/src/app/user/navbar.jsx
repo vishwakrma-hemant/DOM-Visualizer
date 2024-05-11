@@ -39,26 +39,26 @@ const Navbar = () => {
   const [opened, { toggle }] = useDisclosure(false);
   const [userMenuOpened, setUserMenuOpened] = useState(false);
 
-  const { currentUser,logout} = useAppContext();
-  
-  const fetchUserData  = () => {
-    fetch(`http://localhost:5000/user/getUser`,)
-  .then(res => {
-    console.log(res.status);
-    return res.json();
-  })
-  .then(data => {
-    console.log(data);
-    setCurrentUser(data)
-  })
-  .catch(err => {
-    console.log(err);
-  });
-  }
-  
+  const { currentUser, logout, setCurrentUser, loggedIn } = useAppContext();
+
+  // const fetchUserData = () => {
+  //   fetch(`http://localhost:5000/user/getUser`,)
+  //     .then(res => {
+  //       console.log(res.status);
+  //       return res.json();
+  //     })
+  //     .then(data => {
+  //       console.log(data);
+  //       setCurrentUser(data)
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }
+
   useEffect(() => {
-    fetchUserData();
-  },[])
+    // fetchUserData();
+  }, [])
 
   // const items = tabs.map((tab) => (
   //   <Tabs.Tab value={tab} key={tab}>
@@ -68,7 +68,7 @@ const Navbar = () => {
 
   return (
     <div className={classes.header}>
-      <Container className={classes.mainSection} size="md"> 
+      <Container className={classes.mainSection} size="md">
         <Group justify="end">
           <Menu
             width={260}
@@ -85,7 +85,7 @@ const Navbar = () => {
                 <Group gap={7}>
                   <Avatar src={user.image} alt={user.name} radius="xl" size={20} />
                   <Text fw={500} size="sm" lh={1} mr={3}>
-                  {currentUser.name}
+                    {currentUser.name}
                   </Text>
                   <IconChevronDown style={{ width: rem(12), height: rem(12) }} stroke={1.5} />
                 </Group>
@@ -109,7 +109,7 @@ const Navbar = () => {
                 Change account
               </Menu.Item>
               <Menu.Item
-              onClick={logout}
+                onClick={logout}
                 color='red'
                 leftSection={
                   <IconLogout style={{ width: rem(16), height: rem(16) }} stroke={1.5} />

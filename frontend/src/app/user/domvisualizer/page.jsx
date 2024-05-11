@@ -117,6 +117,7 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
   };
 
   const createReactFlowEdges = (node) => {
+    // console.log(node);
     if (!node || !node.children) {
       return [];
     }
@@ -125,16 +126,14 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
 
     const traverseChildren = (children, parentId) => {
       children.forEach((child) => {
-        const childId = `node-${nodeId++}`;
-        edges.push({
-          id: `edge-${edgeId++}`,
-          source: parentId,
-          target: childId,
-        });
+      const childId = `node-${nodeId++}`;
+      edges.push({
+        id: `edge-${edgeId++}`,
+        source: parentId,
+        target: childId,
+      });
 
-        if (child.children) {
-          traverseChildren(child.children, childId);
-        }
+      edges = edges.concat(traverseChildren(child.children, childId));
       });
     };
 
@@ -325,7 +324,7 @@ const Visualizer = () => {
           throw new Error("Network response was not ok");
         }
         // Refresh the diagrams list after a successful delete
-        loadDiagrams;
+        loadDiagrams();
         setSelDiagram(null);
       })
       .catch((error) => {
@@ -370,7 +369,7 @@ const Visualizer = () => {
               >
                 Extract DOM
               </Button>
-              <Button variant="filled" ml={"md"} onClick={deleteDiagram}>
+              <Button color="red" variant="filled" ml={"md"} onClick={deleteDiagram}>
                 Delete
               </Button>
               {/* this is delete button */}
