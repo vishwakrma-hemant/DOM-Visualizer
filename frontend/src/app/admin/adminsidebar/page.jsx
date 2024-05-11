@@ -1,69 +1,71 @@
 'use client';
-import { Group, Code, ScrollArea,Stack,Title,Box} from '@mantine/core';
+import { useState } from 'react';
+import { Group, Code , Title} from '@mantine/core';
 import {
-  IconCalendarStats,
-  IconGauge,
-  IconPresentationAnalytics,
-  IconFileAnalytics,
-  IconAdjustments,
-  IconLock,
-  IconUsers,
+  IconFingerprint,
+  IconKey,
+  IconSettings,
+  Icon2fa,
+  IconDatabaseImport,
+  IconSwitchHorizontal,
   IconLogout,
+  IconDashboard,
+  IconUser,
 } from '@tabler/icons-react';
+// import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from './sidebar.module.css';
-import Link from 'next/link';
-import { LinksGroup, NavbarLinksGroup } from './innerSidebar/page';
-// import { UserButton } from '@/app/user/UserButton/UserButton';
 
-const mockdata = [
-  { label: 'Dashboard', icon: IconGauge },
-  {
-    label: 'Users',
-    icon: IconUsers,
-    href:'https://www.google.com/'
-  },
-  {
-    label: 'Releases',
-    icon: IconCalendarStats,
-  },
-  { label: 'Analytics', icon: IconPresentationAnalytics },
-  { label: 'Contracts', icon: IconFileAnalytics },
-  { label: 'Settings', icon: IconAdjustments },
-  {
-    label: 'Security',
-    icon: IconLock,
-  },
-  // {
-  //   label: 'Logout',
-  //   icon: IconLogout,
-  //   className:'claases.logout'
-  // },
-
+const data = [
+  { link: '/admin/userControl', label: 'Dashborad', icon: IconDashboard },
+  { link: '/admin/userControl', label: 'Users', icon: IconUser },
+  { link: '', label: 'Security', icon: IconFingerprint },
+  { link: '', label: 'SSH Keys', icon: IconKey },
+  { link: '', label: 'Databases', icon: IconDatabaseImport },
+  { link: '', label: 'Authentication', icon: Icon2fa },
+  { link: '', label: 'Other Settings', icon: IconSettings },
 ];
 
-const Sidebar = () =>{
-  const link = mockdata.map((item) => (
-    <LinksGroup {...item} key={item.label} />
-  
+const Sidebar = ()=> {
+  const [active, setActive] = useState('Billing');
+
+  const links = data.map((item) => (
+    <a
+      className={classes.link}
+      data-active={item.label === active || undefined}
+      href={item.link}
+      key={item.label}
+      onClick={(event) => {
+        // event.preventDefault();
+        setActive(item.label);
+      }
+    }
+    >
+      <item.icon className={classes.linkIcon} stroke={1.5} />
+      <span>{item.label}</span>
+    </a>
   ));
 
   return (
     <nav className={classes.navbar}>
-      <div className={classes.header}>
-        <Group justify="space-around" >
-          <Title order={2}>DOM</Title>
-          <Code fw={600}>Visualizer</Code>
+      <div className={classes.navbarMain}>
+        <Group className={classes.header} justify="space-between">
+          <Title order={3}>DOM</Title>
+          {/* <MantineLogo size={28} /> */}
+          <Code fw={700}>Visualizer</Code>
         </Group>
+        {links}
       </div>
 
-      <ScrollArea className={classes.links}>
-        <div className={classes.linksInner}>{link}
-        </div>
-      </ScrollArea>
+      <div className={classes.footer}>
+        <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
+          <IconSwitchHorizontal className={classes.linkIcon} stroke={1.5} />
+          <span>Change account</span>
+        </a>
 
-      <div className={classes.footer} justify='center'>
-        {/* <UserButton /> */}
-  
+        <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
+          <IconLogout className={classes.linkIcon} stroke={1.5} />
+          <span>Logout</span>
+        </a>
       </div>
     </nav>
   );
