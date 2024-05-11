@@ -9,9 +9,21 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links }) {
   const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(initiallyOpened || false);
   const items = (hasLinks ? links : []).map((link) => (
-    
-    <UnstyledButton key={link.label} className={classes.link}>
-    </UnstyledButton>
+
+    <Text 
+       component='a'
+      className={classes.link}
+      href={link.link}
+      key={link.label}>
+      {link.label}
+    </Text>
+     
+
+    // <Link href={links.href} key={links.label}>
+    //   <a className={classes.links}>{links.label}</a>
+    // </Link>
+    // <UnstyledButton key={link.label} className={classes.link}>
+    // </UnstyledButton>
 
   ));
 

@@ -20,26 +20,18 @@ const mockdata = [
   {
     label: 'Users',
     icon: IconUsers,
-    href:'/Users'
+    href:'https://www.google.com/'
   },
   {
     label: 'Releases',
     icon: IconCalendarStats,
-    href:'/Releases'
   },
-  { label: 'Analytics', icon: IconPresentationAnalytics,
-  href:'/Analytics'
-   },
-  { label: 'Contracts', icon: IconFileAnalytics,
-  href:'/Contracts'
-   },
-  { label: 'Settings', icon: IconAdjustments,
-  href:'/Settings'
-   },
+  { label: 'Analytics', icon: IconPresentationAnalytics },
+  { label: 'Contracts', icon: IconFileAnalytics },
+  { label: 'Settings', icon: IconAdjustments },
   {
     label: 'Security',
     icon: IconLock,
-    href:'/Security'
   },
   // {
   //   label: 'Logout',

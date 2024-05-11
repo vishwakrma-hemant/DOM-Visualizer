@@ -59,6 +59,13 @@ function Feedback() {
     <Container fluid className={classes.main_feed}>
     <Box maw={900} mx="auto">
       <form onSubmit={form.onSubmit(FeedbackSubmit)} >
+      <StarRatings
+          rating={rating}
+          starRatedColor="#dfab00"
+          changeRating={setRating}
+          numberOfStars={5}
+        />
+        
         <TextInput
           withAsterisk
           label="Name"
@@ -77,13 +84,6 @@ function Feedback() {
           placeholder=""
           {...form.getInputProps("review")}
           minRows={3}
-        />
-
-        <StarRatings
-          rating={rating}
-          starRatedColor="#dfab00"
-          changeRating={setRating}
-          numberOfStars={5}
         />
 
         <Group justify="flex-end" mt="md">
