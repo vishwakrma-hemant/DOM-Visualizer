@@ -16,8 +16,8 @@ import {
 import classes from './sidebar.module.css';
 
 const data = [
-  { link: '/admin/userControl', label: 'Dashborad', icon: IconDashboard },
-  { link: '/admin/userControl', label: 'Users', icon: IconUser },
+  { link: '/admin/ControlPanel/userControl', label: 'Dashborad', icon: IconDashboard },
+  { link: '/admin/ControlPanel/userControl', label: 'Users', icon: IconUser },
   { link: '', label: 'Security', icon: IconFingerprint },
   { link: '', label: 'SSH Keys', icon: IconKey },
   { link: '', label: 'Databases', icon: IconDatabaseImport },
@@ -26,7 +26,7 @@ const data = [
 ];
 
 const Sidebar = ()=> {
-  const [active, setActive] = useState('Billing');
+  const [active, setActive] = useState('Dashborad');
 
   const links = data.map((item) => (
     <a
@@ -35,7 +35,6 @@ const Sidebar = ()=> {
       href={item.link}
       key={item.label}
       onClick={(event) => {
-        // event.preventDefault();
         setActive(item.label);
       }
     }
@@ -50,7 +49,6 @@ const Sidebar = ()=> {
       <div className={classes.navbarMain}>
         <Group className={classes.header} justify="space-between">
           <Title order={3}>DOM</Title>
-          {/* <MantineLogo size={28} /> */}
           <Code fw={700}>Visualizer</Code>
         </Group>
         {links}

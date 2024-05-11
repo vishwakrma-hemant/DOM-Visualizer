@@ -47,7 +47,7 @@ const Login = () => {
           response.json().then((data) => {
             console.log(data);
             sessionStorage.setItem("admin", JSON.stringify(data));
-            router.push("/admin/dashboard");
+            router.push("/admin/ControlPanel/userControl");
           });
 
         } else if(response.status === 401) {

@@ -57,6 +57,7 @@ function Feedback() {
   return (
     <BackgroundImage src ='https://www.usedbooksearch.net/wp-content/uploads/2023/07/used-bookseller-reviews-450x300.jpeg' className={classes.back_img}>
     <Container fluid className={classes.main_feed}>
+      
     <Box maw={900} mx="auto">
       <form onSubmit={form.onSubmit(FeedbackSubmit)} >
       <StarRatings
@@ -65,7 +66,7 @@ function Feedback() {
           changeRating={setRating}
           numberOfStars={5}
         />
-        
+
         <TextInput
           withAsterisk
           label="Name"
