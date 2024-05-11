@@ -61,14 +61,14 @@ const About = () => {
       <Text fz="lg" fw={500} className={classes.cardTitle} mt="md">
         {feature.title}
       </Text>
-      <Text fz="sm" c="dark" mt="sm">
+      <Text fz="sm" c="light" mt="sm">
         {feature.description}
       </Text>
     </Card>
   ));
 
   return (
-    <Container fluid size="lg" py="xl" className={classes.wrapper}>
+    <Container fluid size="lg" py="xl">
       <Group justify="center">
         <Banner />
       </Group>

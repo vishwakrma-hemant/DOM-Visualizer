@@ -1,10 +1,3 @@
-.wrapper{
-  background: rgba(14, 1, 1, 0.795) url('https://th.bing.com/th/id/OIP.AANGCeWcK5lbCyq1pZubQAHaE7?w=626&h=417&rs=1&pid=ImgDetMain');
-    background-blend-mode: darken;
-}
-/* .feature_item{
-  
-} */
 .title {
   font-size: rem(34px);
   font-weight: 900;
@@ -31,8 +24,7 @@
 }
 
 .card {
-  background: url('https://i2.wp.com/files.123freevectors.com/wp-content/original/156170-abstract-light-blue-background-vector-illustration.jpg?w=420');
-  /* background-blend-mode: darken; */
+  background-image: url('https://img.freepik.com/premium-vector/abstract-digital-background-with-technology-circuit-board-texture-electronic-motherboard-illustration-communication-engineering-concept-vector-illustration_41981-2115.jpg?w=360');
   background-repeat: no-repeat;
   background-size: cover;  
   color:white;
@@ -40,7 +32,8 @@
 }
 
 .card:hover {
-  box-shadow: inset 0 0 0 rem(6px) var(--mantine-color-blue-filled);
+  box-shadow: inset 0 0 0 rem(7px) rgb(8, 250, 137);
+  /* var(--mantine-color-blue-filled) */
 
 }
 

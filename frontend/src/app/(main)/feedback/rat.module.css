@@ -1,10 +1,21 @@
 .back_img{
-    height:100vh;
-
+    height:86vh;
 }
-.main_feed{
-    height:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+.fee_img{
+        width:100%;
+        background-size:contain;
+        margin-top: 39px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;  
+}
+.bor{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    }
+
+.star{
+    color: var(--mantine-color-red-6);
+    width: rem(10px);
+    font-size: 20px;
+    height: rem(10px);
 }
