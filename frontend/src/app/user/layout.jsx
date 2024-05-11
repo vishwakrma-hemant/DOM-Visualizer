@@ -14,6 +14,7 @@ import Navbar from "./navbar";
 import { DomProvider } from "@/context/DomContext";
 import useDiagramContext from "@/context/DiagramContext";
 import { useEffect } from "react";
+import Link from "next/link";
 
 const Layout = ({ children }) => {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
@@ -38,7 +39,7 @@ const Layout = ({ children }) => {
     >
       <AppShell.Header>
         <Flex justify="space-between" align="top">
-          <Group h="100%" px="md">
+          <Group h="100%" px="md" mt='md'>
             <Burger
               opened={mobileOpened}
               onClick={toggleMobile}
@@ -52,8 +53,14 @@ const Layout = ({ children }) => {
               size="sm"
             />
           </Group>
-
+          <Flex justify="space-around" align="center">
           <Navbar />
+          <Button component={Link}
+          mx='md'
+          href='../feedback' align='center' py='sm'>
+            Feedback
+          </Button>
+          </Flex>
         </Flex>
       </AppShell.Header>
       <AppShell.Navbar>

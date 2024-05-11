@@ -1,5 +1,5 @@
 'use client';
-import { Group, Code, ScrollArea, rem ,Title} from '@mantine/core';
+import { Group, Code, ScrollArea,Stack,Title,Box} from '@mantine/core';
 import {
   IconCalendarStats,
   IconGauge,
@@ -11,36 +11,48 @@ import {
   IconLogout,
 } from '@tabler/icons-react';
 import classes from './sidebar.module.css';
-import { LinksGroup } from './navminimal';
 import Link from 'next/link';
+import { LinksGroup, NavbarLinksGroup } from './innerSidebar/page';
+// import { UserButton } from '@/app/user/UserButton/UserButton';
 
 const mockdata = [
   { label: 'Dashboard', icon: IconGauge },
   {
     label: 'Users',
     icon: IconUsers,
-    href:'/UserControl'
+    href:'/Users'
   },
   {
     label: 'Releases',
     icon: IconCalendarStats,
+    href:'/Releases'
   },
-  { label: 'Analytics', icon: IconPresentationAnalytics },
-  { label: 'Contracts', icon: IconFileAnalytics },
-  { label: 'Settings', icon: IconAdjustments },
+  { label: 'Analytics', icon: IconPresentationAnalytics,
+  href:'/Analytics'
+   },
+  { label: 'Contracts', icon: IconFileAnalytics,
+  href:'/Contracts'
+   },
+  { label: 'Settings', icon: IconAdjustments,
+  href:'/Settings'
+   },
   {
     label: 'Security',
     icon: IconLock,
+    href:'/Security'
   },
-  {
-    label: 'Logout',
-    icon: IconLogout,
-  },
+  // {
+  //   label: 'Logout',
+  //   icon: IconLogout,
+  //   className:'claases.logout'
+  // },
+
 ];
 
 const Sidebar = () =>{
   const link = mockdata.map((item) => (
-    <LinksGroup {...item} key={item.label} component={Link} href={item.href} />
+    <LinksGroup {...item} key={item.label} />
+  
   ));
 
   return (
@@ -53,11 +65,13 @@ const Sidebar = () =>{
       </div>
 
       <ScrollArea className={classes.links}>
-        <div className={classes.linksInner}>{link}</div>
+        <div className={classes.linksInner}>{link}
+        </div>
       </ScrollArea>
 
-      <div className={classes.footer}>
-        {/* <UserButton />   */}
+      <div className={classes.footer} justify='center'>
+        {/* <UserButton /> */}
+  
       </div>
     </nav>
   );

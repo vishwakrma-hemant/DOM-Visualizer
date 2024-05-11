@@ -13,10 +13,6 @@ export function HeroSection() {
     <div className={classes.inner}>
       <Title className={classes.title} style={{letterSpacing:'.7px'}}>
         DOM Visualizer   
-        {/* {' '} */}
-        {/* <Text component="span" inherit className={classes.highlight}>
-         
-        </Text> */}
       </Title>
 
       <Container size={640}>

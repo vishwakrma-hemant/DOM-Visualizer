@@ -1,6 +1,5 @@
 'use client';
 import cx from 'clsx';
-import { useState } from 'react';
 import {
   Container,
   Avatar,
@@ -25,33 +24,41 @@ import {
   IconSwitchHorizontal,
   IconChevronDown,
 } from '@tabler/icons-react';
-
+import { useEffect, useState } from 'react';
 import classes from './Navbar.module.css';
 import useAppContext from '@/context/AppContext';
 
 const user = {
-  name: 'Hemant Kumar',
-  email: 'hemantvishwakarma0987@gmail.com',
+  name: '',
+  email: '',
   image: 'https://img.freepik.com/premium-vector/businessman-character-avatar-isolated_24877-5037.jpg?w=740',
 };
-
-// const tabs = [
-//   'Home',
-//   'Orders',
-//   'Education',
-//   'Community',
-//   'Forums',
-//   'Support',
-//   'Account',
-//   'Helpdesk',
-// ];
 
 const Navbar = () => {
   const theme = useMantineTheme();
   const [opened, { toggle }] = useDisclosure(false);
   const [userMenuOpened, setUserMenuOpened] = useState(false);
 
-  const { currentUser, logout } = useAppContext();
+  const { currentUser,logout} = useAppContext();
+  
+  const fetchUserData  = () => {
+    fetch(`http://localhost:5000/user/getUser`,)
+  .then(res => {
+    console.log(res.status);
+    return res.json();
+  })
+  .then(data => {
+    console.log(data);
+    setCurrentUser(data)
+  })
+  .catch(err => {
+    console.log(err);
+  });
+  }
+  
+  useEffect(() => {
+    fetchUserData();
+  },[])
 
   // const items = tabs.map((tab) => (
   //   <Tabs.Tab value={tab} key={tab}>
@@ -78,7 +85,7 @@ const Navbar = () => {
                 <Group gap={7}>
                   <Avatar src={user.image} alt={user.name} radius="xl" size={20} />
                   <Text fw={500} size="sm" lh={1} mr={3}>
-                    {user.name}
+                  {currentUser.name}
                   </Text>
                   <IconChevronDown style={{ width: rem(12), height: rem(12) }} stroke={1.5} />
                 </Group>
