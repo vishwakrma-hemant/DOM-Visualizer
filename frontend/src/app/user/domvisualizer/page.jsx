@@ -91,11 +91,11 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
 
     const nodes = node.children
       ? node.children.flatMap((child, index) =>
-          createReactFlowNodes(child, {
-            x: parentPosition.x + index * 100,
-            y: parentPosition.y + 100,
-          })
-        )
+        createReactFlowNodes(child, {
+          x: parentPosition.x + index * 100,
+          y: parentPosition.y + 100,
+        })
+      )
       : [];
 
     nodes.push({
@@ -111,35 +111,36 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
       },
       position: parentPosition,
     });
-    console.log(nodes);
+
+    // console.log(nodes);
 
     return nodes;
   };
 
-  const createReactFlowEdges = (node) => {
-    // console.log(node);
-    if (!node || !node.children) {
-      return [];
+  const createReactFlowEdges = (nodes) => {
+    const edges = [];
+
+    for (let i = 0; i < nodes.length; i++) {
+      const currentNode = nodes[i];
+      const currentY = currentNode.position.y;
+
+      for (let j = 0; j < nodes.length; j++) {
+        if (i === j) continue; // Skip self
+
+        const nextNode = nodes[j];
+        const nextY = nextNode.position.y;
+
+        if (nextY === currentY - 100) {
+          edges.push({
+            id: `edge-${currentNode.id}-${nextNode.id}`,
+            target: currentNode.id,
+            source: nextNode.id,
+          });
+        }
+      }
     }
 
-    let edges = [];
-
-    const traverseChildren = (children, parentId) => {
-      children.forEach((child) => {
-      const childId = `node-${nodeId++}`;
-      edges.push({
-        id: `edge-${edgeId++}`,
-        source: parentId,
-        target: childId,
-      });
-
-      edges = edges.concat(traverseChildren(child.children, childId));
-      });
-    };
-
-    traverseChildren(node.children, `node-${nodeId}`);
-
-    console.log(edges);
+    // console.log(edges);
     return edges;
   };
 
@@ -178,7 +179,7 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
 
   useEffect(() => {
     setNodes(reactFlowNodes);
-    setEdges(createReactFlowEdges(domTree));
+    setEdges(createReactFlowEdges(reactFlowNodes));
     // console.log("reset");
   }, [htmlMarkup]);
 
