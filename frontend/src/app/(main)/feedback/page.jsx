@@ -18,8 +18,10 @@ import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
 import StarRatings from "react-star-ratings";
 import classes from "./rat.module.css";
+import { useRouter } from "next/navigation";
 
 function Feedback() {
+  const router = useRouter();
   const [rating, setRating] = useState(0);
   const form = useForm({
     initialValues: {
@@ -45,6 +47,7 @@ function Feedback() {
       .then((response) => {
         console.log(response.status);
         if (response.status === 200) {
+          router.push("/thankYou");
           enqueueSnackbar("Feedback added Successfully", {
             variant: "success",
           });

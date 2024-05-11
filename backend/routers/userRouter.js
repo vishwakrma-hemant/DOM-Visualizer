@@ -80,8 +80,4 @@ router.get('/getUser', (req,res) => {
     });
 })
 
-router.get("/authorise", (req, res) => {
-    res.status(200).json({ allowed: true });
-});
-
 module.exports = router 
