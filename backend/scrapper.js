@@ -1,6 +1,6 @@
 const puppeteer = require("puppeteer");
 
-const getQuotes = async () => {
+const getQuotes = async (url) => {
   // Start a Puppeteer session with:
   // - a visible browser (`headless: false` - easier to debug because you'll see the browser in action)
   // - no default viewport (`defaultViewport: null` - website page will be in full width and height)
@@ -15,8 +15,8 @@ const getQuotes = async () => {
   // On this new page:
   // - open the "http://quotes.toscrape.com/" website
   // - wait until the dom content is loaded (HTML is ready)
-  await page.goto("http://quotes.toscrape.com/", {
-    waitUntil: "domcontentloaded",
+  await page.goto(url, {
+    waitUntil: "networkidle0",
   });
 
   // Get page data
@@ -33,16 +33,15 @@ const getQuotes = async () => {
     //   // Get the displayed text and return it (`.innerText`)
     //   const text = quote.querySelector(".text").innerText;
     //   const author = quote.querySelector(".author").innerText;
-
     // });
     return bodyContent;
   });
 
   // Display the quotes
-  
+
   // Close the browser
   await browser.close();
-//   console.log(quotes);
+  //   console.log(quotes);
   return quotes;
 };
 

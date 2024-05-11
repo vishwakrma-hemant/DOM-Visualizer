@@ -37,22 +37,22 @@ const nodeTypes = {
           <div className={clsx(DomClasses.domNode)}>
             <HoverCard.Dropdown style={{ pointerEvents: "none" }}>
 
-             <Box className={classes.parent}>
-             <h5>styles</h5>
-              {Object.keys(data.styles).map((styleName) => (
-                <p>
-                  {styleName} : {data.styles[styleName]}
-                </p>
-              ))}
-             </Box>
-             <hr />
-             <Box className={classes.parent}> <h5 style={{letterSpacing:'1px'}}>Classes</h5>
-              <p className={`${classes.myClass}`}>{data.classes}</p>
+              <Box className={classes.parent}>
+                <h5>styles</h5>
+                {Object.keys(data.styles).map((styleName) => (
+                  <p>
+                    {styleName} : {data.styles[styleName]}
+                  </p>
+                ))}
               </Box>
-              
-              
-              <Box className={classes.parent}><h5 style={{letterSpacing:'1px'}}>Ids</h5>
-              <p className={`${classes.myid}`}>{data.ids}</p>
+              <hr />
+              <Box className={classes.parent}> <h5 style={{ letterSpacing: '1px' }}>Classes</h5>
+                <p className={`${classes.myClass}`}>{data.classes}</p>
+              </Box>
+
+
+              <Box className={classes.parent}><h5 style={{ letterSpacing: '1px' }}>Ids</h5>
+                <p className={`${classes.myid}`}>{data.ids}</p>
               </Box>
             </HoverCard.Dropdown>
 
@@ -92,11 +92,11 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
 
     const nodes = node.children
       ? node.children.flatMap((child, index) =>
-          createReactFlowNodes(child, {
-            x: parentPosition.x + index * 100,
-            y: parentPosition.y + 100,
-          })
-        )
+        createReactFlowNodes(child, {
+          x: parentPosition.x + index * 100,
+          y: parentPosition.y + 100,
+        })
+      )
       : [];
 
     nodes.push({
@@ -117,33 +117,30 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
     return nodes;
   };
 
-  const createReactFlowEdges = (node) => {
-    if (!node || !node.children) {
-      return [];
-    }
-    
-    let edges = [];
-    
-    const traverseChildren = (children, parentId) => {
-      children.forEach((child) => {
-      const childId = `node-${nodeId++}`;
-      edges.push({
-        id: `edge-${edgeId++}`,
-        source: parentId,
-        target: childId,
-      });
-      
-      if (child.children) {
-        traverseChildren(child.children, childId);
+const createReactFlowEdges = (reactFlowNodes) => {
+  let edges = [];
+
+  const traverseNodes = (nodes) => {
+    nodes.forEach((node) => {
+      if (node.children) {
+        node.children.forEach((child) => {
+          edges.push({
+            id: `edge-${node.id}-${child.id}`,
+            source: `node-${node.id}`,
+            target: `node-${child.id}`,
+            animated: true,
+            type: 'step',
+          });
+        });
+        traverseNodes(node.children);
       }
-      });
-    };
-    
-    traverseChildren(node.children, `node-${nodeId}`);
-    
-    console.log(edges);
-    return edges;
+    });
   };
+
+  traverseNodes(reactFlowNodes);
+  console.log(edges);
+  return edges;
+};
 
   const extractNodeNameAndStyles = (element) => {
     if (!React.isValidElement(element)) {
@@ -173,14 +170,14 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
   };
 
   const parsedHtml = ReactHtmlParser(htmlMarkup);
-  // console.log(parsedHtml);
+  console.log(parsedHtml);
   const domTree = extractNodeNameAndStyles(parsedHtml[0]);
   const reactFlowNodes = createReactFlowNodes(domTree);
-  // console.log(reactFlowNodes);
+  console.log(reactFlowNodes);
 
   useEffect(() => {
     setNodes(reactFlowNodes);
-    setEdges(createReactFlowEdges(domTree));
+    setEdges(createReactFlowEdges(reactFlowNodes));
     // console.log("reset");
   }, [htmlMarkup]);
 
@@ -273,7 +270,6 @@ const Visualizer = () => {
 
   useEffect(() => {
     const ele = ReactHtmlParser(code);
-
     const node = extractNodeNameAndStyles(ele[0]);
     //console.log(node);
   }, []);
