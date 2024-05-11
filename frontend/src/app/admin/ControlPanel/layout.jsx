@@ -15,7 +15,7 @@ import useDiagramContext from "@/context/DiagramContext";
 import { useEffect } from "react";
 import AdminProfile from "./AdminProfile/page";
 
-const Layout = ({ children }) => {
+const Ads = ({ children }) => {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
 
@@ -65,6 +65,4 @@ const Layout = ({ children }) => {
     </AppShell>
   );
 };
-export default Layout;
-
-
+export default Ads;
