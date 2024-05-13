@@ -8,7 +8,7 @@ import { Component } from 'react';
 const mockdata = {
   image:
   'https://imgs.search.brave.com/9Z6y28soVzCiI-tGUqaM8C-zGDBhjpfkPgjtsoOBjw8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/ZnJlZWNvZGVjYW1w/Lm9yZy9uZXdzL2Nv/bnRlbnQvaW1hZ2Vz/LzIwMjMvMDEvRE9N/LXRyZWUtNS5wbmc',
-    title: 'Improve Devloper Productivity',
+    title: 'DOM Stucture',
     country: 'DOM Visualizer',
   description:
     'Through the DOM Visualizer, you can improve your productivity as a developer by quickly creating web page layouts without having to write any code. This is a great tool for web developers who want to quickly create web page layouts.',
