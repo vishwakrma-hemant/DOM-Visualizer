@@ -23,10 +23,12 @@ import {
   IconTrash,
   IconSwitchHorizontal,
   IconChevronDown,
+  IconHome,
 } from '@tabler/icons-react';
-import { useEffect, useState } from 'react';
+import { Component, useEffect, useState } from 'react';
 import classes from './Navbar.module.css';
 import useAppContext from '@/context/AppContext';
+import Link from 'next/link';
 
 const user = {
   name: '',
@@ -85,7 +87,7 @@ const Navbar = () => {
                 <Group gap={7}>
                   <Avatar src={user.image} alt={user.name} radius="xl" size={20} />
                   <Text fw={500} size="sm" lh={1} mr={3}>
-                    {currentUser.name}
+                    {currentUser && currentUser.name}
                   </Text>
                   <IconChevronDown style={{ width: rem(12), height: rem(12) }} stroke={1.5} />
                 </Group>
@@ -93,20 +95,21 @@ const Navbar = () => {
             </Menu.Target>
             <Menu.Dropdown>
 
-              <Menu.Label>Settings</Menu.Label>
-              <Menu.Item
+              <Menu.Label>Category</Menu.Label>
+              {/* <Menu.Item
                 leftSection={
                   <IconSettings style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
                 }
               >
                 Profile
-              </Menu.Item>
-              <Menu.Item
+              </Menu.Item> */}
+              <Menu.Item  component={Link} href="/"
                 leftSection={
-                  <IconSwitchHorizontal style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
+                  <IconHome style={{ width: rem(16), height: rem(16) }} stroke={1.5}/>
+                  
                 }
               >
-                Change account
+                Home
               </Menu.Item>
               <Menu.Item
                 onClick={logout}

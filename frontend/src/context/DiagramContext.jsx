@@ -67,6 +67,7 @@ export const DiagramProvider = ({ children }) => {
   
 
   const updateDiagram = () => {
+    console.log(selDiagram);
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/diagram/update/${selDiagram._id}`, {
       method: 'PUT',
       headers: {

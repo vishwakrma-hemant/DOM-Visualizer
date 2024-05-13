@@ -71,8 +71,8 @@ router.get("/getbymail/:email", (req,res) => {
     });
 })
 
-router.get('/getadmin', (req,res) => {
-    Model.findById(req.user._id)
+router.get('/getadmin/:id', (req,res) => {
+    Model.findById(req.params.id, req.body)
     .then((result) => {
         res.status(200).json(result);
     }).catch((err) => {
