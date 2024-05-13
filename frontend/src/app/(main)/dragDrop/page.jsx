@@ -2,6 +2,7 @@
 import { IconHeart } from '@tabler/icons-react';
 import { Card, Image, Text, Group, Badge, Button, ActionIcon } from '@mantine/core';
 import classes from './drop.module.css';
+import Link from 'next/link';
 
 const mockdata = {
   image:
