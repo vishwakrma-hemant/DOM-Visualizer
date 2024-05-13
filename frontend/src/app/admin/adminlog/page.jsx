@@ -41,12 +41,13 @@ const Login = () => {
       .then((response) => {
         console.log(response.status);
         if (response.status === 200) {
-          enqueueSnackbar("User Login successfully", {
+          enqueueSnackbar("Admin Login successfully", {
             variant: "success",
           });
           response.json().then((data) => {
             console.log(data);
             sessionStorage.setItem("admin", JSON.stringify(data));
+            // setCurrentUser(data);
             router.push("/admin/ControlPanel/userControl");
           });
 

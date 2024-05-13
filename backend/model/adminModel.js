@@ -4,7 +4,7 @@ const mySchema = new Schema ({
     email :{type:String, required:true, unique:true},
     avatar:{type:String, default :'avatar.jpg'},
     password: String,
-    role: {type:String, default:'user'},
+    role: {type:String, default:'admin'},
     creadeAt:Date,
     term : {type:Boolean, }
 })

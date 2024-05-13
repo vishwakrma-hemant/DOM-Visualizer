@@ -19,6 +19,9 @@ const uploader = multer({storage : storage});
 router.post("/uploadfile", uploader.single("myfile"), (req, res) => {
   res.status(200).json({ status: "success", url: req.url});
 });
+router.post('getfile',uploader.array('phostos',5),(req,res)=>{
+    res.json({message:'photos uploaded successfully'})   //this line of code will get the photos
+})
 
 // initialize nodemailer
 const mailConfig = {

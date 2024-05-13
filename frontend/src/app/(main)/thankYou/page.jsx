@@ -12,7 +12,7 @@ const ThankYou = () => {
       />
       <Container className={classes.container} size="md">
         <Title className={classes.title}>Thank You!</Title>
-        <Text className={classes.description} size="xl" mt="xl">
+        <Text className={classes.description} size="xl" mt="sm">
            Thank you for contacting us. We will get back to you soon.
         </Text>
       </Container>

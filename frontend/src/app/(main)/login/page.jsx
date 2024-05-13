@@ -49,8 +49,9 @@ const Login = () => {
           response.json().then((data) => {
             console.log(data);
             sessionStorage.setItem("user", JSON.stringify(data));
-            setCurrentUser(data);
+            // setCurrentUser(data);
             router.push("/user/domvisualizer");
+            document.cookie = `token=${data._id}`;
           });
 
         } else if(response.status === 401) {
