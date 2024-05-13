@@ -1,22 +1,16 @@
-.boxes{
-  height:45vh;
-  background-image:url(https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80);
-}
-
 .wrapper{
   height:100vh;
   width:100%;
   display:flex;
   justify-content: center;
   align-items: center;
-  /* background-color: royalblue; */
 }
-.card{
-   width:rem(300px);
-    height: rem(340px);
-    object-fit: fill;
+.card {
+   width:rem(280px);
+    height: rem(300px);
+    background-size:contain;
     background-position: center;
-    background-image: url(https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-9.png);
+    background-image: url(https://th.bing.com/th/id/OIP.s1trTdMPV0CS2KUolDt2HwHaJQ?rs=1&pid=ImgDetMain);
     border-top-right-radius: 40px;
     position: relative;
   }

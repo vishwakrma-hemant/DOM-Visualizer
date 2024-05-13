@@ -1,9 +1,15 @@
 'use client';
-import { Card, Avatar, Text, Group, Button } from '@mantine/core';
+import { Card, Avatar,ActionIcon,Box, Text, Group, Button,Container,Overlay } from '@mantine/core';
 import classes from './userProfile.module.css';
 import Link from 'next/link';
+import {
+  IconBrandGithub,
+  IconBrandInstagram,
+  IconBrandLinkedin,
+  IconImageInPicture,
+} from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
-import { useFormik } from 'formik';
 
 const stats = [
   { value: '34K', label: 'Followers' },
@@ -12,6 +18,7 @@ const stats = [
 ];
 
 const UserProfile =()=> {
+  const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
 
 const [ currentUser,setCurrentUser] = useState(
@@ -33,6 +40,7 @@ const fetchUserData  = () => {
 })
 .then(data => {
   console.log(data);
+  router.push('/user/profile/editProfile')
   setCurrentUser(data)
 })
 .catch(err => {
@@ -56,56 +64,70 @@ useEffect(() => {
   ));
 
   return (
-    <Card withBorder padding="xl" radius="md" className={classes.card}>
-      <Card.Section
-        h={140}
-        style={{
-          backgroundImage:
-            'url(https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80)',
-        }}
-      />
-       <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <Avatar
-        src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-9.png"
-        size={80}
-        radius={80}
-        mx="auto"
-        mt={-30}
-        className={classes.avatar}
-      />
-      {isHovered && (
-        <div
-          style={{
-            position: 'absolute',
-            top: '39%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            backgroundColor:'gray',
-            borderRadius: '90%',
-            padding: '14px',
-            cursor: 'pointer',
-          }}
-          // onClick={handleClick}
-        >
-          {/* Customize the edit placeholder content */}
-          <Link href="/edit-profile">Edit</Link>
-        </div>
-      )}
-    </div>
-        
-      <Text ta="center" fz="lg" fw={500} mt="sm">
-        {currentUser.name}
-      </Text>
-      <Text ta="center" fz="sm" c="dimmed">
-       {currentUser.email}
-      </Text>
-      <Group mt="md" justify="center" gap={30}>
-        {items}
-      </Group>
-      <Button fullWidth radius="md" mt="xl" size="md" variant="default">
-        Follow
-      </Button>
+  <Box className={classes.boxes}>
+    <Container fluid className={classes.wrapper}>
+    <Card className={classes.card}>
+      <Overlay className={classes.overlay} opacity={0.55} zIndex={0} />
+
+      <div className={classes.content}>
+        <Text size="lg" className={classes.title} mt={"xl"}>
+          Hemant Kumar
+        </Text>
+
+        <Text size="xs" className={classes.description}>
+          Web Developer
+        </Text>
+        <Box className={classes.btn} mt={"xl"}>
+          <ActionIcon 
+            className={classes.pip}
+            component={Link}
+            href="https://github.com/vishwakrma-hemant?tab=repositories"
+          >
+            <IconImageInPicture className={classes.place} />
+          </ActionIcon>
+          <ActionIcon
+            // color="blue"
+            radius="xl"
+            size="xl"
+            variant="outline"
+            className={classes.btn_style}
+            withBorder
+            component={Link}
+            href="https://github.com/vishwakrma-hemant?tab=repositories"
+          >
+            <IconBrandGithub size={33} className={classes.btn_icon} />
+          </ActionIcon>
+
+          <ActionIcon
+            // color="blue"
+            radius="xl"
+            size="xl"
+            variant="outline"
+            withBorder
+            className={classes.btn_style}
+            component={Link}
+            href="https://www.linkedin.com/in/hemant-kumar-7054b4267/"
+          >
+            <IconBrandLinkedin size={33} className={classes.btn_icon} />
+          </ActionIcon>
+
+          <ActionIcon
+            // color="blue"
+            radius="xl"
+            size="xl"
+            variant="outline"
+            withBorder
+            className={classes.btn_style}
+            component={Link}
+            href="https://hemantk3335@gmail.com"
+          >
+            <IconBrandInstagram size={33} className={classes.btn_icon} />
+          </ActionIcon>
+        </Box>
+      </div>
     </Card>
+</Container>
+</Box>
   );
 }
 export default UserProfile;
