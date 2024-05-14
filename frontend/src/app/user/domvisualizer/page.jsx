@@ -90,6 +90,7 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
     if (!node) {
       return [];
     }
+    console.log(node);
 
     const nodes = node.children
       ? node.children.flatMap((child, index) =>
@@ -109,7 +110,7 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
         classes: node.classes,
         ids: node.id,
         isConnectable: true,
-        id: `node-${nodeId}`,
+        // id: `node-${nodeId}`,
       },
       position: parentPosition,
     });
@@ -125,6 +126,7 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
     for (let i = 0; i < nodes.length; i++) {
       const currentNode = nodes[i];
       const currentY = currentNode.position.y;
+      // if(currentNode.data.label !== "div") continue;
 
       for (let j = 0; j < nodes.length; j++) {
         if (i === j) continue; // Skip self
@@ -157,7 +159,7 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
     const styles = props.style || {};
     const classes = props.className || "";
     const id = props.id || "";
-    //console.log(classes);
+    // console.log(id);
 
     let children = null;
     if (props.children) {
