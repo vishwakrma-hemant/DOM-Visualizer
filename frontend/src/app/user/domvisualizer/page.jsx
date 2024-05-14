@@ -81,6 +81,8 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
+  const {code, setCode} = useDomContext();
+
   let nodeId = 0;
   let edgeId = 0;
 
@@ -112,7 +114,7 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
       position: parentPosition,
     });
 
-    // console.log(nodes);
+    console.log(nodes);
 
     return nodes;
   };
@@ -279,6 +281,12 @@ const Visualizer = () => {
   }, []);
 
   useEffect(() => {
+    if(selDiagram === null) return;
+    setCode(selDiagram.html);
+  }, [selDiagram])
+  
+
+  useEffect(() => {
     setNodes([
       {
         id: "6",
@@ -353,7 +361,7 @@ const Visualizer = () => {
                 label="Diagram Name"
                 placeholder="Enter Diagram Name"
               />
-              <Button onClick={updateDiagram} className={classes.btn_dom}>
+              <Button onClick={e => updateDiagram(code)} className={classes.btn_dom}>
                 Save Change
               </Button>
             </Grid.Col>

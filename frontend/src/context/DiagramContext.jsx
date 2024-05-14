@@ -66,14 +66,14 @@ export const DiagramProvider = ({ children }) => {
   }
   
 
-  const updateDiagram = () => {
+  const updateDiagram = (html) => {
     console.log(selDiagram);
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/diagram/update/${selDiagram._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(selDiagram)
+      body: JSON.stringify({...selDiagram, ...(html && {html})})
     })
       .then((response) => {
         if (response.status === 200) {
