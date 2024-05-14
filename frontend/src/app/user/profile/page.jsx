@@ -71,7 +71,8 @@ useEffect(() => {
 
       <div className={classes.content}>
         <Text size="lg" className={classes.title} mt={"xl"}>
-          Hemant Kumar
+          
+          {currentUser.name}
         </Text>
 
         <Text size="xs" className={classes.description}>
