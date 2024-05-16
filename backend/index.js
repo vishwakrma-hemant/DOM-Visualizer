@@ -24,6 +24,7 @@ app.use("/feedback",FeedbackRouter);
 app.use("/util",UtilRouter);
 app.use("/admin",AdminRouter);
 
+app.use(express.static('./static/uploads'));
   
 app.listen(port,()=>{
 console.log("Server Started");

@@ -86,67 +86,58 @@ const HtmlToReactFlow = ({ htmlMarkup, zoomedIn, setZoomedIn }) => {
   let nodeId = 0;
   let edgeId = 0;
 
-  const createReactFlowNodes = (node, parentPosition = { x: 0, y: 0 }) => {
-    if (!node) {
-      return [];
-    }
-    console.log(node);
+const createReactFlowNodes = (node, parentIndex = 0, parentCount = 0, parentPosition = { x: 0, y: 0 }, parentNodeId = null) => {
+  if (!node) {
+    return [];
+  }
 
-    const nodes = node.children
-      ? node.children.flatMap((child, index) =>
-        createReactFlowNodes(child, {
-          x: parentPosition.x + index * 100,
+  const currentNodeId = `node-${nodeId++}`;
+
+  const childNodes = node.children
+    ? node.children.flatMap((child, index) =>
+        createReactFlowNodes(child, index, node.children.length, {
+          x: parentPosition.x + parentIndex * 300 + index * 100, // adjust x-position based on index within parent's children and parent's index
           y: parentPosition.y + 100,
-        })
+        }, currentNodeId)
       )
-      : [];
+    : [];
 
-    nodes.push({
-      id: `node-${nodeId++}`,
+  const nodes = [
+    ...childNodes,
+    {
+      id: currentNodeId,
       type: "DomNode",
+      parent: parentNodeId,
       data: {
         label: node.nodeName,
         styles: node.styles,
         classes: node.classes,
-        ids: node.id,
-        isConnectable: true,
-        // id: `node-${nodeId}`,
       },
       position: parentPosition,
-    });
+    },
+  ];
 
-    console.log(nodes);
+  return nodes;
+};
 
-    return nodes;
-  };
+const createReactFlowEdges = (nodes) => {
+  const edges = [];
 
-  const createReactFlowEdges = (nodes) => {
-    const edges = [];
+  for (let i = 0; i < nodes.length; i++) {
+    const currentNode = nodes[i];
+    const parentNodeId = currentNode.parent;
 
-    for (let i = 0; i < nodes.length; i++) {
-      const currentNode = nodes[i];
-      const currentY = currentNode.position.y;
-      // if(currentNode.data.label !== "div") continue;
-
-      for (let j = 0; j < nodes.length; j++) {
-        if (i === j) continue; // Skip self
-
-        const nextNode = nodes[j];
-        const nextY = nextNode.position.y;
-
-        if (nextY === currentY - 100) {
-          edges.push({
-            id: `edge-${currentNode.id}-${nextNode.id}`,
-            target: currentNode.id,
-            source: nextNode.id,
-          });
-        }
-      }
+    if (parentNodeId) {
+      edges.push({
+        id: `edge-${currentNode.id}-${parentNodeId}`,
+        source: parentNodeId,
+        target: currentNode.id,
+      });
     }
+  }
 
-    // console.log(edges);
-    return edges;
-  };
+  return edges;
+};
 
   const extractNodeNameAndStyles = (element) => {
     if (!React.isValidElement(element)) {

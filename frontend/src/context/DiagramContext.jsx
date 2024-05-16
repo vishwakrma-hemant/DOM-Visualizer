@@ -5,8 +5,8 @@ const DiagramContext = createContext();
 
 const NEW_DIAGRAM_DOM = `<body>
 <div>
-    <h1>Node 1</div>
-    <h1>Node 2</div>
+    <h1>Node 1</h1>
+    <div>Node 2</div>
     <div class="container">
       <button id="trigger">Click me</button>
       <button class="btn btn-primary">Some button</button>
@@ -18,6 +18,7 @@ export const DiagramProvider = ({ children }) => {
 
   const [selDiagram, setSelDiagram] = useState(null);
   const [diagramList, setDiagramList] = useState([]);
+  const [masterList, setMasterList] = useState([]);
 
   const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('user')));
 
@@ -30,6 +31,7 @@ export const DiagramProvider = ({ children }) => {
       .then(data => {
         console.log(data);
         setDiagramList(data);
+        setMasterList(data);
       })
       .catch((err) => {
         console.log(err);
@@ -98,7 +100,9 @@ export const DiagramProvider = ({ children }) => {
       diagramList,
       loadDiagrams,
       createNewDiagram,
-      updateDiagram
+      updateDiagram,
+      masterList,
+      setMasterList
     }}>
       {children}
     </DiagramContext.Provider>
