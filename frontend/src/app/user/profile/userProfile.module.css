@@ -1,93 +1,50 @@
-.boxes{
-  height:45vh;
-  background-image:url(https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80);
+.card {
+  background-color: var(--mantine-color-body);
 }
-
-.wrapper{
-  height:100vh;
-  width:100%;
-  display:flex;
+.box_btn{
+  
+  height:rem(320px);
+  width:rem(300px);
+  display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: royalblue; */
+  flex-direction: column;
 }
-.card{
-   width:rem(300px);
-    height: rem(340px);
-    object-fit: fill;
-    background-position: center;
-    background-image: url(https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-9.png);
-    border-top-right-radius: 40px;
-    position: relative;
-  }
-  
-  .content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: absolute;
-    inset: 0;
-    padding: var(--mantine-spacing-xl);
-    z-index: 1;
-  }
-  
-  /* .action {
-    position: absolute;
-    bottom: var(--mantine-spacing-xl);
-    right: var(--mantine-spacing-xl);
-  } */
-  
-  .title {
-    padding-top:rem(50px);
-    color: var(--mantine-color-white);
-    margin-bottom: calc(var(--mantine-spacing-xs) / 2);
-  }
-  
-  .description {
-    color: var(--mantine-color-white);
-    max-width: rem(220px);
-  }
-  
-  .overlay {
-    background-color: transparent;
-    background-image: linear-gradient(
-      105deg,
-      var(--mantine-color-black) 20%,
-      #312f2f 50%,
-      var(--mantine-color-gray-4) 100%
-    );
-  }
-  .btn{
-    height:rem(50px);
-    width:rem(200px);
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-  .btn_icon{
-    color:white;
-    padding: 2px;
 
-  }
-  .btn_style:hover{
-    border:4px solid #0934f5;
-  }
-  .pip{
-    position:absolute;
-    top:5px;
-    right:5px;
-    background-color: transparent;
-    margin: 10px;
+.avatar {
+  border: rem(2px) solid var(--mantine-color-body);
+}
+
+.btn{
+  height:rem(50px);
+  width:rem(200px);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.btn_icon{
+  color:white;
+  padding: 2px;
+
+}
+.btn_style:hover{
+  border:4px solid #0934f5;
+}
+.pip{
+  position:absolute;
+  top:5px;
+  right:5px;
+  background-color: transparent;
+  margin: 10px;
+
   
-    
-  }
-  .place{
-    padding:1px;
-  
-    background-color: transparent;
-  }
-  .pip:hover{
-    background-color: transparent;
-    border:2.5px solid #166eb9;
-  }
+}
+.place{
+  padding:1px;
+
+  background-color: transparent;
+}
+.pip:hover{
+  background-color: transparent;
+  border:2.5px solid #166eb9;
+}
