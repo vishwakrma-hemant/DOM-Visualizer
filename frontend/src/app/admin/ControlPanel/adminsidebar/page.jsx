@@ -13,6 +13,7 @@ import {
   IconDashboard,
   IconUser,
   IconDatabase,
+  IconRestore,
 } from '@tabler/icons-react';
 import classes from './sidebar.module.css';
 import Link from 'next/link'; 
@@ -20,8 +21,8 @@ import Link from 'next/link';
 const data = [
   { link: '/admin/ControlPanel/userControl', label: 'Users', icon: IconUser},
   { link: '/admin/ControlPanel/feedback', label: 'Feedback', icon: IconDatabase },
+  { link: '/admin/ControlPanel/adminContact', label: 'Contact', icon: IconRestore },
   { link: '/admin/ControlPanel/dashboard', label: 'Dashboard', icon: IconDashboard },
-  { link: 'admin/ControlPanel/userControl', label: 'SSH Keys', icon: IconKey },
   { link: 'admin/ControlPanel/userControl', label: 'Databases', icon: IconDatabaseImport },
   { link: 'admin/ControlPanel/userControl', label: 'Authentication', icon: Icon2fa },
   { link: 'admin/ControlPanel/userControl', label: 'Other Settings', icon: IconSettings },
