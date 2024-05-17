@@ -15,7 +15,6 @@ export default function Sidebar() {
   const { diagramList, setDiagramList, createNewDiagram, masterList, setSelDiagram } = useDiagramContext();
   const [searchDiagram, setSearchDiagram] = useState("");
 
-
   const mainLinks = diagramList.map((diagram) => (
     <UnstyledButton
       key={diagram._id}
@@ -28,18 +27,6 @@ export default function Sidebar() {
       </div>
     </UnstyledButton>
   ));
-  // const deleteDiagram = (name) => {
-  //   fetch('http://localhost:5000/diagram/delete/' + name, {
-  //     method: 'DELETE'
-  //   })
-  //     .then((response) => {
-  //       if (response.status === 200) {
-  //         fetchUserData();
-  //       }
-  //     }).catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
 
   return (
     <nav className={classes.navbar}>
@@ -62,6 +49,7 @@ export default function Sidebar() {
         }}
         value={searchDiagram}
         placeholder="Search"
+        // className={classes.searchInput}
         size="xs"
         leftSection={
           <IconSearch

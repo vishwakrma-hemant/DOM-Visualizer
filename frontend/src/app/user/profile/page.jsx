@@ -9,6 +9,7 @@ import {
   Box,
   ActionIcon,
   Dialog,
+  BackgroundImage,
 } from "@mantine/core";
 import classes from "./userProfile.module.css";
 import {
@@ -94,15 +95,8 @@ const Profile = () => {
   }, []);
 
   return (
-    <Card withBorder padding="xl" radius="md" className={classes.card}>
-      <Card.Section
-        h={140}
-        style={{
-          backgroundImage:
-            "url(https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80)",
-        }}
-      />
-      <Container fluid className={classes.box_btn}>
+    <Card  radius="md" className={classes.box_btn}>
+      <Box className={classes.box_1}>
         <Box onClick={handleImageClick}>
           
             <Avatar
@@ -113,17 +107,6 @@ const Profile = () => {
               mt={-30}
               className={classes.avatar}
             />
-          <Dialog
-            visibleFrom={imagecrop}
-            header={() => (
-              <Text htmlfor="" className="text-2xl font-semibold textColor">
-                updateprofile
-              </Text>
-            )}
-            onHide={() => setImagecrop(false)}
-          >
-            <Text>hi</Text>
-          </Dialog>
 
           <TextInput
             type="file"
@@ -133,15 +116,14 @@ const Profile = () => {
             style={{ display: "none" }}
           />
         </Box>
-        <Text ta="center" fz="lg" fw={500} mt="sm">
+        <Text ta="center" fz="lg" fw={500} mt="sm" c="white">
           {currentUser.name}
         </Text>
-        <Text ta="center" fz="sm" c="dimmed">
+        <Text ta="center" fz="sm" c="white">
           Developer
         </Text>
         <Box className={classes.btn} mt={"xl"}>
           <ActionIcon
-            // color="blue"
             radius="xl"
             size="xl"
             variant="outline"
@@ -150,11 +132,10 @@ const Profile = () => {
             component={Link}
             href="https://github.com/vishwakrma-hemant?tab=repositories"
           >
-            <IconBrandGithub size={33} className={classes.btn_icon} />
+            <IconBrandGithub size={33} className={classes.btn_icon} color="#376fc2" />
           </ActionIcon>
 
           <ActionIcon
-            // color="blue"
             radius="xl"
             size="xl"
             variant="outline"
@@ -163,11 +144,10 @@ const Profile = () => {
             component={Link}
             href="https://www.linkedin.com/in/hemant-kumar-7054b4267/"
           >
-            <IconBrandLinkedin size={33} className={classes.btn_icon} />
+            <IconBrandLinkedin size={33} className={classes.btn_icon} color="#376fc2" />
           </ActionIcon>
 
           <ActionIcon
-            // color="blue"
             radius="xl"
             size="xl"
             variant="outline"
@@ -176,10 +156,10 @@ const Profile = () => {
             component={Link}
             href="https://hemantk3335@gmail.com"
           >
-            <IconBrandGmail size={33} className={classes.btn_icon} />
+            <IconBrandGmail size={33} className={classes.btn_icon}  color="#376fc2"/>
           </ActionIcon>
         </Box>
-      </Container>
+      </Box>
     </Card>
   );
 };

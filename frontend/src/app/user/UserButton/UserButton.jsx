@@ -3,9 +3,10 @@ import { UnstyledButton, Group, Avatar, Text, rem } from '@mantine/core';
 import { IconChevronRight } from '@tabler/icons-react';
 import classes from './UserButton.module.css';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useState} from 'react';
 
 export function UserButton() {
+    
   const [ currentUser,setCurrentUser] = useState(
     JSON.parse(sessionStorage.getItem('user'))
   ) 
@@ -32,7 +33,7 @@ export function UserButton() {
     <UnstyledButton className={classes.user}>
       <Group>
         <Avatar
-          src="https://img.freepik.com/premium-vector/businessman-character-avatar-isolated_24877-5037.jpg?w=740"
+         src={'http://localhost:5000/'+currentUser.avatar}
           radius="xl"
         />
 

@@ -33,7 +33,7 @@ import Link from 'next/link';
 const user = {
   name: '',
   email: '',
-  image: 'https://img.freepik.com/premium-vector/businessman-character-avatar-isolated_24877-5037.jpg?w=740',
+  // image: 'https://img.freepik.com/premium-vector/businessman-character-avatar-isolated_24877-5037.jpg?w=740',
 };
 
 const Navbar = () => {
@@ -85,7 +85,7 @@ const Navbar = () => {
                 className={cx(classes.user, { [classes.userActive]: userMenuOpened })}
               >
                 <Group gap={7}>
-                  <Avatar src={user.image} alt={user.name} radius="xl" size={20} />
+                  <Avatar src={'http://localhost:5000/'+currentUser.avatar} alt={user.name} radius="xl" size={20} />
                   <Text fw={500} size="sm" lh={1} mr={3}>
                     {currentUser && currentUser.name}
                   </Text>
