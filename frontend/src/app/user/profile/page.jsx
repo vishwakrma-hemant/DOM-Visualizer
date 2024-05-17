@@ -3,13 +3,9 @@ import {
   Card,
   Avatar,
   Text,
-  Container,
-  Button,
   TextInput,
   Box,
   ActionIcon,
-  Dialog,
-  BackgroundImage,
 } from "@mantine/core";
 import classes from "./userProfile.module.css";
 import {

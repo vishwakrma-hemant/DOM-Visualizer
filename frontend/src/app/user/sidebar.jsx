@@ -1,8 +1,6 @@
 import { TextInput, Code, UnstyledButton, rem, Button } from "@mantine/core";
 import {
   IconBulb,
-  IconUser,
-  IconCheckbox,
   IconSearch,
   IconPlus,
 } from "@tabler/icons-react";
@@ -49,7 +47,6 @@ export default function Sidebar() {
         }}
         value={searchDiagram}
         placeholder="Search"
-        // className={classes.searchInput}
         size="xs"
         leftSection={
           <IconSearch
@@ -58,7 +55,6 @@ export default function Sidebar() {
           />
         }
         rightSectionWidth={70}
-        // rightSection={<Code className={classes.searchCode}>Search</Code>}
         styles={{ section: { pointerEvents: "none" } }}
         mb="sm"
       />

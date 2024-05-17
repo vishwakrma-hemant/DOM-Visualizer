@@ -33,7 +33,6 @@ import Link from 'next/link';
 const user = {
   name: '',
   email: '',
-  // image: 'https://img.freepik.com/premium-vector/businessman-character-avatar-isolated_24877-5037.jpg?w=740',
 };
 
 const Navbar = () => {
@@ -42,31 +41,9 @@ const Navbar = () => {
   const [userMenuOpened, setUserMenuOpened] = useState(false);
 
   const { currentUser, logout, setCurrentUser, loggedIn } = useAppContext();
-
-  // const fetchUserData = () => {
-  //   fetch(`http://localhost:5000/user/getUser`,)
-  //     .then(res => {
-  //       console.log(res.status);
-  //       return res.json();
-  //     })
-  //     .then(data => {
-  //       console.log(data);
-  //       setCurrentUser(data)
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }
-
   useEffect(() => {
     // fetchUserData();
   }, [])
-
-  // const items = tabs.map((tab) => (
-  //   <Tabs.Tab value={tab} key={tab}>
-  //     {tab}
-  //   </Tabs.Tab>
-  // ));
 
   return (
     <div className={classes.header}>
@@ -96,13 +73,6 @@ const Navbar = () => {
             <Menu.Dropdown>
 
               <Menu.Label>Category</Menu.Label>
-              {/* <Menu.Item
-                leftSection={
-                  <IconSettings style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
-                }
-              >
-                Profile
-              </Menu.Item> */}
               <Menu.Item  component={Link} href="/"
                 leftSection={
                   <IconHome style={{ width: rem(16), height: rem(16) }} stroke={1.5}/>
