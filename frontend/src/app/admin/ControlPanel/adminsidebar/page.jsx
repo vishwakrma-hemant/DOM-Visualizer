@@ -22,10 +22,10 @@ const data = [
   { link: '/admin/ControlPanel/userControl', label: 'Users', icon: IconUser},
   { link: '/admin/ControlPanel/feedback', label: 'Feedback', icon: IconDatabase },
   { link: '/admin/ControlPanel/adminContact', label: 'Contact', icon: IconRestore },
-  { link: '/admin/ControlPanel/dashboard', label: 'Dashboard', icon: IconDashboard },
-  { link: 'admin/ControlPanel/userControl', label: 'Databases', icon: IconDatabaseImport },
-  { link: 'admin/ControlPanel/userControl', label: 'Authentication', icon: Icon2fa },
-  { link: 'admin/ControlPanel/userControl', label: 'Other Settings', icon: IconSettings },
+  // { link: '/admin/ControlPanel/dashboard', label: 'Dashboard', icon: IconDashboard },
+  // { link: 'admin/ControlPanel/userControl', label: 'Databases', icon: IconDatabaseImport },
+  // { link: 'admin/ControlPanel/userControl', label: 'Authentication', icon: Icon2fa },
+  // { link: 'admin/ControlPanel/userControl', label: 'Other Settings', icon: IconSettings },
 ];
 
 const Sidebar = () => {
@@ -57,7 +57,7 @@ const Sidebar = () => {
         {links}
       </div>
 
-      <div className={classes.footer}>
+      {/* <div className={classes.footer}>
         <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
           <IconSwitchHorizontal className={classes.linkIcon} stroke={1.5} />
           <span>Change account</span>
@@ -67,7 +67,7 @@ const Sidebar = () => {
           <IconLogout className={classes.linkIcon} stroke={1.5} />
           <span>Logout</span>
         </a>
-      </div>
+      </div> */}
     </nav>
   );
 }

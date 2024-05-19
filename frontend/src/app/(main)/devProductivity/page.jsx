@@ -65,9 +65,9 @@ function domUpdate() {
         >
           Signup
         </Button>
-        <ActionIcon variant="default" radius="md" size={36}>
+        {/* <ActionIcon variant="default" radius="md" size={36}>
           <IconHeart className={classes.like} stroke={1.5} />
-        </ActionIcon>
+        </ActionIcon> */}
       </Group>
     </Card>
     </Container>
