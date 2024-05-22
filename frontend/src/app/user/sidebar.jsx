@@ -1,17 +1,22 @@
 import { TextInput, Code, UnstyledButton, rem, Button } from "@mantine/core";
-import {
-  IconBulb,
-  IconSearch,
-  IconPlus,
-} from "@tabler/icons-react";
+import { IconBulb, IconSearch, IconPlus } from "@tabler/icons-react";
 import { UserButton } from "./UserButton/UserButton";
 import classes from "./sidebar.module.css";
 import useDiagramContext from "@/context/DiagramContext";
 import { useState } from "react";
+import useAppContext from "@/context/AppContext";
 
 export default function Sidebar() {
-  const { diagramList, setDiagramList, createNewDiagram, masterList, setSelDiagram } = useDiagramContext();
+  const {
+    diagramList,
+    setDiagramList,
+    createNewDiagram,
+    masterList,
+    setSelDiagram,
+  } = useDiagramContext();
   const [searchDiagram, setSearchDiagram] = useState("");
+
+  const { currentUser } = useAppContext();
 
   const mainLinks = diagramList.map((diagram) => (
     <UnstyledButton
@@ -28,9 +33,7 @@ export default function Sidebar() {
 
   return (
     <nav className={classes.navbar}>
-      <div className={classes.section}>
-        <UserButton />
-      </div>
+      <div className={classes.section}>{currentUser && <UserButton />}</div>
 
       <Button
         onClick={createNewDiagram}
@@ -43,7 +46,11 @@ export default function Sidebar() {
 
       <TextInput
         onChange={(e) => {
-          setDiagramList(masterList.filter((diagram) => diagram.name.toLowerCase().includes(e.target.value.toLowerCase())));
+          setDiagramList(
+            masterList.filter((diagram) =>
+              diagram.name.toLowerCase().includes(e.target.value.toLowerCase())
+            )
+          );
         }}
         value={searchDiagram}
         placeholder="Search"
@@ -58,7 +65,6 @@ export default function Sidebar() {
         styles={{ section: { pointerEvents: "none" } }}
         mb="sm"
       />
-  
 
       <div className={classes.section} style={{ overflow: "auto" }}>
         <div className={classes.mainLinks}>{mainLinks}</div>

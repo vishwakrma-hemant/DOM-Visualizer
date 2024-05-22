@@ -24,6 +24,7 @@ export const DiagramProvider = ({ children }) => {
 
   
   const loadDiagrams = () => {
+    if(currentUser===null) return;
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/diagram/getbyuser/${currentUser._id}`)
       .then((response) => {
         return response.json();

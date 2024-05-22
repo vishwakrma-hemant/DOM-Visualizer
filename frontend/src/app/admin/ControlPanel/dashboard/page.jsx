@@ -41,7 +41,6 @@ const data = [
     "hot dog": 148,
     "hot dogColor": getRandomColor(),
   },
-
 ];
 const data2 = [
   {
@@ -59,7 +58,6 @@ const data2 = [
     label: "hack",
     value: 420,
   },
-
 ];
 
 const data3 = [
@@ -75,7 +73,6 @@ const data3 = [
         x: "helicopter",
         y: 36,
       },
-    
     ],
   },
   {
@@ -137,15 +134,15 @@ const data3 = [
       {
         x: "skateboard",
         y: 260,
-      }
+      },
     ],
   },
 ];
 
 const StatCard = ({ stat, Icon }) => {
-    if (!stat || stat.progress === undefined || stat.color === undefined) {
-        return null; // or return a loading spinner, or some placeholder content
-      }
+  if (!stat || stat.progress === undefined || stat.color === undefined) {
+    return null; // or return a loading spinner, or some placeholder content
+  }
   return (
     <Paper withBorder radius="md" p="xs" key={stat.label}>
       <Group>
@@ -177,7 +174,6 @@ const StatCard = ({ stat, Icon }) => {
 const Dashboard = () => {
   const [userList, setUserList] = useState([]);
   const [pieData, setPieData] = useState([]);
- 
 
   const formatPieData = (data, key) => {
     const uniqueValues = getUniqueValues(data, key);
@@ -231,6 +227,9 @@ const Dashboard = () => {
         const [formattedData, datekeys] = formatDataForBarChart(data);
         console.log(datekeys);
         console.log(formattedData);
+        const temp = formatPieData(data, "createdAt");
+        console.log(temp);
+        setPieData(temp);
         // console.log(formattedData);
       })
       .catch((err) => console.log(err));
@@ -256,7 +255,7 @@ const Dashboard = () => {
       </Grid>
       <Grid>
         <GridCol span={{ base: 12, md: 6 }} h={"40vh"}>
-          <PieChart data={pieData} />
+          {/* <PieChart data={data2} /> */}
         </GridCol>
       </Grid>
     </Box>
