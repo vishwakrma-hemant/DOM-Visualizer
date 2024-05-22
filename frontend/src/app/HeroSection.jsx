@@ -25,9 +25,9 @@ export function HeroSection() {
         <Button className={classes.control} variant="white" size="lg" component={Link} href='/signup'>
           Get started
         </Button>
-        <Button className={cx(classes.control, classes.secondaryControl)} size="lg">
+        {/* <Button className={cx(classes.control, classes.secondaryControl)} size="lg">
           Live demo
-        </Button>
+        </Button> */}
       </div>
     </div>
   </div>
