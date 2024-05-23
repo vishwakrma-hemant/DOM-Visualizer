@@ -1,40 +1,42 @@
-'use client'
-import { Menu, Group, Center, Burger, Container, Title } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { IconChevronDown } from '@tabler/icons-react';
-import classes from './navbar.module.css';
-import Link from 'next/link';
+"use client";
+import {
+  Menu,
+  Group,
+  Center,
+  Burger,
+  Container,
+  Paper,
+  Title,
+  Divider,
+  Button,
+  Box,
+  Drawer,
+  ScrollArea,
+  rem,
+  UnstyledButton,
+  Anchor,
+} from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import { IconChevronDown } from "@tabler/icons-react";
+import classes from "./navbar.module.css";
+import Link from "next/link";
+import ActionTog from "./action/page";
+import clsx from "clsx";
+import { usePathname } from "next/navigation";
 
 const links = [
-  { link: '/', label: 'Home' },
-  {
-    link: '#1',
-    link: '/about', label:'About'
-    // links: [
-    //   { link: '/docs', label: 'About' },
-    //   { link: '/resources', label: 'Information' },
-    //   { link: '/community', label: 'Help?' },
-    //   { link: '/blog', label: 'Content' },
-    // ],
-  },
-  // { link: '/blog', label: 'Blog' },
-  // {
-  //   link: '#2',
-  //   label: 'Support',
-  //   links: [
-  //     { link: '/faq', label: 'FAQ' },
-  //     { link: '/demo', label: 'Book a demo' },
-  //     { link: '/forums', label: 'Forums' },
-  //   ],
-  // },
-  { link: '/blog', label: 'Blog' },
-  { link: '/contact', label: 'Contact Us' },
-  { link: '/faq', label: 'FAQs?' },
-  { link: '/feedback', label: 'Feedback' },
+  { link: "/", label: "Home" },
+  { link: "/about", label: "About" },
+  { link: "/contact", label: "Contact Us" },
+  { link: "/feedback", label: "Feedback" },
 ];
 
-const Navbar= ()=> {
-  const [opened, { toggle }] = useDisclosure(false);
+const Navbar = () => {
+  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
+    useDisclosure(false);
+  const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
+
+  const pathname = usePathname();
 
   const items = links.map((link) => {
     const menuItems = link.links?.map((item) => (
@@ -43,7 +45,12 @@ const Navbar= ()=> {
 
     if (menuItems) {
       return (
-        <Menu key={link.label} trigger="hover" transitionProps={{ exitDuration: 0 }} withinPortal>
+        <Menu
+          key={link.label}
+          trigger="hover"
+          transitionProps={{ exitDuration: 0 }}
+          withinPortal
+        >
           <Menu.Target>
             <a
               href={link.link}
@@ -62,30 +69,90 @@ const Navbar= ()=> {
     }
 
     return (
-      <Link
-        key={link.label}
-        href={link.link}
-        className={classes.link}
-      >
+      <Link key={link.label} href={link.link} className={clsx(classes.link, (link.link == pathname && classes.linkActive ))}>
         {link.label}
       </Link>
     );
   });
 
   return (
-    <header className={classes.header}>
-      <Container size="md">
-        <div className={classes.inner}>
-          <Title order={2} component={Link} href='/'  className={classes.tile}>DOM Visualizer</Title>
-          <Group gap={5} visibleFrom="sm">
-            {items}
+    <Box>
+      <header className={classes.header}>
+        <Paper
+          padding="md"
+          style={{ position: "fixed", width: "100%", zIndex: 1000, top: 0 }}
+        >
+          <Container size="lg">
+            <div className={classes.inner}>
+              <Title
+                order={3}
+                component={Link}
+                href="/"
+                className={classes.title}
+              >
+                DOM Visualizer
+              </Title>
+              <Group gap={1} visibleFrom="sm" fs={"md"}>
+                {items}
+              </Group>
+              <Group my="lg" visibleFrom="xs" mr={"sm"}>
+                <Button component={Link} href="/signup">
+                  Sign up
+                </Button>
+                <Button component={Link} href="/login">
+                  Log in
+                </Button>
+              </Group>
+              <Burger
+                opened={drawerOpened}
+                onClick={toggleDrawer}
+                hiddenFrom="sm"
+              />
+              <ActionTog />
+            </div>
+          </Container>
+        </Paper>
+      </header>
+      <Drawer
+        opened={drawerOpened}
+        onClose={closeDrawer}
+        size="100%"
+        padding="md"
+        title="DOM Visualizer"
+        hiddenFrom="sm"
+        zIndex={1000000}
+      >
+        <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
+          <Divider my="sm" />
+
+          {/* <Collapse in={linksOpened}>{links}</Collapse> */}
+          <a href="/" className={classes.link}>
+            Home
+          </a>
+          <a href="contact" className={classes.link}>
+            ContactUs
+          </a>
+          <a href="/about" className={classes.link}>
+            About
+          </a>
+          <a href="/feedback" className={classes.link}>
+            Feedback
+          </a>
+
+          <Divider my="sm" />
+          <Group justify="center" grow pb="xl" px="md">
+            <Button variant="default" component={Anchor} href="/login">
+              Log in
+            </Button>
+            <Button component={Anchor} href="/signup">
+              Sign up
+            </Button>
           </Group>
-          <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
-        </div>
-      </Container>
-    </header>
+          <ActionTog />
+        </ScrollArea>
+      </Drawer>
+    </Box>
   );
-}
+};
 
 export default Navbar;
-

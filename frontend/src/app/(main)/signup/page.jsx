@@ -84,9 +84,9 @@ const Signup = () => {
   };
 
   return (
-    <Container fluid>
+    <Container fluid mt={'lg'} className={classes.wrapper}>
       <Grid>
-        <Grid.Col span={5}>
+        <Grid.Col span={6} mt={'md'} className={classes.grid_1}>
           <Paper withBorder shadow="md" p={30} mt={30} className={classes.bor}>
             <form onSubmit={form.onSubmit(signupSubmit)}>
               <Stack>
@@ -107,6 +107,14 @@ const Signup = () => {
                   error={form.errors.email}
                   radius="md"
                 />
+                {/* <TextInput
+                  required
+                  label="Phone no."
+                  placeholder="Enter your phone number"
+                  {...form.getInputProps("mobile")}
+                  error={form.errors.name}
+                  radius="md"
+                /> */}
 
                 <PasswordInput
                   required
@@ -150,11 +158,11 @@ const Signup = () => {
           </Paper>
         </Grid.Col>
 
-        <Grid.Col span={7}>
+        <Grid.Col span={6} className={classes.grid_2}>
           <Image
-            src="https://img.freepik.com/premium-photo/people-are-using-digital-tablets-log-applications-websites_51530-3693.jpg?w=826"
+            src="https://static.vecteezy.com/system/resources/thumbnails/004/815/703/small_2x/data-protection-internet-security-privacy-access-with-password-3d-isometric-computer-pc-with-key-open-lock-folder-cloud-documents-laptop-money-design-for-banner-vector.jpg"
             className={classes.img}
-            mt="xl"
+           
           />
         </Grid.Col>
       </Grid>

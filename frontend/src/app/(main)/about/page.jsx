@@ -1,71 +1,83 @@
-'use client';
-import { Image, Card, Text, Group, Button, rem, Container } from '@mantine/core';
-import { Carousel } from '@mantine/carousel';
-import { IconStar } from '@tabler/icons-react';
-import classes from './about.module.css';
+"use client";
+import {
+  Badge,
+  Group,
+  Title,
+  Text,
+  Card,
+  SimpleGrid,
+  Container,
+  rem,
+  AspectRatio,
+  useMantineTheme,
+} from "@mantine/core";
+import { IconGauge, IconUser, IconCookie, IconHelp,IconBook, IconClock } from "@tabler/icons-react";
+import classes from "./about.module.css";
+import Banner from "./aaa/page";
 
-const images = [
-  "https://th.bing.com/th/id/OIP.ErAiMih0ltX9nxzgEbfN0gHaEp?rs=1&pid=ImgDetMain",
-  "https://medforest.net/wp-content/uploads/2020/09/montclima1-768x512.jpg",
-  "https://i.pinimg.com/736x/c4/1e/ce/c41ece3252845616bf8c5ed5a7de48bf--forest-photography-magical-forest.jpg"
+const mockdata = [
+  {
+    title: "Interactive Learning",
+    description:
+      "In DOM Visualizer developer can learn how to manipulate the DOM using JavaScript, It is a great way to learn how the DOM works and how to manipulate it using JavaScript.",
+    icon: IconBook,
+  },
+  {
+    title: "Help to Developer",
+    description:
+    "DOM Visualizer helps to developer to understand the structure of the Web page of html node and how it changes in real-time as you interact with the page. This is a great way to learn how the DOM works and how to manipulate it using JavaScript.",
+    icon: IconHelp,
+  },
+  {
+    title: "Time Saving",
+    description:
+    "DOM Visualizer saves lot of time of developers and make them more productive, It is a great tool for web developers who want to quickly create a web page layout",
+    icon: IconClock,
+  },
+  {
+    title: "Frontend Developer",
+    description:
+    "DOM Structure help to Frontend developer to design the web page layout without having to write any code, It is a great tool for web developers who want to quickly create a web page layout",
+    icon: IconUser,
+  },
 ];
- function CarouselCard() {
-  const slides = images.map((image) => (
-    <Carousel.Slide key={image}>
-      <Image src={image} height={220}  />
-    </Carousel.Slide>
+
+const About = () => {
+  const theme = useMantineTheme();
+  const features = mockdata.map((feature) => (
+    <Card
+      key={feature.title}
+      shadow="md"
+      radius="md"
+      className={classes.card}
+      padding="xl"
+    >
+      
+      <feature.icon
+        style={{ width: rem(50), height: rem(50) }}
+        stroke={2}
+        color={theme.colors.blue[6]}
+      />
+      <Text fz="lg" fw={500} className={classes.cardTitle} mt="md">
+        {feature.title}
+      </Text>
+      <Text fz="sm" c="light" mt="sm">
+        {feature.description}
+      </Text>
+    </Card>
   ));
 
   return (
-    <Container fluid mt={20}>
-      <Card radius="md" withBorder padding="xl">
-      <Card.Section>
-        <Carousel
-          withIndicators
-          loop
-          classNames={{
-            root: classes.carousel,
-            controls: classes.carouselControls,
-            indicator: classes.carouselIndicator,
-          }}
-        >
-          {slides}
-        </Carousel>
-      </Card.Section>
-
-      <Group justify="space-between" mt="lg">
-        <Text fw={500} fz="lg">
-          Forde, Norway
-        </Text>
-
-        <Group gap={5}>
-          <IconStar style={{ width: rem(16), height: rem(16) }} />
-          <Text fz="xs" fw={500}>
-            4.78
-          </Text>
-        </Group>
+    <Container fluid size="lg" py="xl">
+      <Group justify="center">
+        <Banner />
       </Group>
 
-      <Text fz="sm" c="dimmed" mt="sm">
-        Relax, rejuvenate and unplug in this unique contemporary Birdbox. Feel close to nature in
-        ultimate comfort. Enjoy the view of the epic mountain range of Blegja and the Førdefjord.
-      </Text>
-
-      <Group justify="space-between" mt="md">
-        <div>
-          <Text fz="xl" span fw={500} className={classes.price}>
-            397$
-          </Text>
-          <Text span fz="sm" c="dimmed">
-            {' '}
-            / night
-          </Text>
-        </div>
-
-        <Button radius="md">Book now</Button>
-      </Group>
-    </Card>
+      <SimpleGrid cols={{ base: 1, md: 2 }} spacing="xl" mt={50} className={classes.feature_item}>
+      
+        {features}
+      </SimpleGrid>
     </Container>
   );
-}
-export default CarouselCard;
+};
+export default About;

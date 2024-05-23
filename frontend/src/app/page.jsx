@@ -9,6 +9,8 @@ import Navbar from "./(main)/navbar";
 import Footer from "./(main)/footer";
 import { Grid, Image } from "@mantine/core";
 import { HeroSection } from "./HeroSection";
+import FAQ from "./(main)/faq/page";
+import Scroll from "./Scrolling";
 
 const Home = () => {
   return (
@@ -16,6 +18,8 @@ const Home = () => {
       <Navbar/>
       <HeroSection/>
       <Features />
+      <Scroll />
+      <FAQ />
       <Footer/>
     </>
   );

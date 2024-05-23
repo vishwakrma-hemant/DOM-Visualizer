@@ -22,8 +22,11 @@
   .searchCode {
     font-weight: 700;
     font-size: rem(10px);
-    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-7));
-    border: rem(1px) solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-7));
+    background-color: #6741D9;
+    color: white;
+  
+    border:2px solid rgb(4, 29, 255);
+    cursor: pointer;
   }
   
   .mainLinks {
@@ -93,3 +96,4 @@
       color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
     }
   }
+

@@ -1,31 +1,32 @@
 'use client';
-import { Text, Container, ActionIcon, Group,Title, rem,Link,} from '@mantine/core';
-import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
+import { Text, Container, ActionIcon, Group,Title, rem,a} from '@mantine/core';
+import { IconBrandLinkedin, IconBrandGithub, IconBrandGmail } from '@tabler/icons-react';
 import classes from './footer.module.css';
+import Link from 'next/link';
 
 const data = [
   {
     title: 'About',
     links: [
-      { label: 'Live DOM Update', link: '#' },
-      { label: 'Drag & Drop', link: '#' },
-      { label: 'Interactive Learning', link: '#' }
+      { label: 'Live DOM Update', link: '/liveUpdate' },
+      { label: 'Drag & Drop', link: '/dragDrop' },
+      { label: 'DOM Structure', link: '/domStructure' }
     ],
   },
-  {
-    title: 'Project',
-    links: [
-      { label: 'Contribute', link: '#' },
-      { label: 'Media assets', link: '#' },
-      { label: 'Changelog', link: '#' },
-      { label: 'Releases', link: '#' },
-    ],
-  },
+  // {
+  //   title: 'Project',
+  //   links: [
+  //     { label: 'Contribute', link: '#' },
+  //     { label: 'Media assets', link: '#' },
+  //     { label: 'Changelog', link: '#' },
+  //     { label: 'Releases', link: '#' },
+  //   ],
+  // },
   {
     title: 'Community',
     links: [
       { label: 'Follow on LinkedIn', link:'https://www.linkedin.com/in/hemant-kumar-7054b4267/'  },
-      { label: 'Email', link:'hemantk3335@gmail.com' },
+      { label: 'Email', link:'https://hemantk3335@gmail.com' },
       { label: 'GitHub discussions', link:'https://github.com/vishwakrma-hemant' },
     ],
   },
@@ -37,9 +38,8 @@ const Footer = () => {
       <Text
         key={index}
         className={classes.link}
-        component="a"
+        component={Link}
         href={link.link}
-        onClick={(event) => event.preventDefault()}
       >
         {link.label}
       </Text>
@@ -55,29 +55,29 @@ const Footer = () => {
 
   return (
     <footer className={classes.footer}>
-      <Container className={classes.inner}>
+      <Container fluid className={classes.inner} mx={{ xs: 'sm', md: 'xl' }}>
         <div>
-           <Title>DOM Visualizer</Title>
-          <Text size="xs" c="dimmed" className={classes.description}>
+          <Title>DOM Visualizer</Title>
+          {/* <Text size="xs" c="dimmed" className={classes.description}>
             Build fully functional accessible web applications faster than ever
-          </Text>
+          </Text> */}
         </div>
         <div className={classes.groups}>{groups}</div>
       </Container>
-      <Container className={classes.afterFooter}>
+      <Container fluid className={classes.afterFooter} mx={{ xs: 'sm', md: 'xl' }}>
         <Text c="dimmed" size="sm">
           © 2024 DOM Visualizer. All rights reserved.
         </Text>
 
         <Group gap={0} className={classes.social} justify="flex-end" wrap="nowrap">
-          <ActionIcon size="lg" color="gray" variant="subtle">
-            <IconBrandTwitter style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
+          <ActionIcon size="lg" color="gray" variant="subtle" component={Link} href='https://www.linkedin.com/in/hemant-kumar-7054b4267/'>
+            <IconBrandLinkedin style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size="lg" color="gray" variant="subtle">
-            <IconBrandYoutube style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
+          <ActionIcon size="lg" color="gray" variant="subtle" component={Link} href='https://github.com/vishwakrma-hemant?tab=repositories'>
+            <IconBrandGithub style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size="lg" color="gray" variant="subtle">
-            <IconBrandInstagram style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
+          <ActionIcon size="lg" color="gray" variant="subtle" component={Link} href='https://hemantk3335@gmail.com'>
+            <IconBrandGmail style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
           </ActionIcon>
         </Group>
       </Container>

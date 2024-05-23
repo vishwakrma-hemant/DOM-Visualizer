@@ -1,82 +1,64 @@
 'use client';
-import { ThemeIcon, Text, Title, Container, SimpleGrid, rem } from '@mantine/core';
-import { IconGauge, IconCookie, IconUser, IconMessage2, IconLock } from '@tabler/icons-react';
-import classes from './features.module.css';
+import { SimpleGrid, Card, Image, Text, Container, AspectRatio ,Title} from '@mantine/core';
+import classes from './Features.module.css';
+import Link from 'next/link';
 
-export const MOCKDATA = [
+const mockdata = [
   {
-    icon: IconUser,
-    title: 'Improve developer productivity',
-    description:
-    'DOM visualizer improve the developer productivity by providing DOM structure of  webpage.',
+    title: 'Live DOM Update',
+    image:
+     'https://thumbs.dreamstime.com/b/update-system-upgrade-software-version-technology-concept-virtual-screen-217164383.jpg',
+     href:'../liveUpdate'
+      // date: 'August 18, 2022',
   },
   {
-    icon: IconGauge,
-    title: 'Understanding HTML web structure',
-    description:
-      'DOM visualizer provides the DOM structure of HTML webpages , so developer can easily understand the entire structure of webpage.',
+    title: 'Drag & Drop',
+    image:
+      'https://cdn.dribbble.com/users/945601/screenshots/15180885/media/3f9083d5b99ac819b0c008c1d302854b.png?resize=1200x900&vertical=center',
+      href:'../dragDrop'
+      // date: 'August 27, 2022',
   },
   {
-    icon: IconCookie,
-    title: 'Interactive',
-    description:
-      'The new developer can directly perform changes on a web page by the drag and drop property of DOM visualizer.',
+    title: 'Improve Developer Productivity',
+    image:
+    'https://imgs.search.brave.com/GtU02MgHA2WlGH_Qh2JGF8xlclRgCwzaMESW_8WGg4M/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA2LzI3LzI0LzYx/LzM2MF9GXzYyNzI0/NjE2Ml9lV3FnUGh6/emVzSDZaR2Y4MUYy/Sm9sVTIyWjRDeEY1/cS5qcGc',
+      href :'../devProductivity'
+      // date: 'September 9, 2022',
   },
   {
-    icon: IconLock,
-    title: 'Reduce Learning Curve',
-    description:
-      'Reduce learning curve providing the DOM structure the developer can easily save time to learn new properties.',
-  },
-  {
-    icon: IconMessage2,
-    title: 'Cross-Browser-Compatibility',
-    description:
-      'DOM Visualizer run every platfrom and it is easy to use.',
+    title: 'Provide DOM Structure',
+    image:
+      'https://imgs.search.brave.com/hfo5gXLGVESx6YG_kZdyKbJ6oykvQ7DFIPfdrNQ58bg/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/ZGlnaXRhbG9jZWFu/LmNvbS9fbmV4dC9z/dGF0aWMvbWVkaWEv/aW50cm8tdG8tY2xv/dWQuZDQ5YmM1Zjcu/anBlZw',
+    href:'../domStructure'
+    // date: 'September 12, 2022',
   },
 ];
 
+const Feature =() =>{
 
-function Feature({ icon: Icon, title, description }) {
+  const cards = mockdata.map((article) => (
+    <Link href={article.href} className={classes.card_item}>
+
+    <Card key={article.title} p="md" radius="md"className={classes.card}>
+      <AspectRatio ratio={1920 / 1080}>
+        <Image src={article.image} />
+      </AspectRatio>
+      {/* <Text c="dimmed" size="xs" tt="uppercase" fw={700} mt="md">
+        {article.date}
+      </Text> */}
+      <Title className={classes.title} mt={5} align={'center'} fw={500} order={2}>
+        {article.title}
+      </Title>
+    </Card>
+    </Link>
+  ));
+
   return (
-    <div>
-      <ThemeIcon variant="light" size={60} radius={40}>
-        <Icon style={{ width: rem(18), height: rem(18) }} stroke={2.5} />
-      </ThemeIcon>
-      <Text mt="sm" mb={7}>
-        {title}
-      </Text>
-      <Text size="sm" c="black" lh={1.6} fs={1}>
-        {description}
-      </Text>
-    </div>
+
+      <SimpleGrid cols={{ base: 1, md: 2 }} my={'sm'}>{cards}</SimpleGrid>
+    
+    
   );
 }
 
-function FeaturesGrid() {
-  const features = MOCKDATA.map((feature, index) => <Feature {...feature} key={index} />);
-
-  return (
-    <Container className={classes.wrapper}>
-      <Title className={classes.title}>DOM Visualizer are used in the different placed</Title>
-
-      {/* <Container size={560} p={0}>
-        <Text size="sm" className={classes.description}>
-          DOM Visualizer provides the DOM Structure of web page and it also
-          provides some functionality like Drag and Drop and Live DOM Update.
-        </Text>
-      </Container> */}
-
-      <SimpleGrid
-        mt={60}
-        cols={{ base: 1, sm: 2, md: 3 }}
-        spacing={{ base: 'xl', md: 50 }}
-        verticalSpacing={{ base: 'xl', md: 50 }}
-      >
-        {features}
-      </SimpleGrid>
-    </Container>
-  );
-}
-
-export default FeaturesGrid;
+export default Feature;

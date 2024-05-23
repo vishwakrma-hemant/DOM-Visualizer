@@ -1,55 +1,162 @@
-'use client';
-import { Card, Avatar, Text, Group, Button } from '@mantine/core';
-import classes from './userProfile.module.css';
+"use client";
+import {
+  Card,
+  Avatar,
+  Text,
+  TextInput,
+  Box,
+  ActionIcon,
+} from "@mantine/core";
+import classes from "./userProfile.module.css";
+import {
+  IconBrandGithub,
+  IconBrandGmail,
+  IconBrandLinkedin,
+} from "@tabler/icons-react";
+import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
 
-const stats = [
-  { value: '34K', label: 'Followers' },
-  { value: '187', label: 'Follows' },
-  { value: '1.6K', label: 'Posts' },
-];
+const Profile = () => {
+  const inputRef = useRef(null);
+  const [image, setImage] = useState("");
+  const [imagecrop, setImagecrop] = useState("");
 
-const UserProfile =()=> {
-  const items = stats.map((stat) => (
-    <div key={stat.label}>
-      <Text ta="center" fz="lg" fw={500}>
-        {stat.value}
-      </Text>
-      <Text ta="center" fz="sm" c="dimmed" lh={1}>
-        {stat.label}
-      </Text>
-    </div>
-  ));
+  const handleImageClick = () => {
+    console.log("image clicked");
+    inputRef.current.click();
+  };
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    const fd = new FormData();
+    fd.append("myfile", file);
+    fetch("http://localhost:5000/util/uploadfile", {
+      method: "POST",
+      body: fd,
+    })
+      .then((res) => {
+        console.log(res.status);
+        if (res.status === 200) {
+          updateUser({ avatar: file.name });
+        }
+        return res.json();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(sessionStorage.getItem("user"))
+  );
+  const fetchUserData = () => {
+    fetch(`http://localhost:5000/user/getUser`)
+      .then((res) => {
+        console.log(res.status);
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        router.push("/user/profile/editProfile");
+        setCurrentUser(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const updateUser = (data) => {
+    fetch(`http://localhost:5000/user/update/`+currentUser._id, {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        console.log(res.status);
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setCurrentUser(data);
+        sessionStorage.setItem("user", JSON.stringify(data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
 
   return (
-    <Card withBorder padding="xl" radius="md" className={classes.card}>
-      <Card.Section
-        h={140}
-        style={{
-          backgroundImage:
-            'url(https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80)',
-        }}
-      />
-      <Avatar
-        src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-9.png"
-        size={80}
-        radius={80}
-        mx="auto"
-        mt={-30}
-        className={classes.avatar}
-      />
-      <Text ta="center" fz="lg" fw={500} mt="sm">
-        Hemant Kumar
-      </Text>
-      <Text ta="center" fz="sm" c="dimmed">
-        MERN Developer
-      </Text>
-      <Group mt="md" justify="center" gap={30}>
-        {items}
-      </Group>
-      <Button fullWidth radius="md" mt="xl" size="md" variant="default">
-        Follow
-      </Button>
+    <Card  radius="md" className={classes.box_btn}>
+      <Box className={classes.box_1}>
+        <Box onClick={handleImageClick}>
+          
+            <Avatar
+              src={'http://localhost:5000/'+currentUser.avatar}
+              size={80}
+              radius={80}
+              mx="auto"
+              mt={-30}
+              className={classes.avatar}
+            />
+
+          <TextInput
+            type="file"
+            ref={inputRef}
+            accept="image/*"
+            onChange={handleImageChange}
+            style={{ display: "none" }}
+          />
+        </Box>
+        <Text ta="center" fz="lg" fw={500} mt="sm" c="white">
+          {currentUser.name}
+        </Text>
+        <Text ta="center" fz="sm" c="white">
+          Developer
+        </Text>
+        <Box className={classes.btn} mt={"xl"}>
+          <ActionIcon
+            radius="xl"
+            size="xl"
+            variant="outline"
+            className={classes.btn_style}
+            withBorder
+            component={Link}
+            href="https://github.com/vishwakrma-hemant?tab=repositories"
+          >
+            <IconBrandGithub size={33} className={classes.btn_icon} color="#376fc2" />
+          </ActionIcon>
+
+          <ActionIcon
+            radius="xl"
+            size="xl"
+            variant="outline"
+            withBorder
+            className={classes.btn_style}
+            component={Link}
+            href="https://www.linkedin.com/in/hemant-kumar-7054b4267/"
+          >
+            <IconBrandLinkedin size={33} className={classes.btn_icon} color="#376fc2" />
+          </ActionIcon>
+
+          <ActionIcon
+            radius="xl"
+            size="xl"
+            variant="outline"
+            withBorder
+            className={classes.btn_style}
+            component={Link}
+            href="https://hemantk3335@gmail.com"
+          >
+            <IconBrandGmail size={33} className={classes.btn_icon}  color="#376fc2"/>
+          </ActionIcon>
+        </Box>
+      </Box>
     </Card>
   );
-}
-export default UserProfile;
+};
+export default Profile;

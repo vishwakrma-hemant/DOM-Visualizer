@@ -8,6 +8,8 @@ const app = express();
  const DiagramRouter = require("./routers/diagramRouter")
  const ContactRouter = require("./routers/contactRouter");
  const FeedbackRouter = require("./routers/feedbackRouter");
+ const UtilRouter = require("./routers/utilRouter");
+ const AdminRouter = require("./routers/adminRouter");
 
 
  app.use(express.json());
@@ -19,6 +21,10 @@ app.use("/user", UserRouter);
 app.use("/diagram", DiagramRouter);
 app.use("/contact",ContactRouter);
 app.use("/feedback",FeedbackRouter);
+app.use("/util",UtilRouter);
+app.use("/admin",AdminRouter);
+
+app.use(express.static('./static/uploads'));
   
 app.listen(port,()=>{
 console.log("Server Started");
