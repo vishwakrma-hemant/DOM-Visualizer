@@ -1,5 +1,5 @@
 'use client';
-import { IconHeart } from '@tabler/icons-react';
+
 import { Card, Image, Text, Group, Badge, Button, ActionIcon, Container, BackgroundImage } from '@mantine/core';
 import classes from './live.module.css';
 import Link from 'next/link';
@@ -13,11 +13,11 @@ const mockdata = {
   description:
     'In a DOM Visualizer, Live DOM Update provide structure of the Web page of html node and how it changes in real-time as you interact with the page. This is a great way to learn how the DOM works and how to manipulate it using JavaScript.It saves lot of time of developers and make them more productive.',
   badges: [
-    { emoji: '💻', label: 'Computer' }, // Changed emoji
-    { emoji: '⌨️', label: 'Keybord' }, // Changed emoji
-    { emoji: '🖥️', label: 'Monitor' }, // Changed emoji
-    { emoji: '🖱️', label: 'Mouse' }, // Changed emoji
-    { emoji: '👨‍💻', label: 'Developer' }, // Changed emoji
+    { emoji: '💻', label: 'Computer' }, 
+    { emoji: '⌨️', label: 'Keybord' }, 
+    { emoji: '🖥️', label: 'Monitor' }, 
+    { emoji: '🖱️', label: 'Mouse' }, 
+    { emoji: '👨‍💻', label: 'Developer' }, 
   ],
 };
 
@@ -64,9 +64,6 @@ function domUpdate() {
         >
           Signup
         </Button>
-        {/* <ActionIcon variant="default" radius="md" size={36}>
-          <IconHeart className={classes.like} stroke={1.5} />
-        </ActionIcon> */}
       </Group>
     </Card>
     </Container>
