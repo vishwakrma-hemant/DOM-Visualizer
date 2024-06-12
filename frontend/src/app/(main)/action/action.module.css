@@ -4,21 +4,21 @@
 }
 
 .dark {
-  @mixin dark {
+  mixin dark {
     display: none;
   }
 
-  @mixin light {
+  mixin light {
     display: block;
   }
 }
 
 .light {
-  @mixin light {
+  mixin light {
     display: none;
   }
 
-  @mixin dark {
+  mixin dark {
     display: block;
   }
 }
