@@ -28,7 +28,7 @@ const defaultViewport = { x: 0, y: 0, zoom: 1.5 };
 
 const nodeTypes = {
   DomNode: ({ data, isConnectable, id }) => {
-    //console.log(data);
+    // console.log(data);
     return (
       <HoverCard width={280} shadow="md">
         <HoverCard.Target>
@@ -50,8 +50,9 @@ const nodeTypes = {
               </Box>
 
               <Box className={classes.parent}>
+                {" "}
                 <h5 style={{ letterSpacing: "1px" }}>Ids</h5>
-                <p className={`${classes.myid}`}>{data.ids}</p>
+                <p className={`${classes.myid}`}>{data.id}</p>
               </Box>
             </HoverCard.Dropdown>
 
@@ -112,6 +113,7 @@ const createReactFlowNodes = (node, parentIndex = 0, parentCount = 0, parentPosi
         label: node.nodeName,
         styles: node.styles,
         classes: node.classes,
+        id: node.id
       },
       position: parentPosition,
     },
